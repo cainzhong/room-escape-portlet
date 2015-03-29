@@ -10,7 +10,7 @@
     <link rel='stylesheet' href="${pageContext.request.contextPath}/css/main.css" type="text/css" />
     <!-- javascripts -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.3.min.js"></script>
-    <!-- Only for debug -->
+    <!-- Only for debugging -->
     <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.3.js"></script> --%>
     
     
@@ -26,10 +26,10 @@
     <div id="content" class="content">
         <table>
         	<tr>
-        	<c:forEach items="userAccountList" var="userAccount">
-        		<td><c:out value="userAccount.id" /></td>
-        		<td><c:out value="userAccount.username" /></td>
-        		<td><c:out value="userAccount.password" /></td>
+        	<c:forEach items="${userAccountList}" var="userAccount">
+        		<%-- <td><c:out value="${userAccount.id}" /></td>
+        		<td><c:out value="${userAccount.username}" /></td> --%>
+        		<td><c:out value="${userAccount.password}" /></td>
         	</c:forEach>
         	</tr>
         </table>

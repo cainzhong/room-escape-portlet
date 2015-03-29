@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.online.shopping.orange.domain.UserAccount;
-import com.online.shopping.orange.repository.service.OrangeRepository;
+import com.online.shopping.orange.hibernate.service.OrangeHinernateService;
 
 /**
  * Hello world!
@@ -18,11 +18,11 @@ import com.online.shopping.orange.repository.service.OrangeRepository;
 public class HibernateController 
 {
 	@Autowired
-	private OrangeRepository orangeRepository;
+	private OrangeHinernateService orangeHinernateService;
 	
 	@RequestMapping("hibernate.do")
 	public String findUserAccount(String username,Model model) {
-		List<UserAccount> userAccountList=orangeRepository.findUserAccountByUserName(username);
+		List<UserAccount> userAccountList=orangeHinernateService.findUserAccountByUserName(username);
 		model.addAttribute("userAccountList", userAccountList);
 		return "hibernate_test";
 	}
