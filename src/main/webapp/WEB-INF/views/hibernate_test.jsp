@@ -25,14 +25,14 @@
     </div>
     <div id="content" class="content">
         <table>
-        	<tr>
-        	<!-- if the value can not be retrieved through jstl, it's may be a issue caused by lombok, try to change the jre version to 1.7  -->
-        	<c:forEach items="${userAccountList}" var="userAccount">
-        		<td><c:out value="${userAccount.id}" /></td>
-        		<td><c:out value="${userAccount.username}" /></td>
-        		<td><c:out value="${userAccount.password}" /></td>
-        	</c:forEach>
-        	</tr>
+       	<!-- if the value can not be retrieved through jstl, it's may be a issue caused by lombok, try to change the jre version to 1.7  -->
+	       	<c:forEach items="${userAccountList}" var="userAccount">
+	       		<tr>
+	       		<td><c:out value="${userAccount.id}" /></td>
+	       		<td><c:out value="${userAccount.username}" /></td>
+	       		<td><c:out value="${userAccount.password}" /></td>
+	       		</tr>
+	       	</c:forEach>
         </table>
     </div>
     <div id="footer">
