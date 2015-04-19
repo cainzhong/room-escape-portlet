@@ -10,11 +10,25 @@
 <body class="">
 	<header class="row nailed header-old-version locked"> 
 		<nav class="in-grid">
-			<ul class="tools">
+			<ul class="loginBar">
 				<li class="desktop-only"><a class="search-open"></a></li>
 				<li class="cart-li"><a class="cart empty minicarttotal" href="https://www.motorola.com.cn/cart"><span class="num-items">0</span></a></li>
-				<li class="login guest-checkout-only">Login</li>
-				<li class="login guest-checkout-only">Sign in</li>
+				<c:choose>
+					<c:when test="${not empty userName}">
+						<li>
+							<a title="${userName}"><c:out value="${userName}" /></a>
+							<b class="split">-</b>
+							<a title="Sign out" href="logoff.do">Sign out</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li>
+							<a title="Login" href="login.do">Login</a>
+							<b class="split">-</b>
+							<a title="Sign in" href="register.do">Sign in</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 			
 			<ul class="menu-logo">
