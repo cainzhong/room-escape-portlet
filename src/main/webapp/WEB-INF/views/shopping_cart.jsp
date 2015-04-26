@@ -7,19 +7,22 @@
 <title>Shopping Cart</title>
 </head>
 <link rel='stylesheet' href='css/main.css' type="text/css">
+<script language=javascript src='/js/main.js'></script>
+<script language=javascript src='js/jquery-2.1.3.min.js'></script>
 <body>
 	<table>
 		<tr>
-			<th>Select All</th>
+			<th><input type="checkbox" id="itemCheckBoxAll" />All</th>
 			<th>Product</th>
 			<th>Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
 			<th>Operation</th>
 		</tr>
-		<c:forEach items="${orderedItemList}" var="orderedItem">
+		<c:forEach items="${orderedItemList}" var="orderedItem"
+			varStatus="status">
 			<tr>
-				<td>selectAll</td>
+				<td><input type="checkbox" id="itemCheckBox${status.index}" />${status.index}</td>
 				<td>${orderedItem.product.name}</td>
 				<td>${orderedItem.product.price}</td>
 				<td>${orderedItem.orderdQuantity}</td>
@@ -28,5 +31,24 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#itemCheckBoxAll").change(function() {
+	//	if ($(this).attr("checked") == true) {
+		if(this.checked){
+			//select all
+			$("input[type=checkbox]").each(function() {
+				$(this).attr("checked", true);
+			});
+		} else {
+		// cancel select all
+			$("input[type=checkbox]").each(function() {
+				$(this).attr("checked", false);
+			});
+		}
+	});
+});
+</script>
 </body>
 </html>
