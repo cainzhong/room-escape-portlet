@@ -24,7 +24,7 @@ public class ShoppingCartController
 	
 	@RequestMapping("shoppingcart.do")
 	public String shoppingCartPage(String username,Model model) {
-		List<OrderedItem> orderedItemList=ShoppingCartService.findOrderedItemForUser(username);
+		List<OrderedItem> orderedItemList=ShoppingCartService.findOrderedItemForUser(1L);
 		model.addAttribute("orderedItemList", orderedItemList);
 		return "shopping_cart";
 	}

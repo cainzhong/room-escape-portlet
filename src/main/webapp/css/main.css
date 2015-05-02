@@ -1,4 +1,3 @@
-/* @override custom css */
 nav {
 	overflow: hidden
 }
@@ -9,11 +8,6 @@ nav li {
 	float: left;
 	padding: 0 6px;
 	line-height: 80px;
-}
-
-.loginBar {
-	float: right;
-	margin: -25px 10px 0 0;
 }
 
 table {
