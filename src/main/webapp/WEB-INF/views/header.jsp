@@ -7,7 +7,7 @@
 		<ul class="loginBar">
 		<c:choose>
 			<c:when test="${not empty userName}">
-				<li>
+				<li id="loginUser">
 					<a title="${userName}"><c:out value="${userName}" /></a>
 					<b class="split">-</b>
 					<a title="Sign out" href="logoff.do">Sign out</a>

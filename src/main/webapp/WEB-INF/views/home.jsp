@@ -24,18 +24,18 @@
 		</header>
 		<section id="dg-container" class="dg-container">
 			<div class="dg-wrapper">
-				<a href="#"><img src="css/img/1.jpg" alt="image01"><span>http://www.colazionedamichy.it/</span></a>
-				<a href="#"><img src="css/img/2.jpg" alt="image02"><span>http://www.percivalclo.com/</span></a>
-				<a href="#"><img src="css/img/3.jpg" alt="image03"><span>http://www.wanda.net/fr</span></a>
-				<a href="#"><img src="css/img/4.jpg" alt="image04"><span>http://lifeingreenville.com/</span></a>
-				<a href="#"><img src="css/img/5.jpg" alt="image05"><span>http://circlemeetups.com/</span></a>
-				<a href="#"><img src="css/img/6.jpg" alt="image06"><span>http://www.castirondesign.com/</span></a>
-				<a href="#"><img src="css/img/7.jpg" alt="image07"><span>http://www.foundrycollective.com/</span></a>
-				<a href="#"><img src="css/img/8.jpg" alt="image08"><span>http://www.mathiassterner.com/home</span></a>
-				<a href="#"><img src="css/img/9.jpg" alt="image09"><span>http://learnlakenona.com/</span></a>
-				<a href="#"><img src="css/img/10.jpg" alt="image10"><span>http://www.neighborhood-studio.com/</span></a>
-				<a href="#"><img src="css/img/11.jpg" alt="image11"><span>http://www.beckindesign.com/</span></a>
-				<a href="#"><img src="css/img/12.jpg" alt="image12"><span>http://kicksend.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10001" /></c:url>"><img src="css/img/1.jpg" alt="image01"><span>http://www.colazionedamichy.it/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10002" /></c:url>"><img src="css/img/2.jpg" alt="image02"><span>http://www.percivalclo.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10003" /></c:url>"><img src="css/img/3.jpg" alt="image03"><span>http://www.wanda.net/fr</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10004" /></c:url>"><img src="css/img/4.jpg" alt="image04"><span>http://lifeingreenville.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10005" /></c:url>"><img src="css/img/5.jpg" alt="image05"><span>http://circlemeetups.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10006" /></c:url>"><img src="css/img/6.jpg" alt="image06"><span>http://www.castirondesign.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10007" /></c:url>"><img src="css/img/7.jpg" alt="image07"><span>http://www.foundrycollective.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10008" /></c:url>"><img src="css/img/8.jpg" alt="image08"><span>http://www.mathiassterner.com/home</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10009" /></c:url>"><img src="css/img/9.jpg" alt="image09"><span>http://learnlakenona.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10010" /></c:url>"><img src="css/img/10.jpg" alt="image10"><span>http://www.neighborhood-studio.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10011" /></c:url>"><img src="css/img/11.jpg" alt="image11"><span>http://www.beckindesign.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10012" /></c:url>"><img src="css/img/12.jpg" alt="image12"><span>http://kicksend.com/</span></a>
 			</div>
 		</section>
 	</div>
