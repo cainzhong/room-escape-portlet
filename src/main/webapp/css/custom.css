@@ -13,3 +13,43 @@
 .baidu-search-button {
 	
 }
+
+.footer-links {
+	padding: 50px 100px 50px 100px;
+}
+
+}
+.in-grid {
+	min-width: 320px;
+	max-width: 1200px;
+	margin: 0px auto;
+}
+
+.row {
+	display: table;
+	width: 100%
+}
+
+h5 {
+	margin: 10px 0px 15px;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1.15;
+	color: #FFFFFF;
+}
+
+.col {
+	width: 24%;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+	border: 0px solid transparent;
+	float: left;
+}
+
+.footer-bottom {
+	margin: 20px auto;
+	display: table;
+}
+
+.rights-reserved {
+	text-align: center;
+}

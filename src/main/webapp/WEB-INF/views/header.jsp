@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link rel='stylesheet' href='css/custom.css' type="text/css">
 <header class="row nailed header-old-version locked">
 	<nav class="in-grid">
 		<ul class="loginBar">

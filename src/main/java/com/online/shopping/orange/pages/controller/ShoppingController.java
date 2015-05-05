@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.online.shopping.orange.domain.OrderedItem;
 import com.online.shopping.orange.pages.service.ShoppingService;
@@ -20,15 +21,15 @@ import com.online.shopping.orange.pages.service.ShoppingService;
 public class ShoppingController
 {
 	@Autowired
-	private ShoppingService ShoppingCartService;
-	
+	private ShoppingService shoppingService;
+
 	@RequestMapping("shoppingcart.do")
-	public String shoppingCartPage(String username,Model model) {
-		List<OrderedItem> orderedItemList=ShoppingCartService.findOrderedItemForUser(1L);
+	public String shoppingCartPage(@RequestParam long userAccountId,String username,Model model) {
+		List<OrderedItem> orderedItemList=this.shoppingService.findOrderedItemForUser(userAccountId);
 		model.addAttribute("orderedItemList", orderedItemList);
-		return "shopping_cart";
+		return "shoppingCart";
 	}
-	
+
 	@RequestMapping("buy.do")
 	public String renderToShoppongCartPage(){
 		return null;
