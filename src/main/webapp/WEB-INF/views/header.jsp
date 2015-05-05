@@ -32,7 +32,7 @@
 			</li>
 		</ul>
 		<ul class="nav-items">
-			<li class="dropdown "><a href="#" class=" "><span>手机</span></a> <!-- <ul>
+			<li class="dropdown "><a href="#" class=" "><span>MOBILE PHONES</span></a> <!-- <ul>
 								<li><a
 									href="http://www.motorola.com.cn/Mobile-Phones/Moto-X/x%2B1-pdp-china.html"
 									class="  ">Moto X</a></li>
@@ -43,7 +43,7 @@
 									href="http://www.motorola.com.cn/Mobile-Phones/Moto-X-Pro/moto-x-pro-cn.html"
 									class="  ">Moto X Pro</a></li>
 							</ul> --></li>
-			<li class="dropdown "><a href="#" class=" "><span>配件</span></a> <!-- <ul>
+			<li class="dropdown "><a href="#" class=" "><span>ACCESSORIES</span></a> <!-- <ul>
 								<li><a
 									href="http://www.motorola.com.cn/consumers/accessories/Moto-Hint/moto-hint-cn.html"
 									class="  ">Moto Hint</a></li>
@@ -59,8 +59,8 @@
 							</ul> --></li>
 			<li><a
 				href="http://www.motorola.com.cn/Corded-and-Cordless-Phones-1/"
-				class="  "><span>数字无绳电话机</span></a></li>
-			<li class="dropdown "><a href="#" class=" "><span>服务与支持</span></a>
+				class="  "><span>SPECIALS</span></a></li>
+			<li class="dropdown "><a href="#" class=" "><span>GET HELP</span></a>
 				<!-- <ul>
 								<li><a
 									href="https://motorola-global-zn-ch.custhelp.com/app/home"

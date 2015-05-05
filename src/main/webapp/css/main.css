@@ -10,6 +10,11 @@ nav li {
 	line-height: 80px;
 }
 
+li span {
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+	font-weight: bold;
+}
+
 table {
 	border-right: 1px solid;
 	border-bottom: 1px solid;

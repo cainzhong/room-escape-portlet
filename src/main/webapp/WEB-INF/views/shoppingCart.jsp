@@ -31,8 +31,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-<script type="text/javascript">
+
+	<script type="text/javascript">
 $(document).ready(function(){
 	$("#itemCheckBoxAll").change(function() {
 	//	if ($(this).attr("checked") == true) {

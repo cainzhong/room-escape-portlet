@@ -1,7 +1,12 @@
 package com.online.shopping.orange.pages.controller;
 
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +35,11 @@ public class ShoppingController
 		return "shoppingCart";
 	}
 
-	@RequestMapping("buy.do")
-	public String renderToShoppongCartPage(){
-		return null;
+	@RequestMapping(value="/buy.do")
+	public String renderToShoppongCartPage(@RequestParam(value = "userAccountId", required = false) String userAccountId,HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+//		request.getRequestDispatcher("shoppingCart").forward(request, response);
+//		response.sendRedirect("shoppingCart");
+		return "shoppingCart";
 	}
+
 }
