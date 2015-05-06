@@ -18,10 +18,28 @@
 	</div>
 
 	<jsp:include page="footer.jsp" />
+	
+	<div id="dialog" title="Shopping Notification">
+		<p><span id="productName" class="boldType">The product</span> has been put into your shopping cart.</p>
+	</div>
+	
 </body>
 <script type="text/javascript">
 	$(function() {
-
+	
+		$("#dialog").dialog({
+			autoOpen: false,
+			show: {
+				effect: "blind",
+				duration: 1000
+			},
+			hide: {
+				effect: "explode",
+				duration: 1000
+			}
+		});
+		
+		
 		/* 	var loginUser = $('#loginUser').firstChild.val();
 		if(loginUser =="" || loginUser == null){
 			alert("Please log in first!")
@@ -38,7 +56,8 @@
 					userAccountId : userAccountId
 				},
 				success : function(data) {
-					alert(data);
+					$("#productName").text(data);
+					$("#dialog").dialog("open");
 				},
 				error : function() {
 					alert("error");
