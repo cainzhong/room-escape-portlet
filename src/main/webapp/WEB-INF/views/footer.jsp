@@ -4,35 +4,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <link rel='stylesheet' href='css/custom.css' type="text/css">
 <footer>
+	<div>
+		<div>海淘人才，找海归上中华海外人才网！</div>
+		<input type="button" value="用户登录">
+		<input type="button" value="立即注册">
+	</div>
 	<div class="footer-links in-grid row">
 		<div class="col">
-			<h5>Motorola</h5>
-			<ul>
-				<li><a href="">Moto X</a></li>
-				<li><a href="">Moto G LTE</a></li>
-				<li><a href="">Moto X Pro</a></li>
-				<li><a href="">Moto 360</a></li>
-			</ul>
+			<h5>动态发布</h5>
 		</div>
 		<div class="col">
-			<h5>Support</h5>
-			<ul>
-				<li><a href="">All Products</a></li>
-				<li><a href="">Contact Us</a></li>
-			</ul>
+			<h5>海外联络站</h5>
 		</div>
 		<div class="col">
-			<h5>About</h5>
-			<ul>
-				<li><a href="">About Motorola</a></li>
-				<li><a href="">Privacy</a></li>
-				<li><a href="">Terms Of Use</a></li>
-			</ul>
+			<h5>项目发布</h5>
+		</div>
+		<div class="col">
+			<h5>项目发布</h5>
+		</div>
+		<div class="col">
+			<h5>项目发布</h5>
+		</div>
+		<div class="col">
+			<h5>伯乐盼才</h5>
+		</div>
+		<div class="col">
+			<h5>互动社区</h5>
+		</div>
+		<div class="col">
+			<h5>贴心服务</h5>
+		</div>
+		<div class="col">
+			<h5>活动报道</h5>
+		</div>
+		<div class="col">
+			<h5>关于海才网</h5>
+		</div>
+		<div class="col">
+			<h5>联系我们</h5>
+		</div>
+		<div class="col">
+			<h5>网站地图</h5>
 		</div>
 	</div>
 	
 	<div class="footer-bottom">
 		<img src="${pageContext.request.contextPath}/img/orange.png" alt="Orange" style="margin-bottom: 23px">
-		<p class="rights-reserved"> © <span id="calendarYear">2015</span> Orange All Rights Reserved</p>
+		<p class="rights-reserved"> © <span id="calendarYear">2014</span> 沪CP备012054832</p>
 	</div>
 </footer>
