@@ -1,19 +1,18 @@
-nav {
-	overflow: hidden
+html {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-nav li {
-	list-style: none;
-	line-height: 80px;
-	float: left;
-	padding: 0 6px;
-	line-height: 80px;
+*,*:before,*:after {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-li span {
+body {
 	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
-	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
+	line-height: 1.5;
+	background: #27ae60;
 }
 
 table {
@@ -31,3 +30,57 @@ table th {
 	border-top: 1px solid;
 	border-left: 1px solid;
 }
+
+/* CSS style for navigation header */
+nav ul {
+	list-style: none;
+}
+
+.nav {
+	min-width: 600px;
+	color: #f0f0f0;
+}
+
+ .nav a {
+	display: block;
+	padding: 0 16px;
+	line-height: inherit;
+	cursor: pointer;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+	font-weight: bold;
+} 
+
+.nav-menu {
+	padding-top: 10px;
+	line-height: 45px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.nav-menu-item {
+	display: inline-block;
+	position: relative;
+}
+
+.nav-menu-item:hover {
+	background-color: #9b59b6;
+}
+
+.nav-menu-item:hover .nav-submenu {
+	display: block;
+}
+
+.nav-submenu {
+	font-weight: 300;
+	text-transform: none;
+	display: none;
+	position: absolute;
+	width: 220px;
+	background-color: #9b59b6;
+}
+
+.nav-submenu-item:hover {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+/* CSS style for navigation header */

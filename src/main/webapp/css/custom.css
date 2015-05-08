@@ -1,13 +1,30 @@
 /* @override main.css */
+.menu-logo {
+	float: left;
+	padding-top: 20px;	
+}
+
 .loginBar {
-	float: right;
-	margin: -25px 20px 0 0;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	margin: 5px 20px 5px 20px;
+}
+
+.loginBar a {
+	display: unset;
+	font-weight: normal;
+	padding: 0 5px 0 5px;
+}
+
+.search-item {
+	position: fixed;
+	top: 0px;
+	right: 120px;
+	margin-top: 5px;
 }
 
 .search-site {
-	float: right;
-	margin-top: -60px;
-	padding: 0 20px 0 20px;
 }
 
 .baidu-search-button {
@@ -16,13 +33,6 @@
 
 .footer-links {
 	padding: 50px 100px 50px 100px;
-}
-
-}
-.in-grid {
-	min-width: 320px;
-	max-width: 1200px;
-	margin: 0px auto;
 }
 
 .row {
