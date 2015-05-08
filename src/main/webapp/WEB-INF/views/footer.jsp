@@ -3,12 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <link rel='stylesheet' href='css/custom.css' type="text/css">
-<footer>
-	<div>
-		<div>海淘人才，找海归上中华海外人才网！</div>
-		<input type="button" value="用户登录">
-		<input type="button" value="立即注册">
-	</div>
+<footer style="float:left;margin-left:350px;">
 	<div class="footer-links in-grid row">
 		<div class="col">
 			<h5>动态发布</h5>
@@ -49,7 +44,7 @@
 	</div>
 	
 	<div class="footer-bottom">
-		<img src="${pageContext.request.contextPath}/img/orange.png" alt="Orange" style="margin-bottom: 23px">
+		<img src="${pageContext.request.contextPath}/img/logo.PNG" alt="Orange" style="margin-bottom: 23px">
 		<p class="rights-reserved"> © <span id="calendarYear">2014</span> 沪CP备012054832</p>
 	</div>
 </footer>

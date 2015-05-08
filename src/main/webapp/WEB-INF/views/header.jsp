@@ -23,15 +23,15 @@
 		</c:choose>
 		</ul>
 
-		<ul class="menu-logo">
+		<ul class="menu-logo" style="margin-left: 450px;">
 			<li class="logo-li">
 				<a class="logo logo-0004" href="http://www.motorola.com.cn">
-					<img src="${pageContext.request.contextPath}/img/logo-animation-header-sm-0005.png" alt="Home" style="opacity: 1;">
+					<img src="${pageContext.request.contextPath}/img/logo.PNG" alt="Home" style="opacity: 1;height:45px;margin-top:20px;">
 				</a>
 			</li>
 		</ul>
-		<ul class="nav-items">
-			<li class="dropdown "><a href="#" class=" "><span>动态发布</span></a> <!-- <ul>
+		<ul class="nav-items" style="margin-left: 350px;">
+			<li class="dropdown"><a href="#" class=""><span>动态发布</span></a> <!-- <ul>
 								<li><a
 									href="http://www.motorola.com.cn/Mobile-Phones/Moto-X/x%2B1-pdp-china.html"
 									class="  ">Moto X</a></li>
@@ -42,12 +42,12 @@
 									href="http://www.motorola.com.cn/Mobile-Phones/Moto-X-Pro/moto-x-pro-cn.html"
 									class="  ">Moto X Pro</a></li>
 							</ul> --></li>
-			<li class="dropdown "><a href="#" class=" "><span>海外联络站</span></a></li>
+			<li class="dropdown "><a href="#" class=""><span>海外联络站</span></a></li>
 			
-			<li><a href="#"><span>项目发布</span></a></li>
-			<li><a href="#"><span>伯乐盼才</span></a></li>
-			<li><a href="#"><span>互动社区</span></a></li>
-			<li><a href="#"><span>其他</span></a></li>
+			<li><a href="#" class=""><span>项目发布</span></a></li>
+			<li><a href="#" class=""><span>伯乐盼才</span></a></li>
+			<li><a href="#" class=""><span>互动社区</span></a></li>
+			<li><a href="#" class=""><span>其他</span></a></li>
 		</ul>
 		</nav>
 	

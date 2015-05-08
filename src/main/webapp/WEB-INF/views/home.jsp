@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Online Shopping</title>
+<title>中华海外人才网</title>
 <link rel='stylesheet' href='css/custom.css' type="text/css">
 <jsp:include page="resourceInclude.jsp"/>
 </head>
@@ -24,23 +25,86 @@
 		</header>
 		<section id="dg-container" class="dg-container">
 			<div class="dg-wrapper">
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10001" /></c:url>"><img src="css/img/1.jpg" alt="image01"><span>http://www.colazionedamichy.it/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10002" /></c:url>"><img src="css/img/2.jpg" alt="image02"><span>http://www.percivalclo.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10003" /></c:url>"><img src="css/img/3.jpg" alt="image03"><span>http://www.wanda.net/fr</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10004" /></c:url>"><img src="css/img/4.jpg" alt="image04"><span>http://lifeingreenville.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10005" /></c:url>"><img src="css/img/5.jpg" alt="image05"><span>http://circlemeetups.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10006" /></c:url>"><img src="css/img/6.jpg" alt="image06"><span>http://www.castirondesign.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10007" /></c:url>"><img src="css/img/7.jpg" alt="image07"><span>http://www.foundrycollective.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10008" /></c:url>"><img src="css/img/8.jpg" alt="image08"><span>http://www.mathiassterner.com/home</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10009" /></c:url>"><img src="css/img/9.jpg" alt="image09"><span>http://learnlakenona.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10010" /></c:url>"><img src="css/img/10.jpg" alt="image10"><span>http://www.neighborhood-studio.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10011" /></c:url>"><img src="css/img/11.jpg" alt="image11"><span>http://www.beckindesign.com/</span></a>
-				<a href="<c:url value='detail.do'><c:param name="productId" value="10012" /></c:url>"><img src="css/img/12.jpg" alt="image12"><span>http://kicksend.com/</span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10001" /></c:url>"><img src="css/img/fudan01.jpg" alt="image01"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10002" /></c:url>"><img src="css/img/fudan02.jpg" alt="image02"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10003" /></c:url>"><img src="css/img/fudan03.jpg" alt="image03"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10004" /></c:url>"><img src="css/img/jiaoda01.jpg" alt="image04"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10005" /></c:url>"><img src="css/img/jiaoda02.jpg" alt="image05"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10006" /></c:url>"><img src="css/img/jiaoda03.jpg" alt="image06"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10007" /></c:url>"><img src="css/img/harvard01.jpg" alt="image07"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10008" /></c:url>"><img src="css/img/harvard02.jpg" alt="image08"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10009" /></c:url>"><img src="css/img/harvard03.jpg" alt="image09"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10010" /></c:url>"><img src="css/img/tongji01.jpg" alt="image10"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10011" /></c:url>"><img src="css/img/tongji02.jpg" alt="image11"><span></span></a>
+				<a href="<c:url value='detail.do'><c:param name="productId" value="10012" /></c:url>"><img src="css/img/tongji03.jpg" alt="image12"><span></span></a>
 			</div>
-		</section>
+		</section>	
 	</div>
 	
+	<div>
+		<div class="leftHomePageStyle">
+			<div class="floatLeft"><label class="navFont"><spring:message code="T_COLLECT_RESUME" /></label></div> 
+			<br>
+			<div class="floatLeft" style="margin-top:0px;">
+				<a class="" href="#">
+					<img src="${pageContext.request.contextPath}/img/collecCV.PNG" alt="Home" style="opacity: 1;height:45px;margin-top:20px;">
+				</a>
+			</div>
+			<br>
+			<div class="floatLeft underlineWord"><label style="text-align: left;"><spring:message code="T_RESUME_INFO" /></label></div>
+			<div class="floatLeft"><label style="text-align:center;font-size:12px;"><spring:message code="T_WEICHAT_INFO" /></label></div> 
+			<div class="floatLeft" style="margin-top:0px;">
+				<a class="" href="#">
+					<img src="${pageContext.request.contextPath}/img/QRimg.PNG" alt="Home" style="opacity: 1;height:160px;width:250px;margin-top:10px;">
+				</a>
+			</div>
+			<div class="floatLeft"><label style="font-size:12px;"><spring:message htmlEscape="false" code="T_COMPANY_INFO" arguments="021-61353110,021-61353109" /></label></div> 
+		</div>
+		<div class="centerHomePageStyle">
+			<div class="floatLeft underlineWord" style="width:400px;">
+				<div class="floatLeft"><label class="navFont"><spring:message code="T_RECRUIT" /></label></div>
+				<br>
+				<div class="floatLeft"><p>This portlet is used to show the information of the recruitment</p>
+					<p>This is used for company, which want someone from the society</p>
+				</div>
+			</div>
+			<div class="floatLeft">
+				<div class="floatLeft"><label class="navFont"><spring:message code="T_TALENTS_ANNOUNCE" /></label></div>
+				<br>
+				<div class="floatLeft"><p>This portlet is used to show the information of the talented people</p>
+					<p>Here is to show the info where users want to be recruited.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="rightHomePageStyle">
+			<div class="floatLeft">
+				<div class="floatLeft"><label class="navFont"><spring:message code="T_TV_ADVERTISEMENT" /></label></div>
+				<br>
+				<div class="floatLeft" style="margin-top: 10px;"> 
+					<embed src="http://player.youku.com/player.php/sid/XNjE0MTkzODg4/v.swf" allowFullScreen="true" quality="high" width="250" height="250" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+				</div>
+			</div>
+			<br>
+			<div class="floatLeft">
+				<div class="floatLeft underlineWord"><label class="navFont"><spring:message code="T_DAILY_SENTENCE" /></label></div>
+				<div class="floatLeft"><p>This portlet is used to show the daily nice English word.</p>
+					<p>This part should be updated everyday, and should have a "Click" function, user can see the previous English word.</p>
+				</div>
+			</div>
+			<div class="floatLeft">
+				<div class="floatLeft underlineWord"><label class="navFont"><spring:message code="T_DAILY_POLICY_UPDATE" /></label></div>
+				<div class="floatLeft"><p>This portlet is used to show the recent updated policy news.</p>
+					<p>This part should be updated everyweek for latest policy for education information, and should have a "Raise Question" function, user can leave a question for the news.</p>
+					<p>And should have a "More" function, user can see more news.</p>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
 	<jsp:include page="footer.jsp"/>
+	
 </body>
 <script type="text/javascript">
 // 3DGallery

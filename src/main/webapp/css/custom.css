@@ -27,7 +27,7 @@
 
 .row {
 	display: table;
-	width: 100%
+	width: 100%;
 }
 
 h5 {
@@ -57,4 +57,50 @@ h5 {
 .boldType {
 	font-weight: bold;
 	font-size: 20px;
+}
+
+/*for home page*/
+.leftHomePageStyle{
+	float: left;
+	margin-left:400px;
+	height:700px;
+	width: 250px;;
+	margin-top: 100px;
+	postition: absolute;
+}
+
+.navFont{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.floatLeft{
+	float:left;
+	margin-top:5px;
+}
+
+.centerHomePageStyle{
+	float: left;
+	width: 400px;
+	height: 700px;
+	margin-left: 100px;
+	margin-top: 100px;
+	postition: absolute;
+}
+
+.rightHomePageStyle{
+	float: left;
+	width: 150px;
+	height: 700px;
+	margin-left: 100px;
+	margin-top: 100px;
+	postition: absolute;
+}
+
+.underlineWord{
+	width: 250px;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
