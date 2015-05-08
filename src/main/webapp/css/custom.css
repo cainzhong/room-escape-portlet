@@ -59,7 +59,7 @@ h5 {
 	font-size: 20px;
 }
 
-/*for home page*/
+/*home page*/
 .leftHomePageStyle{
 	float: left;
 	margin-left:400px;
@@ -103,4 +103,50 @@ h5 {
 	border-bottom-width: thin;
 	padding-bottom: 10px;
 	padding-top: 10px;
+}
+
+/*login page*/
+.login{
+	margin-top:150px;
+	margin-left:600px;
+	height:400px;
+	width:600px;
+	background-color: white;
+}
+
+.label{
+	font-size: 50px;
+	font-weight: solid;
+	color: blue;
+	align: center;
+	margin-bottom: 10px;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+}
+.loginText{
+	color: black;
+	font-size: 30px;
+	font-weight: solid;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+}
+
+.input{
+	height: 40px;
+	width: 300px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.loginBtn{
+	height: 35px;
+	width: 350px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size:20px;
+	color: white;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+}
+
+.error{
+	color: red;
+	padding-left:10px;
 }
