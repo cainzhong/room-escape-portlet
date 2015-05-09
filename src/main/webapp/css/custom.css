@@ -40,7 +40,14 @@
 	width: 100%;
 }
 
-h5 {
+.col {
+	width: 24%;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+	border: 0px solid transparent;
+	float: left;
+}
+
+.col span{
 	margin: 10px 0px 15px;
 	font-size: 20px;
 	font-weight: 700;
@@ -48,11 +55,8 @@ h5 {
 	color: #FFFFFF;
 }
 
-.col {
-	width: 24%;
-	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
-	border: 0px solid transparent;
-	float: left;
+.footer-login {
+	
 }
 
 .footer-bottom {

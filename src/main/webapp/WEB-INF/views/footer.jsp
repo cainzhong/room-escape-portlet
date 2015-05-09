@@ -1,46 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <link rel='stylesheet' href='css/custom.css' type="text/css">
 <footer style="float:left;margin-left:350px;">
 	<div class="footer-links in-grid row">
 		<div class="col">
-			<h5>动态发布</h5>
+			<span>动态发布</span>
 		</div>
 		<div class="col">
-			<h5>海外联络站</h5>
+			<span>海外联络站</span>
 		</div>
 		<div class="col">
-			<h5>项目发布</h5>
+			<span>项目发布</span>
 		</div>
 		<div class="col">
-			<h5>项目发布</h5>
+			<span>项目发布</span>
 		</div>
 		<div class="col">
-			<h5>项目发布</h5>
+			<span>项目发布</span>
 		</div>
 		<div class="col">
-			<h5>伯乐盼才</h5>
+			<span>伯乐盼才</span>
 		</div>
 		<div class="col">
-			<h5>互动社区</h5>
+			<span>互动社区</span>
 		</div>
 		<div class="col">
-			<h5>贴心服务</h5>
+			<span>贴心服务</span>
 		</div>
 		<div class="col">
-			<h5>活动报道</h5>
+			<span>活动报道</span>
 		</div>
 		<div class="col">
-			<h5>关于海才网</h5>
+			<span>关于海才网</span>
 		</div>
 		<div class="col">
-			<h5>联系我们</h5>
+			<span>联系我们</span>
 		</div>
 		<div class="col">
-			<h5>网站地图</h5>
+			<span>网站地图</span>
 		</div>
+	</div>
+	
+	<div class="footer-login">
+		<input id="loginBtn" type="button" value="用户登录">
+		<input id="registerBtn" type="button" value="立即注册">
 	</div>
 	
 	<div class="footer-bottom">

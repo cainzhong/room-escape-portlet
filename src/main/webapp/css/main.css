@@ -55,6 +55,9 @@ nav ul {
 	line-height: 45px;
 	font-weight: 700;
 	text-transform: uppercase;
+	position: absolute;
+	z-index: 999;
+	padding-left: 150px;
 }
 
 .nav-menu-item {
