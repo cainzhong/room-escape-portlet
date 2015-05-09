@@ -30,9 +30,12 @@ table th {
 	border-left: 1px solid;
 }
 
+.header {
+	padding-bottom: 50px;
+}
+
 .menu-logo {
 	float: left;
-	padding-top: 20px;	
 }
 
 /*-------Navigation STARTS HERE -------*/
@@ -90,7 +93,6 @@ nav ul {
 }
 /*-------Navigation ENDS HERE -------*/
 
-
 .search-item {
 	position: fixed;
 	top: 0px;
@@ -103,48 +105,6 @@ nav ul {
 
 .baidu-search-button {
 	
-}
-
-.footer-links {
-	padding: 50px 100px 50px 100px;
-}
-
-.row {
-	display: table;
-	width: 100%;
-}
-
-.col {
-	width: 24%;
-	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
-	border: 0px solid transparent;
-	float: left;
-}
-
-.col span{
-	margin: 10px 0px 15px;
-	font-size: 20px;
-	font-weight: 700;
-	line-height: 1.15;
-	color: #FFFFFF;
-}
-
-.footer-login {
-	
-}
-
-.footer-bottom {
-	margin: 20px auto;
-	display: table;
-}
-
-.rights-reserved {
-	text-align: center;
-}
-
-.boldType {
-	font-weight: bold;
-	font-size: 20px;
 }
 
 /*-------LOGIN STARTS HERE -------*/
@@ -337,3 +297,51 @@ input:focus {
 	display: none;
 }
 /*-------LOGIN ENDS HERE -------*/
+
+/*-------Footer STARTS HERE -------*/
+.footer {
+	float: left;
+	width: 100%;
+	margin-top: 150px;
+}
+
+.footer-links {
+	padding: 50px 100px 50px 100px;
+}
+
+.footer-login {
+	height: 100px;
+}
+
+#registerBtn {
+	float: right;
+}
+
+#loginBtn {
+	float: right;
+}
+
+.row {
+}
+
+.col {
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+}
+
+.col span{
+	font-size: 14px;
+	padding: 5px 10px 5px 10px;
+	line-height: 1.15;
+	color: #FFFFFF;
+}
+
+.footer-bottom {
+	margin: 20px auto;
+	display: table;
+}
+
+.rights-reserved {
+	text-align: center;
+}
+
+/*-------Footer ENDS HERE -------*/

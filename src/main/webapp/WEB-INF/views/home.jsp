@@ -82,7 +82,7 @@
 				<div class="floatLeft"><label class="navFont"><spring:message code="T_TV_ADVERTISEMENT" /></label></div>
 				<br>
 				<div class="floatLeft" style="margin-top: 10px;"> 
-					<embed src="http://player.youku.com/player.php/sid/XNjE0MTkzODg4/v.swf" allowFullScreen="true" quality="high" width="250" height="250" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+					<!-- <embed src="http://player.youku.com/player.php/sid/XNjE0MTkzODg4/v.swf" allowFullScreen="true" quality="high" width="250" height="250" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed> -->
 				</div>
 			</div>
 			<br>
