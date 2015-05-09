@@ -39,7 +39,7 @@
 				</form>
 			</div>
 		</ul>
-		<ul class="loginBar">
+		<ul class="loginContainer">
 		<c:choose>
 			<c:when test="${not empty userName}">
 				<li id="loginUser">
@@ -50,12 +50,56 @@
 			</c:when>
 		<c:otherwise>
 				<li>
-					<a title="Login" href="login.do">登录</a>
+					<a id="loginButton" title="Login" href="#"><span>登录</span></a>
+					<!-- Login Form Starts Here -->
+						<div id="loginBox">                
+		                    <form id="loginForm" action="login.do">
+		                        <fieldset id="body">
+		                            <fieldset>
+		                                <label for="email">Email Address</label>
+		                                <input type="text" name="email" id="email" />
+		                            </fieldset>
+		                            <fieldset>
+		                                <label for="password">Password</label>
+		                                <input type="password" name="password" id="password" />
+		                            </fieldset>
+		                            <input type="submit" id="login" value="Sign in" />
+		                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+		                        </fieldset>
+		                        <span><a href="#">Forgot your password?</a></span>
+		                    </form>
+	               		</div>
+	               	 <!-- Login Form Ends Here -->
 					<b class="split">|</b>
-					<a title="Sign in" href="register.do">注册</a>
+					<a id="registerButton" title="Sign in" href="register.do"><span>注册</span></a>
 				</li>
 		</c:otherwise>
 		</c:choose>
 		</ul>
 	</nav>
+<script type="text/javascript">
+
+//Login Form
+$(function() {
+    var button = $('#loginButton');
+    var box = $('#loginBox');
+    var form = $('#loginForm');
+    button.removeAttr('href');
+    button.mouseup(function(login) {
+        box.toggle();
+        button.toggleClass('active');
+    });
+    form.mouseup(function() { 
+        return false;
+    });
+    $(this).mouseup(function(login) {
+        if(!($(login.target).parent('#loginButton').length > 0)) {
+            button.removeClass('active');
+            box.hide();
+        }
+    });
+});
+
+</script>	
+	
 </header>
