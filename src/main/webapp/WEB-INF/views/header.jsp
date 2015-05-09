@@ -39,48 +39,44 @@
 				</form>
 			</div>
 		</ul>
-		<ul class="loginContainer">
-		<c:choose>
-			<c:when test="${not empty userName}">
-				<li id="loginUser">
-					<a title="${userName}"><c:out value="${userName}" /></a>
-					<b class="split">-</b>
-					<a title="Sign out" href="logoff.do">注销</a>
-				</li>
-			</c:when>
-		<c:otherwise>
-				<li>
-					<a id="loginButton" title="Login" href="#"><span>登录</span></a>
-					<!-- Login Form Starts Here -->
-						<div id="loginBox">                
-		                    <form id="loginForm" action="login.do">
-		                        <fieldset id="body">
-		                            <fieldset>
-		                                <label for="email">Email Address</label>
-		                                <input type="text" name="email" id="email" />
-		                            </fieldset>
-		                            <fieldset>
-		                                <label for="password">Password</label>
-		                                <input type="password" name="password" id="password" />
-		                            </fieldset>
-		                            <input type="submit" id="login" value="Sign in" />
-		                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
-		                        </fieldset>
-		                        <span><a href="#">Forgot your password?</a></span>
-		                    </form>
-	               		</div>
-	               	 <!-- Login Form Ends Here -->
-					<b class="split">|</b>
-					<a id="registerButton" title="Sign in" href="register.do"><span>注册</span></a>
-				</li>
-		</c:otherwise>
-		</c:choose>
+		<ul id="loginContainer" class="loginContainer">
+			<li id="loginUser">
+				<a id="loginUserLink"></a>
+				<b class="split">|</b>
+				<a title="Sign out" href="logoff.do">注销</a>
+			</li>
+			<li id="noLoginUser">
+				<a id="loginButton" title="Login" href="#"><span>登录</span></a>
+				<!-- Login Form Starts Here -->
+					<div id="loginBox">                
+	                    <form id="loginForm">
+	                        <fieldset id="body">
+	                            <fieldset>
+	                                <label for="email">Email Address</label>
+	                                <input type="text" name="email" id="email" />
+	                            </fieldset>
+	                            <fieldset>
+	                                <label for="password">Password</label>
+	                                <input type="password" name="password" id="password" />
+	                            </fieldset>
+	                            <input type="button" id="login" value="Sign in" />
+	                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+	                        </fieldset>
+	                        <span><a href="#">Forgot your password?</a></span>
+	                    </form>
+	              		</div>
+	              	 <!-- Login Form Ends Here -->
+				<b class="split">|</b>
+				<a id="registerButton" title="Sign in" href="register.do"><span>注册</span></a>
+			</li>
 		</ul>
 	</nav>
 <script type="text/javascript">
 
 //Login Form
 $(function() {
+	
+	// click login button
     var button = $('#loginButton');
     var box = $('#loginBox');
     var form = $('#loginForm');
@@ -98,6 +94,30 @@ $(function() {
             box.hide();
         }
     });
+    
+    //click sign in button
+	$('#login').click(function() {
+		// invoke the controller through ajax 
+		var email = $("#email").val();
+		var password = $("#password").val();
+		$.ajax({
+			type : 'POST',
+			dataType : 'text',
+			url : 'login.do',
+			data : {
+				userName : email,
+				password : password
+			},
+			success : function(data) {
+				$("#loginUserLink").text(data);
+				$("#noLoginUser").css("display","none");
+				$("#loginUser").css("display","block");
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	});
 });
 
 </script>	

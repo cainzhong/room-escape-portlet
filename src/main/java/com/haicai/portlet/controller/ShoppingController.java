@@ -1,4 +1,4 @@
-package com.online.shopping.orange.pages.controller;
+package com.haicai.portlet.controller;
 
 
 import java.util.List;

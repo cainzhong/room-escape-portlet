@@ -1,4 +1,4 @@
-package com.online.shopping.orange.pages.controller;
+package com.haicai.portlet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

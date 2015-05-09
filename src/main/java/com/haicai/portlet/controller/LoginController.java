@@ -1,4 +1,4 @@
-package com.online.shopping.orange.pages.controller;
+package com.haicai.portlet.controller;
 
 import java.util.Enumeration;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.online.shopping.orange.pages.service.LoginService;
 
@@ -17,7 +18,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/login.do")
+	/*@RequestMapping(value = "/login.do")
 	public String loginPage(
 			@RequestParam(value = "userName", required = false) String userName,
 			@RequestParam(value = "password", required = false) String password,
@@ -25,8 +26,8 @@ public class LoginController {
 		if (userName == null || password == null) {
 			return "login";
 		} else {
-			boolean validUser = this.loginService.hasMatchedLoginUser(
-					userName, password);
+			boolean validUser = this.loginService.hasMatchedLoginUser(userName,
+					password);
 			if (validUser) {
 				model.addAttribute("userName", userName);
 				return "home";
@@ -36,6 +37,11 @@ public class LoginController {
 				return "login";
 			}
 		}
+	}*/
+	
+	@RequestMapping(value="/login.do")
+	public @ResponseBody String loginPage(@RequestParam(value = "userName", required = false) String userName, @RequestParam(value = "password", required = false) String password,Model model) {
+		return userName;
 	}
 
 	@RequestMapping(value = "logoff.do")
