@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	@RequestMapping("home.do")
-	public String findUserAccount(String username, Model model) {
+	public String renderToHomePage(Model model) {
 		return "home";
 	}
 

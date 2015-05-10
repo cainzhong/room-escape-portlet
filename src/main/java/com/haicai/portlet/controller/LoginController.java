@@ -18,30 +18,16 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	/*@RequestMapping(value = "/login.do")
-	public String loginPage(
-			@RequestParam(value = "userName", required = false) String userName,
-			@RequestParam(value = "password", required = false) String password,
-			Model model) {
-		if (userName == null || password == null) {
-			return "login";
-		} else {
-			boolean validUser = this.loginService.hasMatchedLoginUser(userName,
-					password);
-			if (validUser) {
-				model.addAttribute("userName", userName);
-				return "home";
-			} else {
-				model.addAttribute("error",
-						"User name or password is incorrect!");
-				return "login";
-			}
-		}
-	}*/
-	
 	@RequestMapping(value="/login.do")
-	public @ResponseBody String loginPage(@RequestParam(value = "userName", required = false) String userName, @RequestParam(value = "password", required = false) String password,Model model) {
-		return userName;
+	public @ResponseBody String loginPage(@RequestParam(value = "userName") String username, @RequestParam(value = "password") String password,Model model) {
+		boolean validUser = this.loginService.hasMatchedLoginUser(username,password);
+		if(validUser){
+			return username;
+		}else{
+			model.addAttribute("error", "User name or password is incorrect!");
+			return "error";
+		}
+		
 	}
 
 	@RequestMapping(value = "logoff.do")

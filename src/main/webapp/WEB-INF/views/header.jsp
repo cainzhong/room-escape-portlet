@@ -105,7 +105,7 @@ $(function() {
 			dataType : 'text',
 			url : 'login.do',
 			data : {
-				userName : email,
+				username : email,
 				password : password
 			},
 			success : function(data) {
