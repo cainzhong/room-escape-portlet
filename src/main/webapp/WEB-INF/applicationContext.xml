@@ -13,10 +13,10 @@
 	<mvc:annotation-driven />
 
 	<!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-	<context:component-scan base-package="com.online.shopping.orange.hibernate.controller" />
-	<context:component-scan base-package="com.online.shopping.orange.hibernate.service" />
+	<context:component-scan base-package="com.haicai.portlet.hibernate.controller" />
+	<context:component-scan base-package="com.haicai.portlet.hibernate.service" />
 	
 	<context:component-scan base-package="com.haicai.portlet.controller" />
-	<context:component-scan base-package="com.online.shopping.orange.pages.service" />
-	<context:component-scan base-package="com.online.shopping.orange.repository" />
+	<context:component-scan base-package="com.haicai.portlet.service" />
+	<context:component-scan base-package="com.haicai.portlet.repository" />
 </beans>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.online.shopping.orange.pages.service.LoginService;
+import com.haicai.portlet.service.LoginService;
 
 @Controller
 public class LoginController {

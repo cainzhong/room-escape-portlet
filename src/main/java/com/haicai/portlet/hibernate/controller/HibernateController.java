@@ -1,4 +1,4 @@
-package com.online.shopping.orange.hibernate.controller;
+package com.haicai.portlet.hibernate.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.online.shopping.orange.domain.UserAccount;
-import com.online.shopping.orange.hibernate.service.OrangeHinernateService;
+import com.haicai.domain.User;
+import com.haicai.portlet.hibernate.service.HCHinernateService;
 
 /**
  * Hello world!
@@ -18,12 +18,12 @@ import com.online.shopping.orange.hibernate.service.OrangeHinernateService;
 public class HibernateController 
 {
 	@Autowired
-	private OrangeHinernateService orangeHinernateService;
+	private HCHinernateService hcHinernateService;
 	
 	@RequestMapping("hibernate.do")
 	public String findUserAccount(String username,Model model) {
-		List<UserAccount> userAccountList=orangeHinernateService.findUserAccountByUserName(username);
-		model.addAttribute("userAccountList", userAccountList);
+		List<User> userList=hcHinernateService.findAllUsers();
+		model.addAttribute("userList", userList);
 		return "hibernate_test";
 	}
 }

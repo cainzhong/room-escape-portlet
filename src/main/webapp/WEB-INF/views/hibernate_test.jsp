@@ -26,11 +26,11 @@
     <div id="content" class="content">
         <table>
        	<!-- if the value can not be retrieved through jstl, it's may be a issue caused by lombok, try to change the jre version to 1.7  -->
-	       	<c:forEach items="${userAccountList}" var="userAccount">
+	       	<c:forEach items="${userList}" var="user">
 	       		<tr>
-	       		<td><c:out value="${userAccount.id}" /></td>
-	       		<td><c:out value="${userAccount.username}" /></td>
-	       		<td><c:out value="${userAccount.password}" /></td>
+	       		<td><c:out value="${user.id}" /></td>
+	       		<td><c:out value="${user.username}" /></td>
+	       		<td><c:out value="${user.password}" /></td>
 	       		</tr>
 	       	</c:forEach>
         </table>
