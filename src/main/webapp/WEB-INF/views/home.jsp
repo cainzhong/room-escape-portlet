@@ -41,7 +41,7 @@
 		</section>	
 	</div>
 	
-	<div>
+	<div class="homePage">
 		<div class="leftHomePageStyle">
 			<div class="floatLeft"><label class="navFont"><spring:message code="T_COLLECT_RESUME" /></label></div> 
 			<br>
@@ -61,7 +61,7 @@
 			<div class="floatLeft"><label style="font-size:12px;"><spring:message htmlEscape="false" code="T_COMPANY_INFO" arguments="021-61353110,021-61353109" /></label></div> 
 		</div>
 		<div class="centerHomePageStyle">
-			<div class="floatLeft underlineWord" style="width:400px;">
+			<div class="floatLeft underlineWord" style="width:320px;">
 				<div class="floatLeft"><label class="navFont"><spring:message code="T_RECRUIT" /></label></div>
 				<br>
 				<div class="floatLeft"><p>This portlet is used to show the information of the recruitment</p>
