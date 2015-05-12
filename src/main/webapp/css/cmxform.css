@@ -45,14 +45,14 @@ input:focus { border: 1px dotted black; }
 input.error { border: 1px dotted red; }
 form.cmxform .gray * { color: gray; }
 
-#commentForm {
+#registerForm {
 	width: 500px;
 }
 
-#commentForm label {
+#registerForm label {
 	width: 250px;
 }
 
-#commentForm label.error, #commentForm input.submit {
+#registerForm label.error, #registerForm input.submit {
 	margin-left: 253px;
 }
