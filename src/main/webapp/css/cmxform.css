@@ -10,6 +10,7 @@ form.cmxform {
 }
 
 form.cmxform legend {
+	margin-top: 50px;
 	padding-left: 0;
 }
 
