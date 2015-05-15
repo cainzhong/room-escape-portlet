@@ -3,9 +3,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/webflow
  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+ 
+ <var name="registerForm" class="com.haicai.portlet.form.RegisterForm" />
+ 
  <!-- view-state中的view对应jsp文件夹中的jsp页面，on是触发事件，to对应state id -->
+ 	 <view-state id="register" model="registerForm" view="register">
+           <transition on="submit" to="checkInfoCorrect">
+     	   </transition>
+     </view-state>
+ 
  	<decision-state id="checkInfoCorrect">
-           <if then="viewCart" else="returnToIndex" test="registerAction.checkInfoCorrect(externalContext.nativeRequest)"/>
+           <if then="viewCart" else="returnToIndex" test="registerAction.checkInfoCorrect(registerForm)"/>
     </decision-state>
     
     <view-state id="viewCart" view="viewCart">

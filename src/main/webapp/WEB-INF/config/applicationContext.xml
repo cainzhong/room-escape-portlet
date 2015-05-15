@@ -20,4 +20,5 @@
 	<context:component-scan base-package="com.haicai.portlet.service" />
 	<context:component-scan base-package="com.haicai.portlet.repository" />
 	<context:component-scan base-package="com.haicai.portlet.action" />
+	<context:component-scan base-package="com.haicai.portlet.form" />
 </beans>

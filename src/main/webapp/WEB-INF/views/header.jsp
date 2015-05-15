@@ -67,7 +67,7 @@
 	              		</div>
 	              	 <!-- Login Form Ends Here -->
 				<b class="split">|</b>
-				<a id="registerButton" title="Sign in" href="register.do"><span>注册</span></a>
+				<a id="registerButton" title="Sign in" href="register-flow.do"><span>注册</span></a>
 			</li>
 		</ul>
 	</nav>

@@ -22,7 +22,7 @@
 <div id="main">
      <div class="homePage">
            <div class="registerBasicInfo">
-                 <form class="cmxform" id=registerForm name="registerForm" method="post" action="register-flow.do">
+                 <form class="cmxform" id=registerForm name="registerForm" method="post" action="${flowExecutionUrl}">
                        <fieldset>
                              <legend><spring:message code="T_BASIC_INFO" /></legend>
                              <p>
@@ -61,7 +61,7 @@
                                    <input id="phoneno" name="phoneno" required />
                              </p>
                              <p>
-                                   <input class="submit" type="submit" value="<spring:message code='T_SUBMIT' />">
+                                   <input id="submit" name="_eventId_submit" class="submit" type="submit" value="<spring:message code='T_SUBMIT' />">
                              </p>
                              <p>
                                    <input class="submit" type="reset" value="<spring:message code='T_RESET' />">
