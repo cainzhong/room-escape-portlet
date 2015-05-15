@@ -39,9 +39,4 @@ public class LoginController {
 		}
 		return "home";
 	}
-
-	@RequestMapping(value = "/register.do")
-	public String registerPage(Model model) {
-		return "register";
-	}
 }
