@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  
       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
       http://www.springframework.org/schema/context  
@@ -10,15 +7,5 @@
       http://www.springframework.org/schema/mvc  
    	 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<mvc:annotation-driven />
 
-	<!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-	<context:component-scan base-package="com.haicai.portlet.hibernate.controller" />
-	<context:component-scan base-package="com.haicai.portlet.hibernate.service" />
-	
-	<context:component-scan base-package="com.haicai.portlet.controller" />
-	<context:component-scan base-package="com.haicai.portlet.service" />
-	<context:component-scan base-package="com.haicai.portlet.repository" />
-	<context:component-scan base-package="com.haicai.portlet.action" />
-	<context:component-scan base-package="com.haicai.portlet.form" />
 </beans>

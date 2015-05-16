@@ -25,12 +25,12 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
- 	<!-- Loads Spring Security config file -->
+	<!-- Loads Spring Security config file -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/config/applicationContext.xml</param-value>
 	</context-param>
-	
+
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>/WEB-INF/log4j.properties</param-value>
@@ -38,14 +38,33 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-	
+
 	<!-- Spring Security -->
-<!-- 	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy </filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>   -->
+	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy 
+		</filter-class> </filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/views/home.jsp</welcome-file>
+	</welcome-file-list>
+
+<!-- 	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/404.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.UnsupportedOperationException</exception-type>
+		<location>/Error.jsp</location>
+	</error-page> -->
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+<!-- 	<jsp-config>
+		<taglib>
+			<taglib-uri>/diary.tld</taglib-uri>
+			<taglib-location>/WEB-INF/taglibrary/diary.tld</taglib-location>
+		</taglib>
+	</jsp-config> -->
+
 </web-app> 

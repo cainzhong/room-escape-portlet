@@ -14,6 +14,18 @@
 	<mvc:resources location="/img/**" mapping="/img/"/>
 	<mvc:resources location="/js/**" mapping="/js/"/> -->
 	
+	<mvc:annotation-driven />
+
+	<!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
+	<context:component-scan base-package="com.haicai.portlet.hibernate.controller" />
+	<context:component-scan base-package="com.haicai.portlet.hibernate.service" />
+
+	<context:component-scan base-package="com.haicai.portlet.controller" />
+	<context:component-scan base-package="com.haicai.portlet.service" />
+	<context:component-scan base-package="com.haicai.portlet.repository" />
+	<context:component-scan base-package="com.haicai.portlet.action" />
+	<context:component-scan base-package="com.haicai.portlet.form" />
+	
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename">
