@@ -19,34 +19,38 @@
 			<table id="basicInfo">
 				<thead>
 					<tr>
-						<th colspan=4>基本资料</th>
+						<th colspan=3>基本资料</th>
+						<th><input id="basicInfoEditBtn" type="button" value="Edit"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>真实姓名</td>
-						<td><c:out value="${user.realName}" /></td>
+						<td id="realName"><c:out value="${user.realName}" /></td>
 						<td>英文名</td>
-						<td><c:out value="${user.englishName}" /></td>
+						<td id="englishName"><c:out value="${user.englishName}" /></td>
 					</tr>
 					<tr>
 						<td>所在地区</td>
-						<td><c:out value="${user.currentCountry}" /></td>
+						<td id="currentCountry"><c:out value="${user.currentCountry}" /> <c:out value="${user.currentCity}" /></td>
 						<td>邮箱地址</td>
-						<td><c:out value="${email}" /></td>
+						<td id="email"><c:out value="${email}" /></td>
 					</tr>
 					<tr>
 						<td>手机号码</td>
-						<td><c:out value="${telephone}" /></td>
+						<td id="telephone"><c:out value="${telephone}" /></td>
 						<td>QQ号码</td>
-						<td><c:out value="${telephone}" /></td>
+						<td id="qq"><c:out value="${qq}" /></td>
 					</tr>
 					<tr>
 						<td>微信号</td>
-						<td></td>
+						<td id="webchat"><c:out value="${qq}" /></td>
 					</tr>
 				</tbody>
 			</table>
+			<div id="basicInfoSubmit" class="hide">
+				<input type="button" value="Submit"> <input type="button" value="Cancel">
+			</div>
 
 			<table>
 				<thead>
@@ -106,50 +110,56 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		//找到学号这一列的所有单元格 
-		//因为学号这一列的单元格在所有td中的位置是偶数（0,2,4,6），所以通过even就可以筛选到td中偶数位的单元格 
-		var numTd = $("#basicInfo tbody td:odd");
-		//单击这些td时，创建文本框 
-		numTd.click(function() {
-			//创建文本框对象 
-			var inputobj = $("<input type='text'>");
-			//获取当前点击的单元格对象 
-			var tdobj = $(this);
-			//获取单元格中的文本 
-			var text = tdobj.html();
-			//如果当前单元格中有文本框，就直接跳出方法 
-			//注意：一定要在插入文本框前进行判断 
-			if (tdobj.children("input").length > 0) {
-				return false;
-			}
-			//清空单元格的文本 
-			tdobj.html("");
-			inputobj.css("border", "0").css("font-size", tdobj.css("font-size")).css("font-family", tdobj.css("font-family")).css("background-color", tdobj.css("background-color")).css("color", "#C75F3E").width(tdobj.width()).val(text).appendTo(tdobj);
-			inputobj.get(0).select();
-			//阻止文本框的点击事件 
-			inputobj.click(function() {
-				return false;
+
+		//edit profile
+		$("#basicInfoEditBtn").click(function() {
+			var oddTD = $("#basicInfo tbody td:odd");
+			oddTD.each(function() {
+				var inputobj = $("<input type='text'>");
+				var tdobj = $(this);
+				var text = tdobj.html();
+				tdobj.html("");
+				inputobj.css("border", "0").css("font-size", tdobj.css("font-size")).css("font-family", tdobj.css("font-family")).css("background-color", tdobj.css("background-color")).css("color", "#C75F3E").width(tdobj.width()).val(text).appendTo(tdobj);
 			});
-			//处理文本框上回车和esc按键的操作 
-			//jQuery中某个事件方法的function可以定义一个event参数，jQuery会屏蔽浏览器的差异，传递给我们一个可用的event对象 
-			inputobj.keyup(function(event) {
-				//获取当前按键的键值 
-				//jQuery的event对象上有一个which的属性可以获得键盘按键的键值 
-				var keycode = event.which;
-				//处理回车的情况 
-				if (keycode == 13) {
-					//获取当前文本框的内容 
-					var inputtext = $(this).val();
-					//将td的内容修改成文本框中的内容 
-					tdobj.html(inputtext);
-				}
-				//处理esc的情况 
-				if (keycode == 27) {
-					//将td中的内容还原成text 
-					tdobj.html(text);
+			$("#basicInfoEditBtn").attr("disabled", true);
+			$("#basicInfoSubmit").css("display", "block");
+		});
+
+		// submit profile
+		$('#basicInfoSubmit').click(function() {
+			// invoke the controller through ajax 
+			$.ajax({
+				type : 'POST',
+				url : 'editIndProfile.do',
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(getJsonDataForBasicInfoTable()),
+				success : function(data) {
+					$("#basicInfoEditBtn").attr("disabled", false);
+					$("#basicInfoSubmit").css("display", "none");
+					alert("success");
+				},
+				error : function(data) {
+					$("#basicInfoEditBtn").attr("disabled", false);
+					$("#basicInfoSubmit").css("display", "none");
+					alert("error");
 				}
 			});
 		});
+
+		function getJsonDataForBasicInfoTable() {
+			var json = {
+				"realName" : $("#realName :first-child").val(),
+				"englishName" : $("#englishName :first-child").val(),
+				"currentCountry" : $("#currentCountry :first-child").val(),
+				/* "email":$("#email :first-child").val(),
+				"telephone" : $("#telephone :first-child").val(),
+				"qq" : $("#qq :first-child").val(),
+				"webchat" : $("#webchat :first-child").val(), */
+			};
+			return json;
+		}
+
 	});
 </script>
 </html>

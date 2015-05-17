@@ -51,3 +51,8 @@
 .registerBasicInfo{
 	margin-left: 100px;
 }
+
+/* individual profile */
+.hide {
+	display: none;
+}
