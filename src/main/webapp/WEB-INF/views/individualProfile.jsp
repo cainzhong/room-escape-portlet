@@ -110,6 +110,8 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		$("#basicInfoEditBtn").attr("disabled", false);
 
 		//edit profile
 		$("#basicInfoEditBtn").click(function() {
@@ -125,8 +127,38 @@
 			$("#basicInfoSubmit").css("display", "block");
 		});
 
+		
 		// submit profile
 		$('#basicInfoSubmit').click(function() {
+			// invoke the controller through ajax 
+			$.ajax({
+				type : 'POST',
+				url : 'editIndProfile.do',
+				dataType : "text",
+				data : {
+					"realName" : $("#realName :first-child").val(),
+					"englishName" : $("#englishName :first-child").val(),
+					"currentCountry" : $("#currentCountry :first-child").val(),
+					"email":$("#email :first-child").val(),
+					"telephone" : $("#telephone :first-child").val(),
+					"qq" : $("#qq :first-child").val(),
+					"webchat" : $("#webchat :first-child").val()
+				},
+				success : function(data) {
+					$("#basicInfoEditBtn").attr("disabled", false);
+					$("#basicInfoSubmit").css("display", "none");
+					alert("success");
+				},
+				error : function(data) {
+					$("#basicInfoEditBtn").attr("disabled", false);
+					$("#basicInfoSubmit").css("display", "none");
+					alert("error");
+				}
+			});
+		}); 
+		
+		// submit profile
+		/* $('#basicInfoSubmit').click(function() {
 			// invoke the controller through ajax 
 			$.ajax({
 				type : 'POST',
@@ -145,17 +177,17 @@
 					alert("error");
 				}
 			});
-		});
+		}); */
 
 		function getJsonDataForBasicInfoTable() {
 			var json = {
 				"realName" : $("#realName :first-child").val(),
 				"englishName" : $("#englishName :first-child").val(),
 				"currentCountry" : $("#currentCountry :first-child").val(),
-				/* "email":$("#email :first-child").val(),
+				"email":$("#email :first-child").val(),
 				"telephone" : $("#telephone :first-child").val(),
 				"qq" : $("#qq :first-child").val(),
-				"webchat" : $("#webchat :first-child").val(), */
+				"webchat" : $("#webchat :first-child").val(),
 			};
 			return json;
 		}
