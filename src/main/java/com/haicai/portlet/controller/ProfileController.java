@@ -37,7 +37,7 @@ public class ProfileController {
 			if(contact.getType().equals(ContactType.TELEPHONE)){
 				model.addAttribute("telephone", contact.getInfo());
 			}
-			if(contact.getType().equals(ContactType.OTHER) && contact.getType().toString().equalsIgnoreCase("WebChat")){
+			if(contact.getType().equals(ContactType.OTHER) && contact.getOtherDdescription().equalsIgnoreCase("WebChat")){
 				model.addAttribute("qq", contact.getInfo());
 			}
 		}

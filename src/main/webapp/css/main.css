@@ -9,25 +9,34 @@ html {
 }
 
 body {
-	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
-	font-size: 16px;
-	line-height: 1.5;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD",
+		Georgia, serif;
+	/* background: #333 url(../img/bg.jpg) repeat top left; */
+	background: #333 repeat top left;
+	font-weight: 400;
+	font-size: 15px;
+	color: #f0f0f0;
+	overflow-y: scroll;
 }
 
 table {
-	border-right: 1px solid;
-	border-bottom: 1px solid;
-	width: 600px
-}
-
-table td {
-	border-top: 1px solid;
-	border-left: 1px solid;
+	border: 1px solid #C1DAD7;
+	border-collapse: collapse;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	margin-left: auto;
+    margin-right: auto;
+	width: 800px;
 }
 
 table th {
-	border-top: 1px solid;
-	border-left: 1px solid;
+	border: 1px solid #C1DAD7;
+	text-align: center;
+}
+
+table td {
+	border: 1px solid #C1DAD7;
+	text-align: center;
 }
 
 .header {
@@ -52,9 +61,10 @@ nav ul {
 	padding: 0 16px;
 	line-height: inherit;
 	cursor: pointer;
-	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",
+		sans-serif;
 	font-weight: bold;
-} 
+}
 
 .nav-menu {
 	padding-top: 10px;
@@ -92,7 +102,6 @@ nav ul {
 	background: rgba(0, 0, 0, 0.1);
 }
 /*-------Navigation ENDS HERE -------*/
-
 .search-item {
 	position: fixed;
 	top: 0px;
@@ -101,6 +110,7 @@ nav ul {
 }
 
 .search-site {
+	
 }
 
 .baidu-search-button {
@@ -122,175 +132,175 @@ nav ul {
 }
 
 /* Login Button */
-#loginButton { 
-    display:inline-block;
-    background:#d2e0ea url(./img/buttonbg.png) repeat-x; 
-    border:1px solid #899caa; 
-    border-radius:3px;
-    -moz-border-radius:3px;
-    position:relative;
-    z-index:30;
-    cursor:pointer;
-    height: 25px;
-    width: 80px;
+#loginButton {
+	display: inline-block;
+	background: #d2e0ea url(./img/buttonbg.png) repeat-x;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	position: relative;
+	z-index: 30;
+	cursor: pointer;
+	height: 25px;
+	width: 80px;
 }
 
 #loginButton:hover {
-    background:url(./img/buttonbgHover.png) repeat-x;
+	background: url(./img/buttonbgHover.png) repeat-x;
 }
 
 /* Login Button Text */
 #loginButton span {
-    color:#445058; 
-    font-size:12px; 
-    font-weight:bold; 
-    text-shadow:1px 1px #fff; 
-    padding:3px 15px 2px 15px;
-    background:url(./img/loginArrow.png) no-repeat 50px 3px;
-    display:block
+	color: #445058;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 1px 1px #fff;
+	padding: 3px 15px 2px 15px;
+	background: url(./img/loginArrow.png) no-repeat 50px 3px;
+	display: block
 }
 
 /* Register Button */
-#registerButton { 
-    display:inline-block;
-    background:#d2e0ea url(./img/buttonbg.png) repeat-x; 
-    border:1px solid #899caa; 
-    border-radius:3px;
-    -moz-border-radius:3px;
-    position:relative;
-    z-index:30;
-    cursor:pointer;
-    height: 25px;
-    width: 80px;
+#registerButton {
+	display: inline-block;
+	background: #d2e0ea url(./img/buttonbg.png) repeat-x;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	position: relative;
+	z-index: 30;
+	cursor: pointer;
+	height: 25px;
+	width: 80px;
 }
 
 #registerButton:hover {
-    background:url(./img/buttonbgHover.png) repeat-x;
+	background: url(./img/buttonbgHover.png) repeat-x;
 }
 
 /* Register Button Text */
 #registerButton span {
-    color:#445058; 
-    font-size:12px; 
-    font-weight:bold; 
-    text-shadow:1px 1px #fff; 
-    padding:3px 15px 2px 15px;
-    display:block
+	color: #445058;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 1px 1px #fff;
+	padding: 3px 15px 2px 15px;
+	display: block
 }
 
 /* Login Box */
 #loginBox {
-    position:absolute;
-    top:27px;
-    right:90px;
-    display:none;
-    z-index:29;
+	position: absolute;
+	top: 27px;
+	right: 90px;
+	display: none;
+	z-index: 29;
 }
 
-/* If the Login Button has been clicked */    
+/* If the Login Button has been clicked */
 #loginButton.active {
-    border-radius:3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
 }
 
 #loginButton.active span {
-    background-position:50px -80px;
+	background-position: 50px -80px;
 }
 
 /* Login Form */
 #loginForm {
-    width:248px; 
-    border:1px solid #899caa;
-    border-radius:3px 0 3px 3px;
-    -moz-border-radius:3px 0 3px 3px;
-    margin-top:-1px;
-    background:#d2e0ea;
-    padding:6px;
+	width: 248px;
+	border: 1px solid #899caa;
+	border-radius: 3px 0 3px 3px;
+	-moz-border-radius: 3px 0 3px 3px;
+	margin-top: -1px;
+	background: #d2e0ea;
+	padding: 6px;
 }
 
 #loginForm fieldset {
-    margin:0 0 12px 0;
-    display:block;
-    border:0;
-    padding:0;
+	margin: 0 0 12px 0;
+	display: block;
+	border: 0;
+	padding: 0;
 }
 
 fieldset#body {
-    background:#fff;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    padding:10px 13px;
-    margin:0;
+	background: #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 10px 13px;
+	margin: 0;
 }
 
 #loginForm #checkbox {
-    width:auto;
-    margin:1px 9px 0 0;
-    float:left;
-    padding:0;
-    border:0;
-    *margin:-3px 9px 0 0; /* IE7 Fix */
+	width: auto;
+	margin: 1px 9px 0 0;
+	float: left;
+	padding: 0;
+	border: 0;
+	*margin: -3px 9px 0 0; /* IE7 Fix */
 }
 
 #body label {
-    color:#3a454d;
-    margin:9px 0 0 0;
-    display:block;
-    float:left;
+	color: #3a454d;
+	margin: 9px 0 0 0;
+	display: block;
+	float: left;
 }
 
 #loginForm #body fieldset label {
-    display:block;
-    float:none;
-    margin:0 0 6px 0;
+	display: block;
+	float: none;
+	margin: 0 0 6px 0;
 }
 
 /* Default Input */
 #loginForm input {
-    width:92%;
-    border:1px solid #899caa;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    color:#3a454d;
-    font-weight:bold;
-    padding:8px 8px;
-    box-shadow:inset 0px 1px 3px #bbb;
-    -webkit-box-shadow:inset 0px 1px 3px #bbb;
-    -moz-box-shadow:inset 0px 1px 3px #bbb;
-    font-size:12px;
+	width: 92%;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	color: #3a454d;
+	font-weight: bold;
+	padding: 8px 8px;
+	box-shadow: inset 0px 1px 3px #bbb;
+	-webkit-box-shadow: inset 0px 1px 3px #bbb;
+	-moz-box-shadow: inset 0px 1px 3px #bbb;
+	font-size: 12px;
 }
 
 /* Sign In Button */
 #loginForm #login {
-    width:auto;
-    float:left;
-    background:#339cdf url(./img/loginbuttonbg.png) repeat-x;
-    color:#fff;
-    padding:7px 10px 8px 10px;
-    text-shadow:0px -1px #278db8;
-    border:1px solid #339cdf;
-    box-shadow:none;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-    margin:0 12px 0 0;
-    cursor:pointer;
-    *padding:7px 2px 8px 2px; /* IE7 Fix */
+	width: auto;
+	float: left;
+	background: #339cdf url(./img/loginbuttonbg.png) repeat-x;
+	color: #fff;
+	padding: 7px 10px 8px 10px;
+	text-shadow: 0px -1px #278db8;
+	border: 1px solid #339cdf;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: 0 12px 0 0;
+	cursor: pointer;
+	*padding: 7px 2px 8px 2px; /* IE7 Fix */
 }
 
 /* Forgot your password */
 #loginForm span {
-    text-align:center;
-    display:block;
-    padding:7px 0 4px 0;
+	text-align: center;
+	display: block;
+	padding: 7px 0 4px 0;
 }
 
 #loginForm span a {
-    color:#3a454d;
-    text-shadow:1px 1px #fff;
-    font-size:12px;
+	color: #3a454d;
+	text-shadow: 1px 1px #fff;
+	font-size: 12px;
 }
 
 input:focus {
-    outline:none;
+	outline: none;
 }
 
 #loginUser {
@@ -322,13 +332,15 @@ input:focus {
 }
 
 .row {
+	
 }
 
 .col {
-	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",sans-serif;
+	font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei",
+		sans-serif;
 }
 
-.col span{
+.col span {
 	font-size: 14px;
 	padding: 5px 10px 5px 10px;
 	line-height: 1.15;
