@@ -48,7 +48,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<div id="basicInfoSubmit" class="hide">
+			<div id="basicInfoSubmit" class="hide tableBtn">
 				<input type="button" value="Submit"> <input type="button" value="Cancel">
 			</div>
 
@@ -110,7 +110,7 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+
 		$("#basicInfoEditBtn").attr("disabled", false);
 
 		//edit profile
@@ -127,7 +127,6 @@
 			$("#basicInfoSubmit").css("display", "block");
 		});
 
-		
 		// submit profile
 		$('#basicInfoSubmit').click(function() {
 			// invoke the controller through ajax 
@@ -139,7 +138,7 @@
 					"realName" : $("#realName :first-child").val(),
 					"englishName" : $("#englishName :first-child").val(),
 					"currentCountry" : $("#currentCountry :first-child").val(),
-					"email":$("#email :first-child").val(),
+					"email" : $("#email :first-child").val(),
 					"telephone" : $("#telephone :first-child").val(),
 					"qq" : $("#qq :first-child").val(),
 					"webchat" : $("#webchat :first-child").val()
@@ -147,6 +146,25 @@
 				success : function(data) {
 					$("#basicInfoEditBtn").attr("disabled", false);
 					$("#basicInfoSubmit").css("display", "none");
+					var oddTD = $("#basicInfo tbody td:odd");
+					var realName = $("#realName :first-child").val();
+					var englishName = $("#englishName :first-child").val();
+					var currentCountry = $("#currentCountry :first-child").val();
+					var email = $("#email :first-child").val();
+					var telephone = $("#telephone :first-child").val();
+					var qq = $("#qq :first-child").val();
+					var webchat = $("#webchat :first-child").val();
+					oddTD.each(function() {
+						var tdobj = $(this);
+						tdobj.empty();
+					});
+					$("#realName").html(realName);
+					$("#englishName").html(englishName);
+					$("#currentCountry").html(currentCountry);
+					$("#email").html(email);
+					$("#telephone").html(telephone);
+					$("#qq").html(qq);
+					$("#webchat").html(webchat);
 					alert("success");
 				},
 				error : function(data) {
@@ -155,8 +173,8 @@
 					alert("error");
 				}
 			});
-		}); 
-		
+		});
+
 		// submit profile
 		/* $('#basicInfoSubmit').click(function() {
 			// invoke the controller through ajax 
@@ -184,7 +202,7 @@
 				"realName" : $("#realName :first-child").val(),
 				"englishName" : $("#englishName :first-child").val(),
 				"currentCountry" : $("#currentCountry :first-child").val(),
-				"email":$("#email :first-child").val(),
+				"email" : $("#email :first-child").val(),
 				"telephone" : $("#telephone :first-child").val(),
 				"qq" : $("#qq :first-child").val(),
 				"webchat" : $("#webchat :first-child").val(),
