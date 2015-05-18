@@ -24,7 +24,13 @@
            <div class="registerBasicInfo">
                  <form class="cmxform" id=registerForm name="registerForm" method="post" action="${flowExecutionUrl}">
                        <fieldset>
-                             <legend><spring:message code="T_BASIC_INFO" /></legend>
+							<c:forEach
+								items="${flowRequestContext.messageContext.allMessages}" var="message">
+								<div class="error_message">
+									<span style="color: #FF0000">${message.text}</span>
+								</div>
+							</c:forEach>
+						<legend><spring:message code="T_BASIC_INFO" /></legend>
                              <p>
                                    <label for="name"><spring:message code="T_USER_NAME" /></label>
                                    <input id="name" name="name" minlength="2" type="text" required>
