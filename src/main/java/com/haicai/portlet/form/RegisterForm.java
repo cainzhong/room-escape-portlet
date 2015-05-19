@@ -27,7 +27,7 @@ public class RegisterForm implements Serializable{
      
      private String email;
      
-     private Long phoneno;
+     private String phoneno;
 
 	public String getName() {
 		return name;
@@ -85,11 +85,11 @@ public class RegisterForm implements Serializable{
 		this.email = email;
 	}
 
-	public Long getPhoneno() {
+	public String getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(Long phoneno) {
+	public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
 	}
      

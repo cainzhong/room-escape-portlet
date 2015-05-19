@@ -45,8 +45,8 @@
                              </p>
                              <p>
                                    <label for="gender"><spring:message code="T_USER_GENDER" /></label>
-                                   <input type="radio" id="gender_male" value="m" name="gender" /><spring:message code="T_USER_GENDER_MALE" />
-                                   <input type="radio" id="gender_female" value="f" name="gender" /><spring:message code="T_USER_GENDER_FEMALE" />
+                                   <input type="radio" id="gender_male" value="MALE" name="gender" /><spring:message code="T_USER_GENDER_MALE" />
+                                   <input type="radio" id="gender_female" value="FEMALE" name="gender" /><spring:message code="T_USER_GENDER_FEMALE" />
                                    <label for="gender" class="error"></label>
                              </p>
                              <p>

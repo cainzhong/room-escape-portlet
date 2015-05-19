@@ -57,7 +57,7 @@
 				<value>com.haicai.domain.User</value>
 				<value>com.haicai.domain.Contact</value>
 				<value>com.haicai.domain.PersonalHistory</value>
-				<value>com.haicai.domain.Awards</value>
+				<value>com.haicai.domain.Award</value>
 				<value>com.haicai.domain.JobAsked</value>
 				<value>com.haicai.domain.Enterprise</value>
 				<value>com.haicai.domain.Project</value>
