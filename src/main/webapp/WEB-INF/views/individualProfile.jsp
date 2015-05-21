@@ -44,7 +44,7 @@
 					</tr>
 					<tr>
 						<td>微信号</td>
-						<td id="webchat"><c:out value="${qq}" /></td>
+						<td id="webchat"><c:out value="${webchat}" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -177,6 +177,20 @@
 				}
 			});
 		});
+		
+		//edit personal histories.
+		$("#personalHistoriesEditBtn").click(function() {
+			var oddTD = $("#personalHistories tbody td:odd");
+			oddTD.each(function() {
+				var inputobj = $("<input type='text'>");
+				var tdobj = $(this);
+				var text = tdobj.html();
+				tdobj.html("");
+				inputobj.css("border", "0").css("font-size", tdobj.css("font-size")).css("font-family", tdobj.css("font-family")).css("background-color", tdobj.css("background-color")).css("color", "#C75F3E").width(tdobj.width()).val(text).appendTo(tdobj);
+			});
+			$("#personalHistoriesEditBtn").attr("disabled", true);
+			$("#personalHistoriesSubmit").css("display", "block");
+		});
 
 		// submit personal histories.
 		$('#personalHistoriesSubmitBtn').click(function() {
@@ -216,6 +230,20 @@
 					alert("error");
 				}
 			});
+		});
+		
+		//edit personal histories.
+		$("#awardsEditBtn").click(function() {
+			var oddTD = $("#awards tbody td:odd");
+			oddTD.each(function() {
+				var inputobj = $("<input type='text'>");
+				var tdobj = $(this);
+				var text = tdobj.html();
+				tdobj.html("");
+				inputobj.css("border", "0").css("font-size", tdobj.css("font-size")).css("font-family", tdobj.css("font-family")).css("background-color", tdobj.css("background-color")).css("color", "#C75F3E").width(tdobj.width()).val(text).appendTo(tdobj);
+			});
+			$("#awardsEditBtn").attr("disabled", true);
+			$("#awardsSubmit").css("display", "block");
 		});
 		
 		// submit awards

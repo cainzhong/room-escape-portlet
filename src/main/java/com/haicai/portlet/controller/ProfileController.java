@@ -1,7 +1,5 @@
 package com.haicai.portlet.controller;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,6 @@ import com.haicai.domain.Contact;
 import com.haicai.domain.PersonalHistory;
 import com.haicai.domain.User;
 import com.haicai.domain.type.ContactType;
-import com.haicai.domain.type.Status;
 import com.haicai.domain.type.UniversityDegree;
 import com.haicai.portlet.service.PortletService;
 import com.haicai.portlet.service.ProfileService;
@@ -49,8 +46,11 @@ public class ProfileController {
 			if (contact.getType().equals(ContactType.TELEPHONE)) {
 				model.addAttribute("telephone", contact.getInfo());
 			}
-			if (contact.getType().equals(ContactType.OTHER) && contact.getOtherDdescription().equalsIgnoreCase("WebChat")) {
+			if (contact.getType().equals(ContactType.OTHER) && contact.getOtherDdescription().equalsIgnoreCase("qq")) {
 				model.addAttribute("qq", contact.getInfo());
+			}
+			if (contact.getType().equals(ContactType.OTHER) && contact.getOtherDdescription().equalsIgnoreCase("webchat")) {
+				model.addAttribute("webchat", contact.getInfo());
 			}
 		}
 
@@ -79,69 +79,42 @@ public class ProfileController {
 
 	@RequestMapping(value = "editIndProfile.do")
 	public @ResponseBody
-	String editBasicInfoTable(@RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone, @RequestParam(value = "qq", required = false) String qq,
-			@RequestParam(value = "webchat", required = false) String webchat) {
-		String username = "email@email.com";
+	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
+			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
+		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
-		user.setRealName(realName);
-		user.setEnglishName(englishName);
-		user.setCurrentCountry(currentCountry);
-		this.portletService.updateUser(user);
-
-		List<Contact> contactList = this.portletService.findContacts(user, null);
+		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry);
 
 		Contact originEmailcontact = this.portletService.findSpecificActiveContact(user, ContactType.EMAIL, null);
-		if (originEmailcontact != null && !originEmailcontact.getInfo().equals(email)) {
-			originEmailcontact.setStatus(Status.INACTIVE);
-			this.portletService.updateContact(user, originEmailcontact);
-
-			Contact emailContact = new Contact();
-			emailContact.setType(ContactType.EMAIL);
-			emailContact.setInfo(email);
-			emailContact.setStatus(Status.ACTIVE);
-			emailContact.setCreateTime(new Timestamp(System.currentTimeMillis()));
-			this.portletService.createContact(user, emailContact);
+		if (originEmailcontact == null) {
+			this.portletService.createContact(user, email, ContactType.EMAIL, null);
+		} else if (originEmailcontact != null && !originEmailcontact.getInfo().equals(email)) {
+			this.profileService.disableContact(originEmailcontact);
+			this.portletService.createContact(user, email, ContactType.EMAIL, null);
 		}
 
 		Contact originTelcontact = this.portletService.findSpecificActiveContact(user, ContactType.TELEPHONE, null);
-		if (originTelcontact != null && !originTelcontact.getInfo().equals(telephone)) {
-			originTelcontact.setStatus(Status.INACTIVE);
-			this.portletService.updateContact(user, originTelcontact);
-
-			Contact telContact = new Contact();
-			telContact.setType(ContactType.TELEPHONE);
-			telContact.setInfo(telephone);
-			telContact.setStatus(Status.ACTIVE);
-			telContact.setCreateTime(new Timestamp(System.currentTimeMillis()));
-			this.portletService.createContact(user, telContact);
+		if (originTelcontact == null) {
+			this.portletService.createContact(user, telephone, ContactType.TELEPHONE, null);
+		} else if (originTelcontact != null && !originTelcontact.getInfo().equals(telephone)) {
+			this.profileService.disableContact(originTelcontact);
+			this.portletService.createContact(user, telephone, ContactType.TELEPHONE, null);
 		}
 
 		Contact originQQcontact = this.portletService.findSpecificActiveContact(user, ContactType.OTHER, "qq");
-		if (originQQcontact != null && !originQQcontact.getInfo().equals(qq)) {
-			originQQcontact.setStatus(Status.INACTIVE);
-			this.portletService.updateContact(user, originQQcontact);
-
-			Contact qqContact = new Contact();
-			qqContact.setType(ContactType.OTHER);
-			qqContact.setOtherDdescription("qq");
-			qqContact.setInfo(qq);
-			qqContact.setStatus(Status.ACTIVE);
-			qqContact.setCreateTime(new Timestamp(System.currentTimeMillis()));
-			this.portletService.createContact(user, qqContact);
+		if (originQQcontact == null) {
+			this.portletService.createContact(user, qq, ContactType.OTHER, "qq");
+		} else if (originQQcontact != null && !originQQcontact.getInfo().equalsIgnoreCase(qq)) {
+			this.profileService.disableContact(originQQcontact);
+			this.portletService.createContact(user, qq, ContactType.OTHER, "qq");
 		}
 
 		Contact originWebchatcontact = this.portletService.findSpecificActiveContact(user, ContactType.OTHER, "webchat");
-		if (originWebchatcontact != null && originWebchatcontact.getInfo().equals(webchat)) {
-			originWebchatcontact.setStatus(Status.INACTIVE);
-			this.portletService.updateContact(user, originWebchatcontact);
-
-			Contact webchatContact = new Contact();
-			webchatContact.setType(ContactType.OTHER);
-			webchatContact.setOtherDdescription("webchat");
-			webchatContact.setInfo(webchat);
-			webchatContact.setStatus(Status.ACTIVE);
-			webchatContact.setCreateTime(new Timestamp(System.currentTimeMillis()));
-			this.portletService.createContact(user, webchatContact);
+		if (originWebchatcontact == null) {
+			this.portletService.createContact(user, webchat, ContactType.OTHER, "webchat");
+		} else if (originWebchatcontact != null && !originWebchatcontact.getInfo().equalsIgnoreCase(webchat)) {
+			this.profileService.disableContact(originWebchatcontact);
+			this.portletService.createContact(user, webchat, ContactType.OTHER, "webchat");
 		}
 
 		return "success";
@@ -155,21 +128,9 @@ public class ProfileController {
 
 		List<PersonalHistory> personalHistories = this.portletService.findPersonalHistories(user);
 		PersonalHistory personalHistory = personalHistories.get(0);
-		if (!personalHistory.getUniversity().equals(university)) {
-			personalHistory.setUniversity(university);
+		if (!personalHistory.getUniversity().equals(university) || !personalHistory.getMajor().equals(major) || !personalHistory.getUniversityDegree().getDegree().equals(universityDegree) || !personalHistory.getGraduationYear().equals(graduationYear)) {
+			this.portletService.updatePersonalHistory(personalHistories.get(0).getId(), university, UniversityDegree.valueOf(universityDegree), major, graduationYear);
 		}
-		if (!personalHistory.getMajor().equals(major)) {
-			personalHistory.setMajor(major);
-		}
-		if (!personalHistory.getUniversityDegree().getDegree().equals(universityDegree)) {
-			personalHistory.setUniversityDegree(UniversityDegree.Master);
-		}
-		if (!personalHistory.getGraduationYear().equals(graduationYear)) {
-			personalHistory.setGraduationYear(new Date());
-		}
-
-		this.portletService.updatePersonalHistory(user, personalHistory);
-
 		return "success";
 	}
 
@@ -179,7 +140,7 @@ public class ProfileController {
 		String username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
 		List<Award> awards = this.portletService.findAwards(user);
-		Award award=awards.get(0);
+		Award award = awards.get(0);
 		return "success";
 	}
 
