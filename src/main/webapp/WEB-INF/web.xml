@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<display-name>HC Portlet</display-name>
 
@@ -11,7 +10,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/web-application-config.xml</param-value>
+			<param-value>/WEB-INF/config/hc-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -21,6 +20,27 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -28,43 +48,36 @@
 	<!-- Loads Spring Security config file -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/config/applicationContext.xml</param-value>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/config/spring-database.xml</param-value>
+	</context-param>
+
 
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/log4j.properties</param-value>
+		<param-value>/WEB-INF/config/log4j.properties</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 
 	<!-- Spring Security -->
-	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy 
-		</filter-class> </filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
-		<url-pattern>/*</url-pattern> </filter-mapping> -->
+	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> </filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> <url-pattern>/*</url-pattern> </filter-mapping> -->
+
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/home.jsp</welcome-file>
+		<welcome-file>/resources/views/home.html</welcome-file>
 	</welcome-file-list>
 
-<!-- 	<error-page>
-		<error-code>404</error-code>
-		<location>/WEB-INF/views/404.jsp</location>
-	</error-page>
 	<error-page>
-		<exception-type>java.lang.UnsupportedOperationException</exception-type>
-		<location>/Error.jsp</location>
-	</error-page> -->
+		<error-code>404</error-code>
+		<location>/resources/views/404.html</location>
+	</error-page>
 
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-
-<!-- 	<jsp-config>
-		<taglib>
-			<taglib-uri>/diary.tld</taglib-uri>
-			<taglib-location>/WEB-INF/taglibrary/diary.tld</taglib-location>
-		</taglib>
-	</jsp-config> -->
 
 </web-app> 

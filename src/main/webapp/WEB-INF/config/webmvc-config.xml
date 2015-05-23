@@ -10,10 +10,10 @@
       http://www.springframework.org/schema/mvc  
    	 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- <mvc:resources location="/css/**" mapping="/css/"/>
+<!-- <mvc:resources location="/css/**" mapping="/css/"/>
 	<mvc:resources location="/img/**" mapping="/img/"/>
 	<mvc:resources location="/js/**" mapping="/js/"/> -->
-	
+
 	<mvc:annotation-driven />
 
 	<!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->

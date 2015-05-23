@@ -41,7 +41,7 @@
 		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
 		<property name="acquireRetryAttempts" value="30" />
 		<property name="breakAfterAcquireFailure" value="true" />
-		<property name="testConnectionOnCheckout" value="false" />
+		<!-- <property name="testConnectionOnCheckout" value="false" /> -->
 	</bean>
 
 	<!-- Hibernate SessionFactory -->
@@ -55,6 +55,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.haicai.domain.User</value>
+				<value>com.haicai.domain.UserRoles</value>
 				<value>com.haicai.domain.Contact</value>
 				<value>com.haicai.domain.PersonalHistory</value>
 				<value>com.haicai.domain.Award</value>
