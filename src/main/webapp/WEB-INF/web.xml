@@ -59,16 +59,6 @@
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 
-	<filter>
-		<filter-name>cors</filter-name>
-		<filter-class>com.haicai.portlet.filter.SimpleCORSFilter</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>cors</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
 	<!-- Spring Security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -76,7 +66,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/enteprise**</url-pattern>
 	</filter-mapping>
 
 	<welcome-file-list>

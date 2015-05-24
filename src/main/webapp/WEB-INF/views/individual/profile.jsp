@@ -9,6 +9,7 @@
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/custom.css' type="text/css">
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/main.css' type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/individual.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.ajax-cross-origin.min.js"></script>
 </head>
 <body class="">
 	<jsp:include page="../header.jsp" />
@@ -28,7 +29,7 @@
 				<thead>
 					<tr>
 						<th colspan=3>基本资料</th>
-						<th><input id="basicInfoEditBtn" type="button" value="Edit"></th>
+						<th><a id="basicInfoEditBtn">Edit</a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,7 +58,7 @@
 				</tbody>
 			</table>
 			<div id="basicInfoSubmit" class="hide tableBtn">
-				<input id="basicInfoSubmitBtn" type="button" value="Submit"> <input type="button" value="Cancel">
+				<a id="basicInfoSubmitBtn">Submit</a><a>Cancel</a>
 			</div>
 
 			<c:forEach items="${personalHistories}" var="personalHistory">
@@ -65,7 +66,7 @@
 					<thead>
 						<tr>
 							<th colspan=3>学历资料</th>
-							<th><input name="personal_history_edit_btn" type="button" value="Edit" /> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
+							<th><a name="personal_history_edit_btn">Edit</a> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,7 +85,8 @@
 					</tbody>
 				</table>
 				<div id="personal_history_submit${personalHistory.id}" class="hide tableBtn">
-					<input name="personal_history_submit_btn${personalHistory.id}" type="button" value="Submit"> <input type="button" value="Cancel">
+					<a name="personal_history_submit_btn${personalHistory.id}">Submit</a>
+					<a>Cancel</a>
 				</div>
 			</c:forEach>
 
@@ -99,12 +101,13 @@
 						<tr>
 							<c:if test="${awards.type.identify eq 0}">
 								<td>荣誉称号</td>
+								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
 								<td>
-									<input name="award_edit_btn" type="button" value="Edit">
+									<a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<input name="award_submit_btn" type="button" value="Submit"> 
-										<input type="button" value="Cancel">
+										<a name="award_submit_btn">Submit</a> 
+										<a>Cancel</a>
 									</div>
 									<span class="hide"><c:out value="${awards.id}" /></span>
 								</td>
@@ -113,12 +116,13 @@
 						<tr>
 							<c:if test="${awards.type.identify eq 1}">
 								<td>论文专著</td>
+								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
 								<td>
-									<input name="award_edit_btn" type="button" value="Edit">
+									<a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<input name="award_submit_btn" type="button" value="Submit"> 
-										<input type="button" value="Cancel">
+										<a name="award_submit_btn">Submit</a> 
+										<a>Cancel</a>
 									</div>
 									<span class="hide"><c:out value="${awards.id}" /></span>
 								</td>
@@ -127,12 +131,13 @@
 						<tr>
 							<c:if test="${awards.type.identify eq 2}">
 								<td>INTELLECTUAL PROPERTY</td>
+								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
 								<td>
-									<input name="award_edit_btn" type="button" value="Edit">
+									<a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<input name="award_submit_btn" type="button" value="Submit"> 
-										<input type="button" value="Cancel">
+										<a name="award_submit_btn">Submit</a> 
+										<a>Cancel</a>
 									</div>
 									<span class="hide"><c:out value="${awards.id}" /></span>
 								</td>
@@ -141,12 +146,13 @@
 						<tr>
 							<c:if test="${awards.type.identify eq 3}">
 								<td>${awards.other}</td>
+								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
 								<td>
-									<input name="award_edit_btn" type="button" value="Edit">
+									<a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<input name="award_submit_btn" type="button" value="Submit"> 
-										<input type="button" value="Cancel">
+										<a name="award_submit_btn">Submit</a> 
+										<a>Cancel</a>
 									</div>
 									<span class="hide"><c:out value="${awards.id}" /></span>
 								</td>

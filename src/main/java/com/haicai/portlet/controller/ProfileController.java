@@ -35,7 +35,7 @@ public class ProfileController {
 	@Autowired
 	private PortletService portletService;
 
-	@RequestMapping(value = "profile.do")
+	@RequestMapping(value = "individual/profile.do")
 	public String renderToIndividualProfile(@RequestParam(value = "username", required = false) String username, Model model) {
 		username = "email@email.com";
 
@@ -62,7 +62,7 @@ public class ProfileController {
 		model.addAttribute("awardsList", map.get("awardsList"));
 
 		return "individual/profile";
-//		return "individualProfile";
+		// return "individualProfile";
 	}
 
 	/*
@@ -81,7 +81,7 @@ public class ProfileController {
 	 * return jsonArray.toString(); }
 	 */
 
-	@RequestMapping(value = "editIndProfile.do")
+	@RequestMapping(value = "individual/editIndProfile.do")
 	public @ResponseBody
 	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
 			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
@@ -90,7 +90,7 @@ public class ProfileController {
 		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry);
 
 		Contact originEmailcontact = this.portletService.findSpecificActiveContact(user, ContactType.EMAIL, null);
-		if (originEmailcontact == null) {
+		if (originEmailcontact == null && !email.isEmpty()) {
 			this.portletService.createContact(user, email, ContactType.EMAIL, null);
 		} else if (originEmailcontact != null && !originEmailcontact.getInfo().equals(email)) {
 			this.profileService.disableContact(originEmailcontact);
@@ -98,7 +98,7 @@ public class ProfileController {
 		}
 
 		Contact originTelcontact = this.portletService.findSpecificActiveContact(user, ContactType.TELEPHONE, null);
-		if (originTelcontact == null) {
+		if (originTelcontact == null && !telephone.isEmpty()) {
 			this.portletService.createContact(user, telephone, ContactType.TELEPHONE, null);
 		} else if (originTelcontact != null && !originTelcontact.getInfo().equals(telephone)) {
 			this.profileService.disableContact(originTelcontact);
@@ -106,7 +106,7 @@ public class ProfileController {
 		}
 
 		Contact originQQcontact = this.portletService.findSpecificActiveContact(user, ContactType.OTHER, "qq");
-		if (originQQcontact == null) {
+		if (originQQcontact == null && !qq.isEmpty()) {
 			this.portletService.createContact(user, qq, ContactType.OTHER, "qq");
 		} else if (originQQcontact != null && !originQQcontact.getInfo().equalsIgnoreCase(qq)) {
 			this.profileService.disableContact(originQQcontact);
@@ -114,7 +114,7 @@ public class ProfileController {
 		}
 
 		Contact originWebchatcontact = this.portletService.findSpecificActiveContact(user, ContactType.OTHER, "webchat");
-		if (originWebchatcontact == null) {
+		if (originWebchatcontact == null && !webchat.isEmpty()) {
 			this.portletService.createContact(user, webchat, ContactType.OTHER, "webchat");
 		} else if (originWebchatcontact != null && !originWebchatcontact.getInfo().equalsIgnoreCase(webchat)) {
 			this.profileService.disableContact(originWebchatcontact);
@@ -124,32 +124,32 @@ public class ProfileController {
 		return "success";
 	}
 
-	@RequestMapping(value = "editPerHistory.do")
+	@RequestMapping(value = "individual/editPerHistory.do")
 	public @ResponseBody
-	String editPerHistoriesTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "personalHistoryId", required = false) String personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
+	String editPerHistoriesTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "personalHistoryId", required = false) int personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
 		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
 
-		PersonalHistory personalHistory = this.profileService.findPersonalHistory(Integer.valueOf(personalHistoryId));
+		PersonalHistory personalHistory = this.profileService.findPersonalHistory(personalHistoryId);
 		if (!personalHistory.getUniversity().equals(university) || !personalHistory.getMajor().equals(major) || !personalHistory.getUniversityDegree().getDegree().equals(universityDegree) || !personalHistory.getGraduationYear().equals(graduationYear)) {
-			this.portletService.updatePersonalHistory(Integer.valueOf(personalHistoryId), university, UniversityDegree.valueOf(universityDegree), major, graduationYear);
+			this.portletService.updatePersonalHistory(personalHistoryId, university, UniversityDegree.valueOf(universityDegree), major, graduationYear);
 		}
 		return "success";
 	}
 
-	@RequestMapping(value = "editAward.do", method = RequestMethod.POST)
+	@RequestMapping(value = "individual/editAward.do", method = RequestMethod.POST)
 	public @ResponseBody
-	String editAwardsTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "awardId", required = false) String awardId, @RequestParam(value = "awardDescription", required = false) String awardDescription,HttpServletResponse response) {
-		
+	String editAwardsTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "awardId", required = false) int awardId, @RequestParam(value = "awardDescription", required = false) String awardDescription, HttpServletResponse response) {
+
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
 		response.addHeader("Access-Control-Allow-Headers", "Content-Type");
-		
+
 		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
-		Award award = this.profileService.findAward(Integer.valueOf(awardId));
-		if(!award.getDescription().equals(awardDescription)){
-			this.portletService.updateAward(award.getId(), award.getType(), awardDescription, award.getReferrer(),award.getOther());
+		Award award = this.profileService.findAward(awardId);
+		if (!award.getDescription().equals(awardDescription)) {
+			this.portletService.updateAward(award.getId(), award.getType(), awardDescription, award.getReferrer(), award.getOther());
 		}
 		return "success";
 	}
