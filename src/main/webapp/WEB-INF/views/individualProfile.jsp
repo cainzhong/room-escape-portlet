@@ -15,6 +15,10 @@
 		<div>
 			<em>Name & Navigation</em>
 		</div>
+		
+		<c:set var="username" value="email@email.com" />
+		<div><span id="username"><c:out value="${username}" /></span></div>
+		
 		<div>
 			<table id="basicInfo">
 				<thead>
@@ -143,6 +147,7 @@
 				url : 'editIndProfile.do',
 				dataType : "text",
 				data : {
+					"username" : $("#username").val(),
 					"realName" : $("#realName :first-child").val(),
 					"englishName" : $("#englishName :first-child").val(),
 					"currentCountry" : $("#currentCountry :first-child").val(),
@@ -197,9 +202,10 @@
 			// invoke the controller through ajax 
 			$.ajax({
 				type : 'POST',
-				url : 'editPerHistories.do',
+				url : 'editPerHistory.do',
 				dataType : "text",
 				data : {
+					"username" : $("#username").val(),
 					"university" : $("#university :first-child").val(),
 					"major" : $("#major :first-child").val(),
 					"universityDegree" : $("#universityDegree :first-child").val(),
@@ -251,9 +257,10 @@
 			// invoke the controller through ajax 
 			$.ajax({
 				type : 'POST',
-				url : 'editAwards.do',
+				url : 'editAward.do',
 				dataType : "text",
 				data : {
+					"username" : $("#username").val(),
 					"honoraryTitle" : $("#honoraryTitle :first-child").val(),
 					"thesis" : $("#thesis :first-child").val()
 				},

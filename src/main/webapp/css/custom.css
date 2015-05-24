@@ -57,6 +57,10 @@
 	display: none;
 }
 
+.show {
+	display: block;
+}
+
 .tableBtn {
 	position: relative;
 	left: 930px;

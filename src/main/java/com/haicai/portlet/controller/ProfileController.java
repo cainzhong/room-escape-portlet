@@ -3,10 +3,13 @@ package com.haicai.portlet.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,7 +24,7 @@ import com.haicai.portlet.service.ProfileService;
 
 /**
  * @author Cain
- *
+ * 
  */
 @Controller
 public class ProfileController {
@@ -32,7 +35,7 @@ public class ProfileController {
 	@Autowired
 	private PortletService portletService;
 
-	@RequestMapping("individualProfile.do")
+	@RequestMapping(value = "profile.do")
 	public String renderToIndividualProfile(@RequestParam(value = "username", required = false) String username, Model model) {
 		username = "email@email.com";
 
@@ -58,7 +61,8 @@ public class ProfileController {
 		model.addAttribute("personalHistories", map.get("personalHistories"));
 		model.addAttribute("awardsList", map.get("awardsList"));
 
-		return "individualProfile";
+		return "individual/profile";
+//		return "individualProfile";
 	}
 
 	/*
@@ -66,14 +70,14 @@ public class ProfileController {
 	 * produces = "application/json;charset=UTF-8") public @ResponseBody String
 	 * editBasicInfoTable(@RequestBody User user, HttpServletRequest request) {
 	 * String realName = user.getRealName();
-	 *
+	 * 
 	 * JSONArray jsonArray = new JSONArray(); JSONObject jsonItem1 = new
 	 * JSONObject(); jsonItem1.put("id", "1"); jsonItem1.put("name",
 	 * "My Test Project"); JSONObject jsonItem2 = new JSONObject();
 	 * jsonItem2.put("id", "4"); jsonItem2.put("name", "Another one");
-	 *
+	 * 
 	 * jsonArray.put(jsonItem1); jsonArray.put(jsonItem2);
-	 *
+	 * 
 	 * return jsonArray.toString(); }
 	 */
 
@@ -120,10 +124,10 @@ public class ProfileController {
 		return "success";
 	}
 
-	@RequestMapping(value = "editPerHistories.do")
+	@RequestMapping(value = "editPerHistory.do")
 	public @ResponseBody
-	String editPerHistoriesTable(@RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
-		String username = "email@email.com";
+	String editPerHistoriesTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "personalHistoryId", required = false) String personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
+		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
 
 		List<PersonalHistory> personalHistories = this.portletService.findPersonalHistories(user);
@@ -134,14 +138,18 @@ public class ProfileController {
 		return "success";
 	}
 
-	@RequestMapping(value = "editAwards.do")
+	@RequestMapping(value = "editAward.do", method = RequestMethod.POST)
 	public @ResponseBody
-	String editAwardsTable(@RequestParam(value = "honoraryTitle", required = false) String honoraryTitle, @RequestParam(value = "thesis", required = false) String thesis) {
-		String username = "email@email.com";
+	String editAwardsTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "awardId", required = false) String awardId, @RequestParam(value = "awardDescription", required = false) String awardDescription,HttpServletResponse response) {
+		
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+		response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+		
+		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
 		List<Award> awards = this.portletService.findAwards(user);
 		Award award = awards.get(0);
 		return "success";
 	}
-
 }
