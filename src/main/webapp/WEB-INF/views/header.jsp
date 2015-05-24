@@ -7,7 +7,7 @@
 		<ul class="menu-logo">
 			<li class="logo-li">
 				<a class="logo logo-0004" href="http://www.motorola.com.cn">
-					<img src="${pageContext.request.contextPath}/img/logo.PNG" alt="Home" style="opacity: 1;height:45px;margin-top:20px;">
+					<img src="" alt="Home" style="opacity: 1;height:45px;margin-top:20px;">
 				</a>
 			</li>
 		</ul>
