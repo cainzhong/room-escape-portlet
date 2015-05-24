@@ -130,10 +130,9 @@ public class ProfileController {
 		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
 
-		List<PersonalHistory> personalHistories = this.portletService.findPersonalHistories(user);
-		PersonalHistory personalHistory = personalHistories.get(0);
+		PersonalHistory personalHistory = this.profileService.findPersonalHistory(Integer.valueOf(personalHistoryId));
 		if (!personalHistory.getUniversity().equals(university) || !personalHistory.getMajor().equals(major) || !personalHistory.getUniversityDegree().getDegree().equals(universityDegree) || !personalHistory.getGraduationYear().equals(graduationYear)) {
-			this.portletService.updatePersonalHistory(personalHistories.get(0).getId(), university, UniversityDegree.valueOf(universityDegree), major, graduationYear);
+			this.portletService.updatePersonalHistory(Integer.valueOf(personalHistoryId), university, UniversityDegree.valueOf(universityDegree), major, graduationYear);
 		}
 		return "success";
 	}
@@ -148,8 +147,10 @@ public class ProfileController {
 		
 		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
-		List<Award> awards = this.portletService.findAwards(user);
-		Award award = awards.get(0);
+		Award award = this.profileService.findAward(Integer.valueOf(awardId));
+		if(!award.getDescription().equals(awardDescription)){
+			this.portletService.updateAward(award.getId(), award.getType(), awardDescription, award.getReferrer(),award.getOther());
+		}
 		return "success";
 	}
 }
