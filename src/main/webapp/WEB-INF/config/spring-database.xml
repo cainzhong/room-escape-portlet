@@ -55,7 +55,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.haicai.domain.User</value>
-				<value>com.haicai.domain.UserRoles</value>
+				<value>com.haicai.domain.UserRole</value>
 				<value>com.haicai.domain.Contact</value>
 				<value>com.haicai.domain.PersonalHistory</value>
 				<value>com.haicai.domain.Award</value>

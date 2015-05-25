@@ -24,9 +24,10 @@ import com.haicai.portlet.service.ProfileService;
 
 /**
  * @author Cain
- * 
+ *
  */
 @Controller
+@RequestMapping("/individual")
 public class ProfileController {
 
 	@Autowired
@@ -35,7 +36,7 @@ public class ProfileController {
 	@Autowired
 	private PortletService portletService;
 
-	@RequestMapping(value = "individual/profile.do")
+	@RequestMapping(value = "profile.do")
 	public String renderToIndividualProfile(@RequestParam(value = "username", required = false) String username, Model model) {
 		username = "email@email.com";
 
@@ -70,18 +71,18 @@ public class ProfileController {
 	 * produces = "application/json;charset=UTF-8") public @ResponseBody String
 	 * editBasicInfoTable(@RequestBody User user, HttpServletRequest request) {
 	 * String realName = user.getRealName();
-	 * 
+	 *
 	 * JSONArray jsonArray = new JSONArray(); JSONObject jsonItem1 = new
 	 * JSONObject(); jsonItem1.put("id", "1"); jsonItem1.put("name",
 	 * "My Test Project"); JSONObject jsonItem2 = new JSONObject();
 	 * jsonItem2.put("id", "4"); jsonItem2.put("name", "Another one");
-	 * 
+	 *
 	 * jsonArray.put(jsonItem1); jsonArray.put(jsonItem2);
-	 * 
+	 *
 	 * return jsonArray.toString(); }
 	 */
 
-	@RequestMapping(value = "individual/editIndProfile.do")
+	@RequestMapping(value = "editIndProfile.do")
 	public @ResponseBody
 	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
 			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
@@ -124,7 +125,7 @@ public class ProfileController {
 		return "success";
 	}
 
-	@RequestMapping(value = "individual/editPerHistory.do")
+	@RequestMapping(value = "editPerHistory.do")
 	public @ResponseBody
 	String editPerHistoriesTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "personalHistoryId", required = false) int personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
 		username = "email@email.com";
@@ -137,7 +138,7 @@ public class ProfileController {
 		return "success";
 	}
 
-	@RequestMapping(value = "individual/editAward.do", method = RequestMethod.POST)
+	@RequestMapping(value = "editAward.do", method = RequestMethod.POST)
 	public @ResponseBody
 	String editAwardsTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "awardId", required = false) int awardId, @RequestParam(value = "awardDescription", required = false) String awardDescription, HttpServletResponse response) {
 

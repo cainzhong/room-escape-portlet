@@ -4,8 +4,6 @@
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	
-	<!-- Enable Annotation based configuration -->
-	<context:annotation-config />
 	<import resource="spring-database.xml" />
 	<import resource="webmvc-config.xml" />
 	<import resource="webflow-config.xml" />

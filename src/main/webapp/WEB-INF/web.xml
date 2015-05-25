@@ -4,6 +4,20 @@
 
 	<display-name>HC Portlet</display-name>
 
+	<!-- Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/j_spring_security_check</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Spring MVC -->
 	<servlet>
 		<servlet-name>hc</servlet-name>
@@ -18,6 +32,7 @@
 	<servlet-mapping>
 		<servlet-name>hc</servlet-name>
 		<url-pattern>*.do</url-pattern>
+		<!-- <url-pattern>/</url-pattern> -->
 	</servlet-mapping>
 
 	<servlet-mapping>
@@ -58,16 +73,6 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-
-	<!-- Spring Security -->
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/enteprise**</url-pattern>
-	</filter-mapping>
 
 	<welcome-file-list>
 		<welcome-file>/resources/views/home.html</welcome-file>
