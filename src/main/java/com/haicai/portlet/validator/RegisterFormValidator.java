@@ -7,12 +7,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.binding.validation.ValidationContext;
 import org.springframework.stereotype.Component;
 
+import com.haicai.domain.User;
 import com.haicai.portlet.form.RegisterForm;
+import com.haicai.portlet.service.PortletService;
 
 /**
  * This class is used for register form submit validate
@@ -25,6 +28,9 @@ public class RegisterFormValidator {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterFormValidator.class);
 	
+    @Autowired
+    private PortletService portletService;
+    
 	public void validateRegister(RegisterForm registerForm, ValidationContext context){
 
         MessageContext messages = context.getMessageContext();
@@ -34,6 +40,13 @@ public class RegisterFormValidator {
               errorMsg = "T_ERROR";
               messages.addMessage(new MessageBuilder().error().code(errorMsg).build());
         }
+       if(!StringUtils.isEmpty(registerForm.getName())){
+           User user = this.portletService.findUserByUserName(registerForm.getName());
+           if(user != null){
+             errorMsg = "T_ERROR";
+             messages.addMessage(new MessageBuilder().error().code(errorMsg).build());
+           }
+         }
        if(StringUtils.isEmpty(registerForm.getActname())){
     	      LOGGER.error("Actual name is empty!");
               errorMsg = "T_ERROR";
