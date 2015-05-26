@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.webflow.execution.RequestContextHolder;
 
 import com.haicai.domain.Contact;
 import com.haicai.domain.User;
@@ -61,10 +62,13 @@ public class RegisterAction implements Serializable{
 	       Contact contactPhone = this.CreateRelatedContactForUser(registerForm,TELEPHONE);
 	       this.registerService.createContactForUser(user, contactEmail);
 	       this.registerService.createContactForUser(user, contactPhone);
+	       //Set user to flowScope
+	       RequestContextHolder.getRequestContext().getFlowScope().put("user", user);
+	       
 	       return SUCCESS;
       }
 
-
+    
 	/**
 	 * Create User
 	 * 
