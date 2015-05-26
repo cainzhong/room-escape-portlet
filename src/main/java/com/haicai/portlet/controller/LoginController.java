@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haicai.portlet.service.LoginService;
 
@@ -21,19 +22,24 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
-//
-//	@RequestMapping(value = "/login.do")
-//	public @ResponseBody
-//	String loginPage(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "password", required = false) String password, Model model) {
-//		boolean validUser = this.loginService.hasMatchedLoginUser(username, password);
-//		if (validUser) {
-//			return username;
-//		} else {
-//			model.addAttribute("error", "User name or password is incorrect!");
-//			return "error";
-//		}
-//
-//	}
+
+	@RequestMapping(value = "/loginAjax.do")
+	public @ResponseBody
+	String loginPage(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "password", required = false) String password, Model model) {
+		if(username.isEmpty()||password.isEmpty()){
+			model.addAttribute("error", "User name or password is empty!");
+			return "error";
+		}
+
+		boolean validUser = this.loginService.hasMatchedLoginUser(username, password);
+		if (validUser) {
+			return username;
+		} else {
+			model.addAttribute("error", "User name or password is incorrect!");
+			return "error";
+		}
+
+	}
 
 	/**
 	 * Render to login page.
@@ -45,7 +51,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String getloginPage(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "password", required = false) String password, @RequestParam(value = "error", required = false) boolean error, Model model) {
+	public String getloginPage(@RequestParam(value = "error", required = false) boolean error, Model model) {
 		LoginController.logger.debug("Received request to show login page.");
 
 		if (error == true) {

@@ -16,7 +16,7 @@
 		<security:logout invalidate-session="true" logout-success-url="/login.do" logout-url="/logoff.do" />
 
 		<!-- <security:remember-me key="hc_remember_me_cookie" /> -->
-		<!-- <security:remember-me services-ref="rememberMeServices" /> -->
+		<security:remember-me key="hc_remember_me_cookie" services-ref="rememberMeServices" />
 
 	</security:http>
 
@@ -34,7 +34,7 @@
 	<bean id="portletService" class="com.haicai.portlet.service.impl.PortletServiceImpl" />
 
 	<!-- remember me Configuration start -->
-	<!-- <bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
 		<property name="userDetailsService" ref="portletService" />
 		<property name="key" value="hc_remember_me_cookies" />
 		<property name="alwaysRemember" value="false" />
@@ -44,5 +44,5 @@
 
 	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
 		<property name="key" value="hc_remember_me_cookies" />
-	</bean> -->
+	</bean>
 </beans>

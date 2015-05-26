@@ -103,7 +103,7 @@ $(function() {
 		$.ajax({
 			type : 'POST',
 			dataType : 'text',
-			url : 'login.do',
+			url : 'loginAjax.do',
 			data : {
 				username : email,
 				password : password
