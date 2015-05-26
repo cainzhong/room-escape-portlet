@@ -38,7 +38,7 @@
 </head>
 <jsp:include page="resourceInclude.jsp" />
 <body>
-	<spring:url var="authUrl" value="/j_spring_security_check" />
+	<spring:url var="authUrl" value="/j_spring_security_check.do" />
 
 	<jsp:include page="header.jsp" />
 	<div class="login">
@@ -51,11 +51,11 @@
 			<fieldset>
 				<table>
 					<tr>
-						<th><label for="username_or_email">Username or Email</label></th>
+						<th><label for="username_or_email"><spring:message code="T_USER_NAME" /></label></th>
 						<td><input id="username_or_email" name="j_username" type="text" /></td>
 					</tr>
 					<tr>
-						<th><label for="password">Password</label></th>
+						<th><label for="password"><spring:message code="T_PASSWORD" /></label></th>
 						<td>
 							<input id="password" name="j_password" type="password" />
 							<small><a href="/account/resend_password" >Forget?</a></small>
@@ -70,11 +70,10 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td><input id="commit" type="submit" value="Sign In" /></td>
+						<td><input id="commit" type="submit" value="<spring:message code="T_LOGIN" />" /></td>
 					</tr>
 				</table>
 			</fieldset>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 	</div>
 	<jsp:include page="footer.jsp" />
