@@ -5,7 +5,7 @@
 	<display-name>HC Portlet</display-name>
 
 	<welcome-file-list>
-		<welcome-file>/home.html</welcome-file>
+		<welcome-file>/resources/views/home.html</welcome-file>
 	</welcome-file-list>
 
 	<!-- Spring Security -->
