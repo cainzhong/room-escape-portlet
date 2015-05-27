@@ -25,7 +25,7 @@
 	<div id="main">
 		<div class="homePage">
 			<div class="registerBasicInfo">
-				<form class="cmxform" id=identityForm name="identityForm" method="post" action="${flowExecutionUrl}">
+				<form class="cmxform" id=identityForm name="identityForm" method="post" action="${flowExecutionUrl}" enctype="multipart/form-data">
 					<fieldset>
 						<c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
 							<div class="error_message">
@@ -33,6 +33,9 @@
 							</div>
 						</c:forEach>
 						<legend>身份认证</legend>
+						<p>
+							<label for="file">图片上传：</label> <input id="file" name="file" type="file" required>
+						<p>
 						<p>
 							<label for="currentCountry">所在国家：</label> <input
 								id="currentCountry" name="currentCountry" type="text" required>

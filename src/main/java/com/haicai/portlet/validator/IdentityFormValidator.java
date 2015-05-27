@@ -32,6 +32,11 @@ public class IdentityFormValidator{
 
 		String errorMsg = null;
 
+		if (identityForm.getFile() == null) {
+			LOGGER.error("User's profile file is empty!");
+			errorMsg = "T_ERROR";
+			messages.addMessage(new MessageBuilder().error().code(errorMsg).build());
+		}
 		if (StringUtils.isEmpty(identityForm.getCurrentCountry())) {
 			LOGGER.error("User's current country is empty!");
 			errorMsg = "T_ERROR";
