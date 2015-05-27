@@ -93,7 +93,7 @@ public class IndividualController {
 			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
 		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
-		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry);
+		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry,null);
 
 		Contact originEmailcontact = this.portletService.findSpecificActiveContact(user, ContactType.EMAIL, null);
 		if (originEmailcontact == null && !email.isEmpty()) {

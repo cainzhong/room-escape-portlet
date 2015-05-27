@@ -26,9 +26,14 @@
 	</view-state>
 
 	<view-state id="identityConfirm" model="identityForm" view="identityConfirm">
-		<transition on="submit" to="orderConfirmed">
+		<transition on="submit" to="updateUserInfo">
 		</transition>
 	</view-state>
+	
+	<action-state id="updateUserInfo">
+          <evaluate expression="registerAction.updateUser(identityForm)" />
+          <transition to="orderConfirmed" />
+     </action-state>
 
 	<view-state id="orderConfirmed" view="orderConfirmed">
 		<transition on="returnToIndex" to="returnToIndex">
