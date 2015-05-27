@@ -4,9 +4,9 @@
 
 	<display-name>HC Portlet</display-name>
 
-	<welcome-file-list>
+<!-- 	<welcome-file-list>
 		<welcome-file>/resources/views/home.html</welcome-file>
-	</welcome-file-list>
+	</welcome-file-list> -->
 
 	<!-- Spring Security -->
 	<filter>

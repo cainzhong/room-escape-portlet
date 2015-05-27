@@ -14,7 +14,7 @@
 	<mvc:resources location="/img/**" mapping="/img/"/>
 	<mvc:resources location="/js/**" mapping="/js/"/> -->
 	<!-- 使<welcome-file-list>有效 -->
-	<mvc:default-servlet-handler/>
+<!-- 	<mvc:default-servlet-handler/> -->
 
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
