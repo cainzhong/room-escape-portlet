@@ -4,6 +4,10 @@
 
 	<display-name>HC Portlet</display-name>
 
+	<welcome-file-list>
+		<welcome-file>/home.html</welcome-file>
+	</welcome-file-list>
+
 	<!-- Spring Security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -73,10 +77,6 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-
-	<welcome-file-list>
-		<welcome-file>/resources/views/home.html</welcome-file>
-	</welcome-file-list>
 
 	<error-page>
 		<error-code>404</error-code>

@@ -9,7 +9,6 @@
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/custom.css' type="text/css">
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/main.css' type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/individual.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.ajax-cross-origin.min.js"></script>
 </head>
 <body class="">
 	<jsp:include page="../header.jsp" />

@@ -73,6 +73,31 @@ $(document).ready(function() {
 			});
 			$(this).css("pointer-events", "none");
 			$("#personal_history_submit" + personalHistoryId).css("display", "block");
+
+			// debug
+			// get selector values for university degree.
+			$.ajax({
+				type : 'POST',
+				url : 'getSelectorValues.do',
+				dataType : "json",
+				data : {},
+				success : function(data) {
+					var university_degree = "#personal_history_table" + personalHistoryId + " .university_degree";
+					var university_degree_td = $(university_degree);
+					var selectobj = $("<select>");
+					$.each(data, function(i, item) {
+						selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
+					});
+					selectobj.append("</select>");
+					university_degree_td.html("");
+					selectobj.appendTo(university_degree_td);
+				},
+				error : function(data) {
+
+					alert("error");
+				}
+			});
+
 		});
 	});
 

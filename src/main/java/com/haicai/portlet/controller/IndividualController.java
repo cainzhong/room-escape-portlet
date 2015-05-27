@@ -1,10 +1,15 @@
 package com.haicai.portlet.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +26,7 @@ import com.haicai.domain.type.ContactType;
 import com.haicai.domain.type.UniversityDegree;
 import com.haicai.portlet.service.PortletService;
 import com.haicai.portlet.service.ProfileService;
+import com.haicai.portlet.util.PropertiesUtil;
 
 /**
  * @author Cain
@@ -28,7 +34,7 @@ import com.haicai.portlet.service.ProfileService;
  */
 @Controller
 @RequestMapping("/individual")
-public class ProfileController {
+public class IndividualController {
 
 	@Autowired
 	private ProfileService profileService;
@@ -63,7 +69,6 @@ public class ProfileController {
 		model.addAttribute("awardsList", map.get("awardsList"));
 
 		return "individual/profile";
-		// return "individualProfile";
 	}
 
 	/*
@@ -142,10 +147,6 @@ public class ProfileController {
 	public @ResponseBody
 	String editAwardsTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "awardId", required = false) int awardId, @RequestParam(value = "awardDescription", required = false) String awardDescription, HttpServletResponse response) {
 
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-		response.addHeader("Access-Control-Allow-Headers", "Content-Type");
-
 		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
 		Award award = this.profileService.findAward(awardId);
@@ -153,5 +154,27 @@ public class ProfileController {
 			this.portletService.updateAward(award.getId(), award.getType(), awardDescription, award.getReferrer(), award.getOther());
 		}
 		return "success";
+	}
+
+	@RequestMapping(value = "getSelectorValues.do", method = RequestMethod.POST)
+	public @ResponseBody
+	String getSelectorValues() {
+		Map<String, String> regionMap = PropertiesUtil.getSpecificProperties("/messages.properties", "T_UNIVERSITY_DEGREE_.*");
+		JSONArray jsonArray = new JSONArray();
+
+		Set<String> keySet = regionMap.keySet();
+		Iterator<String> iterator=keySet.iterator();
+		List<String> regionMapKeyList=new ArrayList<String>();
+		while(iterator.hasNext()){
+			regionMapKeyList.add(iterator.next().toString());
+		}
+		for(int i=0;i<regionMap.size();i++){
+			JSONObject jsonRegion = new JSONObject();
+			jsonRegion.put("key",regionMapKeyList.get(i));
+			jsonRegion.put("value",regionMap.get(regionMapKeyList.get(i)));
+			jsonArray.put(jsonRegion);
+		}
+
+		return jsonArray.toString();
 	}
 }
