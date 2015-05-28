@@ -25,7 +25,7 @@
 	<div id="main">
 		<div class="homePage">
 			<div class="registerBasicInfo">
-				<form class="cmxform" id=identityForm name="identityForm" method="post" action="${flowExecutionUrl}" enctype="multipart/form-data">
+				<form class="cmxform" id=identityForm name="identityForm" method="post" action="${flowExecutionUrl}" enctype="multipart/form-data" runat="server">
 					<fieldset>
 						<c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
 							<div class="error_message">
@@ -34,7 +34,8 @@
 						</c:forEach>
 						<legend>身份认证</legend>
 						<p>
-							<label for="file">图片上传：</label> <input id="file" name="file" type="file" required>
+							<label for="file">图片上传：</label> 
+							<input id="imgInp" name="file" type="file" required><img id="blah" src="#" alt="your image" />
 						<p>
 						<p>
 							<label for="currentCountry">所在国家：</label> <input
@@ -90,6 +91,20 @@
 		}
 
 	});
+	
+	 function readURL(input) {
+	       if (input.files && input.files[0]) {
+	           var reader = new FileReader();
+	            reader.onload = function (e) {
+	                $('#blah').attr('src', e.target.result);
+	           }
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+
+	    $("#imgInp").change(function(){
+	        readURL(this);
+	    });
 </script>
 
 </html>
