@@ -138,7 +138,7 @@ public class IndividualController {
 
 		PersonalHistory personalHistory = this.profileService.findPersonalHistory(personalHistoryId);
 		if (!personalHistory.getUniversity().equals(university) || !personalHistory.getMajor().equals(major) || !personalHistory.getUniversityDegree().getDegree().equals(universityDegree) || !personalHistory.getGraduationYear().equals(graduationYear)) {
-			this.portletService.updatePersonalHistory(personalHistoryId, university, UniversityDegree.valueOf(universityDegree), major, graduationYear);
+			this.portletService.updatePersonalHistory(personalHistoryId, university, UniversityDegree.getUniversityDegree(universityDegree), major, graduationYear);
 		}
 		return "success";
 	}

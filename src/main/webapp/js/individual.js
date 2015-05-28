@@ -1,59 +1,44 @@
 $(document).ready(function() {
 
 	// edit profile
-	$("#basicInfoEditBtn").click(function() {
-		var oddTD = $("#basicInfo tbody td:odd");
-		oddTD.each(function() {
+	$("#basic_info_edit_btn").click(function() {
+		var odd_td = $("#basic_info tbody td:odd");
+		odd_td.each(function() {
 			var inputobj = $("<input type='text'>");
 			var tdobj = $(this);
 			var text = tdobj.html();
 			tdobj.html("");
-			inputobj.css("border", "0").css("font-size", tdobj.css("font-size")).css("font-family", tdobj.css("font-family")).css("background-color", tdobj.css("background-color")).css("color", "#C75F3E").width(tdobj.width()).val(text).appendTo(tdobj);
+			inputobj.val(text).appendTo(tdobj);
 		});
-		$("#basicInfoEditBtn").css("pointer-events", "none");
-		$("#basicInfoSubmit").css("display", "block");
+		$("#basic_info_edit_btn").css("pointer-events", "none");
+		$("#basic_info_submit").css("display", "block");
 	});
 
-	// submit profile
-	$('#basicInfoSubmitBtn').click(function() {
-		// invoke the controller through ajax
+	// submit profile, invoke the controller through ajax
+	$('#basic_info_submit_btn').click(function() {
 		$.ajax({
 			type : 'POST',
 			url : 'editIndProfile.do',
 			dataType : "text",
 			data : {
 				"username" : $("#username").text(),
-				"realName" : $("#realName :first-child").val(),
-				"englishName" : $("#englishName :first-child").val(),
-				"currentCountry" : $("#currentCountry :first-child").val(),
+				"realName" : $("#real_name :first-child").val(),
+				"englishName" : $("#english_name :first-child").val(),
+				"currentCountry" : $("#current_country :first-child").val(),
 				"email" : $("#email :first-child").val(),
 				"telephone" : $("#telephone :first-child").val(),
 				"qq" : $("#qq :first-child").val(),
 				"webchat" : $("#webchat :first-child").val()
 			},
 			success : function(data) {
-				$("#basicInfoEditBtn").css("pointer-events", "auto");
-				$("#basicInfoSubmit").css("display", "none");
-				var oddTD = $("#basicInfo tbody td:odd");
-				oddTD.each(function() {
-					var tdobj = $(this);
-					var tdval = tdobj.children(":first").val();
-					tdobj.empty();
-					tdobj.html(tdval);
-				});
-				alert(data);
+				$("#basic_info_edit_btn").css("pointer-events", "auto");
+				$("#basic_info_submit").css("display", "none");
+				$("#dialog-success").dialog("open");
 			},
 			error : function(data) {
-				$("#basicInfoEditBtn").css("pointer-events", "auto");
-				$("#basicInfoSubmit").css("display", "none");
-				var oddTD = $("#basicInfo tbody td:odd");
-				oddTD.each(function() {
-					var tdobj = $(this);
-					var tdval = tdobj.children(":first").val();
-					tdobj.empty();
-					tdobj.html(tdval);
-				});
-				alert("error");
+				$("#basic_info_edit_btn").css("pointer-events", "auto");
+				$("#basic_info_submit").css("display", "none");
+				$("#dialog-error").dialog("open");
 			}
 		});
 	});
@@ -61,29 +46,29 @@ $(document).ready(function() {
 	// edit personal histories.
 	$("a[name='personal_history_edit_btn']").each(function() {
 		$(this).click(function() {
-			var personalHistoryId = $(this).next("span").text();
-			var oddTdId = "#personal_history_table" + personalHistoryId + " tbody td:odd";
-			var oddTD = $(oddTdId);
-			oddTD.each(function() {
+			var personal_history_id = $(this).next("span").text();
+			var odd_td_id = "#personal_history_table" + personal_history_id + " tbody td:odd";
+			var odd_td = $(odd_td_id);
+			odd_td.each(function() {
 				var inputobj = $("<input type='text'>");
 				var tdobj = $(this);
 				var text = tdobj.html();
 				tdobj.html("");
-				inputobj.css("border", "0").css("font-size", tdobj.css("font-size")).css("font-family", tdobj.css("font-family")).css("background-color", tdobj.css("background-color")).css("color", "#C75F3E").width(tdobj.width()).val(text).appendTo(tdobj);
+				inputobj.val(text).appendTo(tdobj);
 			});
 			$(this).css("pointer-events", "none");
-			$("#personal_history_submit" + personalHistoryId).css("display", "block");
+			$("#personal_history_submit" + personal_history_id).css("display", "block");
 
-			// debug
 			// get selector values for university degree.
+			var university_degree_id = "#personal_history_table" + personal_history_id + " .university_degree";
+			var university_degree_val = $(university_degree_id).html();
+			var university_degree_td = $(university_degree_id);
 			$.ajax({
 				type : 'POST',
 				url : 'getSelectorValues.do',
 				dataType : "json",
 				data : {},
 				success : function(data) {
-					var university_degree = "#personal_history_table" + personalHistoryId + " .university_degree";
-					var university_degree_td = $(university_degree);
 					var selectobj = $("<select>");
 					$.each(data, function(i, item) {
 						selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
@@ -91,23 +76,24 @@ $(document).ready(function() {
 					selectobj.append("</select>");
 					university_degree_td.html("");
 					selectobj.appendTo(university_degree_td);
+					var select_id = university_degree + "  select option:contains(" + university_degree_val + ")";
+					$(select_id).attr("selected", "selected");
 				},
 				error : function(data) {
-
-					alert("error");
+					$("#dialog-ajax-error").dialog("open");
 				}
 			});
 
 		});
 	});
 
-	// submit personal histories.
+	// submit personal histories, invoke the controller through ajax
 	$("a[name^='personal_history_submit_btn']").click(function() {
-		var submitDiv = $(this).parent();
+		var submit_div = $(this).parent();
 
 		var personal_history_table = $(this).parent().prev("table").attr('id');
 		var personal_history_id = $(this).parent().prev("table").children().find("a[name='personal_history_edit_btn']").next("span").text();
-		// invoke the controller through ajax
+
 		var university = "#" + personal_history_table + " .university :first-child";
 		var major = "#" + personal_history_table + " .major :first-child";
 		var universityDegree = "#" + personal_history_table + " .university_degree :first-child";
@@ -127,30 +113,14 @@ $(document).ready(function() {
 			success : function(data) {
 				var personal_history_edit_btn = "#" + personal_history_table + " a[name='personal_history_edit_btn']";
 				$(personal_history_edit_btn).css("pointer-events", "auto");
-				submitDiv.css("display", "none");
-				var oddTdId = "#" + personal_history_table + " tbody td:odd";
-				var oddTD = $(oddTdId);
-				oddTD.each(function() {
-					var tdobj = $(this);
-					var tdval = tdobj.children(":first").val();
-					tdobj.empty();
-					tdobj.html(tdval);
-				});
-				alert(data);
+				submit_div.css("display", "none");
+				$("#dialog-success").dialog("open");
 			},
 			error : function(data) {
 				var personal_history_edit_btn = "#" + personal_history_table + " a[name='personal_history_edit_btn']";
 				$(personal_history_edit_btn).css("pointer-events", "auto");
 				$(this).parent().css("display", "none");
-				var oddTdId = "#" + personal_history_table + " tbody td:odd";
-				var oddTD = $(oddTdId);
-				oddTD.each(function() {
-					var tdobj = $(this);
-					var tdval = tdobj.children(":first").val();
-					tdobj.empty();
-					tdobj.html(tdval);
-				});
-				alert("error");
+				$("#dialog-error").dialog("open");
 			}
 		});
 	});
@@ -175,11 +145,10 @@ $(document).ready(function() {
 		$(this).next("div").addClass("show");
 	});
 
-	// submit award
+	// submit award, invoke the controller through ajax
 	$("a[name='award_submit_btn']").click(function() {
-		// invoke the controller through ajax
-		var submitDiv = $(this).parent();
-		var awardId = submitDiv.next("span").text();
+		var submit_div = $(this).parent();
+		var awardId = submit_div.next("span").text();
 		$.ajax({
 			type : 'POST',
 			url : 'editAward.do',
@@ -190,23 +159,14 @@ $(document).ready(function() {
 				"awardDescription" : $(this).parent().parent().prev("td").children(":first").val(),
 			},
 			success : function(data) {
-				submitDiv.prev("a").addClass("show").removeClass("hide");
-				submitDiv.removeClass("show").addClass("hide");
-				var award_type = submitDiv.parent().parent().children().eq(1);
-				var award_description = submitDiv.parent().parent().children().eq(2);
-				var award_type_val = award_type.children(":first").val();
-				var award_description_val = award_description.children(":first").val();
-				award_type.empty();
-				award_type.html(award_type_val);
-				award_description.empty();
-				award_description.html(award_description_val);
-
-				alert("success");
+				submit_div.prev("a").addClass("show").removeClass("hide");
+				submit_div.removeClass("show").addClass("hide");
+				$("#dialog-success").dialog("open");
 			},
 			error : function(data) {
-				submitDiv.prev("a").addClass("show").removeClass("hide");
-				submitDiv.removeClass("show").addClass("hide");
-				alert("error");
+				submit_div.prev("a").addClass("show").removeClass("hide");
+				submit_div.removeClass("show").addClass("hide");
+				$("#dialog-error").dialog("open");
 			}
 		});
 	});

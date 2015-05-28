@@ -24,23 +24,23 @@
 		</div>
 
 		<div>
-			<table id="basicInfo">
+			<table id="basic_info">
 				<thead>
 					<tr>
 						<th colspan=3>基本资料</th>
-						<th><a id="basicInfoEditBtn">Edit</a></th>
+						<th><a id="basic_info_edit_btn">Edit</a></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>真实姓名</td>
-						<td id="realName"><c:out value="${user.realName}" /></td>
+						<td id="real_name"><c:out value="${user.realName}" /></td>
 						<td>英文名</td>
-						<td id="englishName"><c:out value="${user.englishName}" /></td>
+						<td id="english_name"><c:out value="${user.englishName}" /></td>
 					</tr>
 					<tr>
 						<td>所在地区</td>
-						<td id="currentCountry"><c:out value="${user.currentCountry}" /> <c:out value="${user.currentCity}" /></td>
+						<td id="current_country"><c:out value="${user.currentCountry}" /> <c:out value="${user.currentCity}" /></td>
 						<td>邮箱地址</td>
 						<td id="email"><c:out value="${email}" /></td>
 					</tr>
@@ -56,8 +56,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<div id="basicInfoSubmit" class="hide tableBtn">
-				<a id="basicInfoSubmitBtn">Submit</a><a>Cancel</a>
+			<div id="basic_info_submit" class="hide tableBtn">
+				<a id="basic_info_submit_btn">Submit</a><a>Cancel</a>
 			</div>
 
 			<c:forEach items="${personalHistories}" var="personalHistory">
@@ -77,15 +77,14 @@
 						</tr>
 						<tr>
 							<td>学历</td>
-							<td class="university_degree"><c:out value="${personalHistory.universityDegree.degree}" /></td>
+							<td class="university_degree"><spring:message code="${personalHistory.universityDegree.degree}" /></td>
 							<td>毕业年份</td>
 							<td class="graduation_year"><c:out value="${personalHistory.graduationYear}" /></td>
 						</tr>
 					</tbody>
 				</table>
 				<div id="personal_history_submit${personalHistory.id}" class="hide tableBtn">
-					<a name="personal_history_submit_btn${personalHistory.id}">Submit</a>
-					<a>Cancel</a>
+					<a name="personal_history_submit_btn${personalHistory.id}">Submit</a> <a>Cancel</a>
 				</div>
 			</c:forEach>
 
@@ -102,14 +101,10 @@
 								<td>荣誉称号</td>
 								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
-								<td>
-									<a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> 
-										<a>Cancel</a>
-									</div>
-									<span class="hide"><c:out value="${awards.id}" /></span>
-								</td>
+										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
 							</c:if>
 						</tr>
 						<tr>
@@ -117,14 +112,10 @@
 								<td>论文专著</td>
 								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
-								<td>
-									<a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> 
-										<a>Cancel</a>
-									</div>
-									<span class="hide"><c:out value="${awards.id}" /></span>
-								</td>
+										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
 							</c:if>
 						</tr>
 						<tr>
@@ -132,14 +123,10 @@
 								<td>INTELLECTUAL PROPERTY</td>
 								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
-								<td>
-									<a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> 
-										<a>Cancel</a>
-									</div>
-									<span class="hide"><c:out value="${awards.id}" /></span>
-								</td>
+										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
 							</c:if>
 						</tr>
 						<tr>
@@ -147,14 +134,10 @@
 								<td>${awards.other}</td>
 								<td class="award_type"><c:out value="${awards.type.type}" /></td>
 								<td class="award_description"><c:out value="${awards.description}" /></td>
-								<td>
-									<a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> 
-										<a>Cancel</a>
-									</div>
-									<span class="hide"><c:out value="${awards.id}" /></span>
-								</td>
+										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
 							</c:if>
 						</tr>
 					</tbody>
@@ -163,10 +146,58 @@
 		</div>
 	</div>
 
+	<div id="dialog-success" title="Confirm" class="hide">
+		<p>The data has been updated successfully.</p>
+	</div>
+
+	<div id="dialog-error" title="Confirm" class="hide">
+		<p>The data can not be updated! Please try again.</p>
+	</div>
+	
+	<div id="dialog-ajax-error" title="Ajax Error" class="hide">
+		<p>The data can not be retrived from serve! Please try again.</p>
+	</div>
+
 	<jsp:include page="../footer.jsp" />
 
 </body>
 <script type="text/javascript">
+	$("#dialog-success").dialog({
+		modal : true,
+		autoOpen : false,
+		buttons : {
+			"Ok" : function() {
+				location.reload();
+			},
+			"Cancel" : function() {
+				$(this).dialog('close');
+			}
+		}
+	});
 	
+	$("#dialog-error").dialog({
+		modal : true,
+		autoOpen : false,
+		buttons : {
+			"Ok" : function() {
+				location.reload();
+			},
+			"Cancel" : function() {
+				$(this).dialog('close');
+			}
+		}
+	});
+	
+	$("#dialog-ajax-error").dialog({
+		modal : true,
+		autoOpen : false,
+		buttons : {
+			"Ok" : function() {
+				location.reload();
+			},
+			"Cancel" : function() {
+				$(this).dialog('close');
+			}
+		}
 </script>
 </html>
