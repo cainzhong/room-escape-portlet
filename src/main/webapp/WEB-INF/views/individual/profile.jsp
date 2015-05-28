@@ -153,7 +153,7 @@
 	<div id="dialog-error" title="Confirm" class="hide">
 		<p>The data can not be updated! Please try again.</p>
 	</div>
-	
+
 	<div id="dialog-ajax-error" title="Ajax Error" class="hide">
 		<p>The data can not be retrived from serve! Please try again.</p>
 	</div>
@@ -174,7 +174,7 @@
 			}
 		}
 	});
-	
+
 	$("#dialog-error").dialog({
 		modal : true,
 		autoOpen : false,
@@ -187,7 +187,7 @@
 			}
 		}
 	});
-	
+
 	$("#dialog-ajax-error").dialog({
 		modal : true,
 		autoOpen : false,
@@ -199,5 +199,6 @@
 				$(this).dialog('close');
 			}
 		}
+	});
 </script>
 </html>

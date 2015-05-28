@@ -2,6 +2,8 @@ package com.haicai.portlet.form;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * Create Identity form for identity confirm page submit
  * 
@@ -20,6 +22,9 @@ public class IdentityForm implements Serializable{
      private String idType;
      
      private String idNumber;
+     
+     private MultipartFile file;
+
 
 	public String getCurrentCountry() {
 		return currentCountry;
@@ -53,5 +58,12 @@ public class IdentityForm implements Serializable{
 		this.idNumber = idNumber;
 	}
      
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 }

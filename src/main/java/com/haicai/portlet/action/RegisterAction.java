@@ -1,5 +1,6 @@
 package com.haicai.portlet.action;
  
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -13,9 +14,12 @@ import org.springframework.webflow.execution.RequestContextHolder;
 import com.haicai.domain.Contact;
 import com.haicai.domain.User;
 import com.haicai.domain.type.ContactType;
+import com.haicai.domain.type.IdNumberType;
 import com.haicai.domain.type.Sex;
 import com.haicai.domain.type.Status;
+import com.haicai.portlet.form.IdentityForm;
 import com.haicai.portlet.form.RegisterForm;
+import com.haicai.portlet.service.PortletService;
 import com.haicai.portlet.service.RegisterService;
 
  
@@ -40,7 +44,11 @@ public class RegisterAction implements Serializable{
      private static final String SUCCESS = "success";
      
      private static final String FAIL = "fail";
+     
+     private static final String PASSPORT = "0";
 
+     @Autowired
+     private PortletService portletService;
    
      @Autowired
      private RegisterService registerService;
@@ -69,6 +77,21 @@ public class RegisterAction implements Serializable{
       }
 
     
+    /**
+     * Update user for other information
+     *
+     * @param form
+     * @throws IOException
+     */
+   public void updateUser(IdentityForm form) throws IOException{
+            User user = (User) RequestContextHolder.getRequestContext().getFlowScope().get("user");
+           this.portletService.updateUser(user.getUsername(), user.getRealName(),
+                  user.getEnglishName(), user.getPassword(), user.getSex(),
+                  form.getIdNumber(), PASSPORT.equals(form.getIdType())?IdNumberType.PASSPORT:IdNumberType.IDENTITYCARD,
+                  form.getCurrentCountry(), form.getCurrentCity(),form.getFile().getBytes());
+    }
+
+ 
 	/**
 	 * Create User
 	 * 
