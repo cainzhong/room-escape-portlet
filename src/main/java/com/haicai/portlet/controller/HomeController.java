@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
-	@RequestMapping("home.do")
+	@RequestMapping(value = { "/", "/home" })
 	public String renderToHomePage(Model model) {
 		return "home";
 	}
 
-	@RequestMapping(value = "detail.do", params = "productId")
+	@RequestMapping(value = "detail", params = "productId")
 	public String renderToProductDetailPage(String productId) {
 		String detailPage = null;
 		switch (productId) {

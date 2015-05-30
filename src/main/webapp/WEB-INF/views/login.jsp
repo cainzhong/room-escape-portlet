@@ -38,7 +38,7 @@
 </head>
 <jsp:include page="resourceInclude.jsp" />
 <body>
-	<spring:url var="authUrl" value="/j_spring_security_check.do" />
+	<spring:url var="authUrl" value="/j_spring_security_check" />
 
 	<jsp:include page="header.jsp" />
 	<div class="login">

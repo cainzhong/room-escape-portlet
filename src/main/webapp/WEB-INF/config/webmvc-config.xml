@@ -38,9 +38,9 @@
 	
 	<bean id="viewMappings"
         class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <!-- /shopping.do 请求由 flowController 来处理 -->
+        <!-- /register-flow 请求由 flowController 来处理 -->
         <property name="mappings">
-            <value> /register-flow.do=flowController </value>
+            <value> /register-flow=flowController </value>
         </property>
         <property name="defaultHandler">
             <!-- UrlFilenameViewController 会将 "/index" 这样的请求映射成名为 "index" 的视图 -->

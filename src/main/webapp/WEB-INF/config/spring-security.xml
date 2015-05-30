@@ -6,14 +6,14 @@
 
 	<!-- Spring-Security 的配置 -->
 	<!-- 注意开启use-expressions.表示开启表达式. -->
-	<security:http auto-config="false" use-expressions="true" access-denied-page="/denied.do">
-		<security:intercept-url pattern="/login.do" access="permitAll" />
+	<security:http auto-config="false" use-expressions="true" access-denied-page="/denied">
+		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/individual/*" access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/enterprise/*" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/enterprise/*" access="hasRole('ROLE_ADMIN')" requires-channel="https" />
 
-		<security:form-login login-processing-url="/j_spring_security_check.do" login-page="/login.do" authentication-failure-url="/login.do?error=true" always-use-default-target="false" />
+		<security:form-login login-processing-url="/j_spring_security_check" login-page="/login" authentication-failure-url="/login?error=true" always-use-default-target="false" />
 
-		<security:logout invalidate-session="true" logout-success-url="/login.do" logout-url="/logoff.do" />
+		<security:logout invalidate-session="true" logout-success-url="/login" logout-url="/logoff" />
 
 		<!-- <security:remember-me key="hc_remember_me_cookie" /> -->
 		<security:remember-me key="hc_remember_me_cookie" services-ref="rememberMeServices" />

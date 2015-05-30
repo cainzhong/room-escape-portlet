@@ -6,8 +6,6 @@
 <head>
 <title>中华海外人才网</title>
 <jsp:include page="../resourceInclude.jsp" />
-<link rel='stylesheet' href='${pageContext.request.contextPath}/css/custom.css' type="text/css">
-<link rel='stylesheet' href='${pageContext.request.contextPath}/css/main.css' type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/individual.js"></script>
 </head>
 <body class="">
@@ -18,9 +16,9 @@
 			<em>Name & Navigation</em>
 		</div>
 
-		<c:set var="username" value="email@email.com" />
+		<c:set var="username" value="${pageContext.request.userPrincipal.name}" />
 		<div>
-			<span id="username"><c:out value="${username}" /></span>
+			<span id="username" class="hide"><c:out value="${username}" /></span>
 		</div>
 
 		<div>
@@ -40,7 +38,7 @@
 					</tr>
 					<tr>
 						<td>所在地区</td>
-						<td id="current_country"><c:out value="${user.currentCountry}" /> <c:out value="${user.currentCity}" /></td>
+						<td id="current_region"><span class="current_country"><c:out value="${user.currentCountry}" /></span><span class="current_city"><c:out value="${user.currentCity}" /></span></td>
 						<td>邮箱地址</td>
 						<td id="email"><c:out value="${email}" /></td>
 					</tr>
@@ -94,52 +92,60 @@
 						<th colspan=3>获得荣誉</th>
 					</tr>
 				</thead>
-				<c:forEach items="${awardsList}" var="awards">
+				<c:forEach items="${awards}" var="award">
 					<tbody>
-						<tr>
-							<c:if test="${awards.type.identify eq 0}">
+						<c:if test="${award.type.identify eq 0}">
+							<tr id="award_tr${award.id}">
 								<td>荣誉称号</td>
-								<td class="award_type"><c:out value="${awards.type.type}" /></td>
-								<td class="award_description"><c:out value="${awards.description}" /></td>
+								<td class="award_type"><spring:message code="${award.type.type}" /></td>
+								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
-									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
-							</c:if>
-						</tr>
-						<tr>
-							<c:if test="${awards.type.identify eq 1}">
+									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
+							</tr>
+						</c:if>
+					
+						<c:if test="${award.type.identify eq 1}">
+							<tr id="award_tr${award.id}">
 								<td>论文专著</td>
-								<td class="award_type"><c:out value="${awards.type.type}" /></td>
-								<td class="award_description"><c:out value="${awards.description}" /></td>
+								<td class="award_type"><spring:message code="${award.type.type}" /></td>
+								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
-									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
-							</c:if>
-						</tr>
-						<tr>
-							<c:if test="${awards.type.identify eq 2}">
+									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
+							</tr>
+						</c:if>
+						<c:if test="${award.type.identify eq 2}">
+							<tr id="award_tr${award.id}">
 								<td>INTELLECTUAL PROPERTY</td>
-								<td class="award_type"><c:out value="${awards.type.type}" /></td>
-								<td class="award_description"><c:out value="${awards.description}" /></td>
+								<td class="award_type"><spring:message code="${award.type.type}" /></td>
+								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
-									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
-							</c:if>
-						</tr>
-						<tr>
-							<c:if test="${awards.type.identify eq 3}">
-								<td>${awards.other}</td>
-								<td class="award_type"><c:out value="${awards.type.type}" /></td>
-								<td class="award_description"><c:out value="${awards.description}" /></td>
+									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
+							</tr>
+						</c:if>
+						<c:if test="${award.type.identify eq 3}">
+							<tr id="award_tr${award.id}">
+								<td>
+									<c:if test="${empty award.other}">
+										其他
+									</c:if>
+									<c:if test="${not empty award.other}">
+										${award.other}
+									</c:if>
+								</td>
+								<td class="award_type"><spring:message code="${award.type.type}" /></td>
+								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td><a name="award_edit_btn">Edit</a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
-									</div> <span class="hide"><c:out value="${awards.id}" /></span></td>
-							</c:if>
-						</tr>
+									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
+							</tr>
+						</c:if>
 					</tbody>
 				</c:forEach>
 			</table>
@@ -165,6 +171,9 @@
 	$("#dialog-success").dialog({
 		modal : true,
 		autoOpen : false,
+		resizable:false,
+		width: 480,
+		height: 200,
 		buttons : {
 			"Ok" : function() {
 				location.reload();
@@ -178,6 +187,9 @@
 	$("#dialog-error").dialog({
 		modal : true,
 		autoOpen : false,
+		resizable:false,
+		width: 480,
+		height: 200,
 		buttons : {
 			"Ok" : function() {
 				location.reload();
@@ -191,6 +203,9 @@
 	$("#dialog-ajax-error").dialog({
 		modal : true,
 		autoOpen : false,
+		resizable:false,
+		width: 480,
+		height: 200,
 		buttons : {
 			"Ok" : function() {
 				location.reload();

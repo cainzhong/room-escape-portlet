@@ -1,17 +1,23 @@
 package com.haicai.portlet.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jackson.map.util.Comparators;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,31 +30,38 @@ import com.haicai.domain.PersonalHistory;
 import com.haicai.domain.User;
 import com.haicai.domain.type.ContactType;
 import com.haicai.domain.type.UniversityDegree;
+import com.haicai.portlet.service.IndividualService;
 import com.haicai.portlet.service.PortletService;
-import com.haicai.portlet.service.ProfileService;
 import com.haicai.portlet.util.PropertiesUtil;
 
 /**
  * @author Cain
- *
+ * 
  */
 @Controller
 @RequestMapping("/individual")
 public class IndividualController {
 
 	@Autowired
-	private ProfileService profileService;
+	private IndividualService individualService;
 
 	@Autowired
 	private PortletService portletService;
 
-	@RequestMapping(value = "profile.do")
+	/**
+	 * Render to individual profile page.
+	 * 
+	 * @param username
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "profile")
 	public String renderToIndividualProfile(@RequestParam(value = "username", required = false) String username, Model model) {
 		username = "email@email.com";
 
-		Map<String, Object> map = this.profileService.findIndividualProfileInfoForUser(username);
+		Map<String, Object> map = this.individualService.findIndividualProfileInfoForUser(username);
 
-		List<Contact> contactList = (List<Contact>) map.get("contactList");
+		List<Contact> contactList = (List<Contact>) map.get("contacts");
 		for (Contact contact : contactList) {
 			if (contact.getType().equals(ContactType.EMAIL)) {
 				model.addAttribute("email", contact.getInfo());
@@ -66,40 +79,53 @@ public class IndividualController {
 
 		model.addAttribute("user", map.get("user"));
 		model.addAttribute("personalHistories", map.get("personalHistories"));
-		model.addAttribute("awardsList", map.get("awardsList"));
+		model.addAttribute("awards", map.get("awards"));
 
 		return "individual/profile";
 	}
 
 	/*
-	 * @RequestMapping(value = "editIndProfile.do", method = RequestMethod.POST,
+	 * @RequestMapping(value = "editIndProfile", method = RequestMethod.POST,
 	 * produces = "application/json;charset=UTF-8") public @ResponseBody String
 	 * editBasicInfoTable(@RequestBody User user, HttpServletRequest request) {
 	 * String realName = user.getRealName();
-	 *
+	 * 
 	 * JSONArray jsonArray = new JSONArray(); JSONObject jsonItem1 = new
 	 * JSONObject(); jsonItem1.put("id", "1"); jsonItem1.put("name",
 	 * "My Test Project"); JSONObject jsonItem2 = new JSONObject();
 	 * jsonItem2.put("id", "4"); jsonItem2.put("name", "Another one");
-	 *
+	 * 
 	 * jsonArray.put(jsonItem1); jsonArray.put(jsonItem2);
-	 *
+	 * 
 	 * return jsonArray.toString(); }
 	 */
 
-	@RequestMapping(value = "editIndProfile.do")
+	/**
+	 * Edit basic info through ajax call.
+	 * 
+	 * @param username
+	 * @param realName
+	 * @param englishName
+	 * @param currentCountry
+	 * @param email
+	 * @param telephone
+	 * @param qq
+	 * @param webchat
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	@RequestMapping(value = "editBasicInfo", method = RequestMethod.POST)
 	public @ResponseBody
 	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
 			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
-		username = "email@email.com";
 		User user = this.portletService.findUserByUserName(username);
-		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry,null);
+		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry, null);
 
 		Contact originEmailcontact = this.portletService.findSpecificActiveContact(user, ContactType.EMAIL, null);
 		if (originEmailcontact == null && !email.isEmpty()) {
 			this.portletService.createContact(user, email, ContactType.EMAIL, null);
 		} else if (originEmailcontact != null && !originEmailcontact.getInfo().equals(email)) {
-			this.profileService.disableContact(originEmailcontact);
+			this.individualService.disableContact(originEmailcontact);
 			this.portletService.createContact(user, email, ContactType.EMAIL, null);
 		}
 
@@ -107,7 +133,7 @@ public class IndividualController {
 		if (originTelcontact == null && !telephone.isEmpty()) {
 			this.portletService.createContact(user, telephone, ContactType.TELEPHONE, null);
 		} else if (originTelcontact != null && !originTelcontact.getInfo().equals(telephone)) {
-			this.profileService.disableContact(originTelcontact);
+			this.individualService.disableContact(originTelcontact);
 			this.portletService.createContact(user, telephone, ContactType.TELEPHONE, null);
 		}
 
@@ -115,7 +141,7 @@ public class IndividualController {
 		if (originQQcontact == null && !qq.isEmpty()) {
 			this.portletService.createContact(user, qq, ContactType.OTHER, "qq");
 		} else if (originQQcontact != null && !originQQcontact.getInfo().equalsIgnoreCase(qq)) {
-			this.profileService.disableContact(originQQcontact);
+			this.individualService.disableContact(originQQcontact);
 			this.portletService.createContact(user, qq, ContactType.OTHER, "qq");
 		}
 
@@ -123,58 +149,164 @@ public class IndividualController {
 		if (originWebchatcontact == null && !webchat.isEmpty()) {
 			this.portletService.createContact(user, webchat, ContactType.OTHER, "webchat");
 		} else if (originWebchatcontact != null && !originWebchatcontact.getInfo().equalsIgnoreCase(webchat)) {
-			this.profileService.disableContact(originWebchatcontact);
+			this.individualService.disableContact(originWebchatcontact);
 			this.portletService.createContact(user, webchat, ContactType.OTHER, "webchat");
 		}
 
 		return "success";
 	}
 
-	@RequestMapping(value = "editPerHistory.do")
+	/**
+	 * Edit personal history through ajax call.
+	 * 
+	 * @param personalHistoryId
+	 * @param university
+	 * @param major
+	 * @param universityDegree
+	 * @param graduationYear
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	@RequestMapping(value = "editPerHistory", method = RequestMethod.POST)
 	public @ResponseBody
-	String editPerHistoriesTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "personalHistoryId", required = false) int personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
-		username = "email@email.com";
-		User user = this.portletService.findUserByUserName(username);
-
-		PersonalHistory personalHistory = this.profileService.findPersonalHistory(personalHistoryId);
+	String editPerHistoryTable(@RequestParam(value = "personalHistoryId", required = false) int personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
+		PersonalHistory personalHistory = this.individualService.findPersonalHistory(personalHistoryId);
 		if (!personalHistory.getUniversity().equals(university) || !personalHistory.getMajor().equals(major) || !personalHistory.getUniversityDegree().getDegree().equals(universityDegree) || !personalHistory.getGraduationYear().equals(graduationYear)) {
-			this.portletService.updatePersonalHistory(personalHistoryId, university, UniversityDegree.getUniversityDegree(universityDegree), major, graduationYear);
+			this.portletService.updatePersonalHistory(personalHistoryId, university, universityDegree, major, graduationYear.substring(7));
 		}
 		return "success";
 	}
 
-	@RequestMapping(value = "editAward.do", method = RequestMethod.POST)
+	/**
+	 * Edit award through ajax call.
+	 * 
+	 * @param awardId
+	 * @param awardType
+	 * @param awardDescription
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	@RequestMapping(value = "editAward", method = RequestMethod.POST)
 	public @ResponseBody
-	String editAwardsTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "awardId", required = false) int awardId, @RequestParam(value = "awardDescription", required = false) String awardDescription, HttpServletResponse response) {
-
-		username = "email@email.com";
-		User user = this.portletService.findUserByUserName(username);
-		Award award = this.profileService.findAward(awardId);
-		if (!award.getDescription().equals(awardDescription)) {
-			this.portletService.updateAward(award.getId(), award.getType(), awardDescription, award.getReferrer(), award.getOther());
+	String editAwardTable(@RequestParam(value = "awardId", required = false) int awardId, @RequestParam(value = "awardType", required = false) String awardType, @RequestParam(value = "awardDescription", required = false) String awardDescription) {
+		Award award = this.individualService.findAward(awardId);
+		if (!award.getType().getType().equals(awardType) || !award.getDescription().equals(awardDescription)) {
+			this.portletService.updateAward(award.getId(), awardType, awardDescription, award.getReferrer(), award.getOther());
 		}
 		return "success";
 	}
 
-	@RequestMapping(value = "getSelectorValues.do", method = RequestMethod.POST)
+	/**
+	 * Get single drop down values from property file.
+	 * 
+	 * @param regex
+	 * @return
+	 */
+	@RequestMapping(value = "getDropDownValsFromProperties", method = RequestMethod.POST)
 	public @ResponseBody
-	String getSelectorValues() {
-		Map<String, String> regionMap = PropertiesUtil.getSpecificProperties("/messages.properties", "T_UNIVERSITY_DEGREE_.*");
+	String getDropDownValsFromProperties(String regex) {
+		Map<String, String> map = PropertiesUtil.getSpecificProperties("/messages.properties", regex);
+
+		// get a set of key of Map<String, String> map, and add them to
+		// List<String>.
+		Set<String> keySet = map.keySet();
+		Iterator<String> iterator = keySet.iterator();
+		List<String> keyList = new ArrayList<String>();
+		while (iterator.hasNext()) {
+			keyList.add(iterator.next().toString());
+		}
+
+		// add the key of map and the value of map to JSONArray.
 		JSONArray jsonArray = new JSONArray();
-
-		Set<String> keySet = regionMap.keySet();
-		Iterator<String> iterator=keySet.iterator();
-		List<String> regionMapKeyList=new ArrayList<String>();
-		while(iterator.hasNext()){
-			regionMapKeyList.add(iterator.next().toString());
-		}
-		for(int i=0;i<regionMap.size();i++){
-			JSONObject jsonRegion = new JSONObject();
-			jsonRegion.put("key",regionMapKeyList.get(i));
-			jsonRegion.put("value",regionMap.get(regionMapKeyList.get(i)));
-			jsonArray.put(jsonRegion);
+		for (int i = 0; i < map.size(); i++) {
+			JSONObject jsonItem = new JSONObject();
+			jsonItem.put("key", keyList.get(i));
+			jsonItem.put("value", map.get(keyList.get(i)));
+			jsonArray.put(jsonItem);
 		}
 
 		return jsonArray.toString();
+	}
+
+	/**
+	 * Get drop down values from property files for country.
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "getCountryDropDownValsFromProperties", method = RequestMethod.POST)
+	public @ResponseBody
+	String getCountryDropDownValsFromProperties() {
+		Map<TreeMap<String, String>, TreeMap<String, String>> resultMap = PropertiesUtil.getCascadeDropDownValsFromProperties("/country.properties", "/city.properties", "T_REGION_COUNTRY_");
+
+		// get a set of key of Map<TreeMap<String, String>, TreeMap<String,
+		// String>> resultMap, and add them to List<TreeMap<String, String>>.
+		Set<TreeMap<String, String>> countrySet = resultMap.keySet();
+		Iterator<TreeMap<String, String>> countryIterator = countrySet.iterator();
+		List<TreeMap<String, String>> countryList = new ArrayList<TreeMap<String, String>>();
+		while (countryIterator.hasNext()) {
+			countryList.add(countryIterator.next());
+		}
+
+		// add the key of Map<TreeMap<String, String>, TreeMap<String, String>>
+		// resultMap to JSONArray.
+		JSONArray countryJSONArray = new JSONArray();
+		for (TreeMap<String, String> countryMap : countryList) {
+			Set<String> countryKeySet = countryMap.keySet();
+			Iterator<String> countryKeyIterator = countryKeySet.iterator();
+			while (countryKeyIterator.hasNext()) {
+				String countryKeyString = countryKeyIterator.next().toString();
+				JSONObject jsonItem = new JSONObject();
+				jsonItem.put("key", countryKeyString);
+				jsonItem.put("value", countryMap.get(countryKeyString));
+				countryJSONArray.put(jsonItem);
+			}
+		}
+
+		return countryJSONArray.toString();
+	}
+
+	/**
+	 * Get drop down values from property files for city.
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "getCityDropDownValsFromProperties", method = RequestMethod.POST)
+	public @ResponseBody
+	String getCityDropDownValsFromProperties() {
+		Map<TreeMap<String, String>, TreeMap<String, String>> resultMap = PropertiesUtil.getCascadeDropDownValsFromProperties("/country.properties", "/city.properties", "T_REGION_COUNTRY_");
+
+		// get a set of key of Map<TreeMap<String, String>, TreeMap<String,
+		// String>> resultMap, and add them to List<TreeMap<String, String>>.
+		Set<TreeMap<String, String>> countrySet = resultMap.keySet();
+		Iterator<TreeMap<String, String>> countryIterator = countrySet.iterator();
+		List<TreeMap<String, String>> countryList = new ArrayList<TreeMap<String, String>>();
+		while (countryIterator.hasNext()) {
+			countryList.add(countryIterator.next());
+		}
+
+		// get a list of value of Map<TreeMap<String, String>, TreeMap<String,
+		// String>> resultMap, and add them to List<TreeMap<String, String>>.
+		List<TreeMap<String, String>> cityList = new ArrayList<TreeMap<String, String>>();
+		for (int i = 0; i < countryList.size(); i++) {
+			cityList.add(resultMap.get(countryList.get(i)));
+		}
+
+		// add the value of Map<TreeMap<String, String>, TreeMap<String,
+		// String>>
+		// resultMap to JSONArray.
+		JSONArray cityJSONArray = new JSONArray();
+		for (TreeMap<String, String> cityMap : cityList) {
+			Set<String> cityKeySet = cityMap.keySet();
+			Iterator<String> cityKeyIterator = cityKeySet.iterator();
+			while (cityKeyIterator.hasNext()) {
+				String cityKeyString = cityKeyIterator.next().toString();
+				JSONObject jsonItem = new JSONObject();
+				jsonItem.put("key", cityKeyString);
+				jsonItem.put("value", cityMap.get(cityKeyString));
+				cityJSONArray.put(jsonItem);
+			}
+		}
+
+		return cityJSONArray.toString();
 	}
 }

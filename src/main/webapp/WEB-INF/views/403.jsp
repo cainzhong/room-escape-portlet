@@ -9,7 +9,7 @@
 		</c:when>
 		<c:otherwise>
 			<h2>Username : ${pageContext.request.userPrincipal.name} <br/>You do not have permission to access this page!</h2>
-			<div><a href="../login.do">Sign Out</a></div>
+			<div><a href="../login">Sign Out</a></div>
 		</c:otherwise>
 	</c:choose>
 

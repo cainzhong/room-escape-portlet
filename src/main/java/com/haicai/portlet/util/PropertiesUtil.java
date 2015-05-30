@@ -16,26 +16,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 /**
  * @author Cain
- *
+ * 
  */
 public class PropertiesUtil {
 
-	public static Map<String, String> getSpecificProperties(String filePath,String regex) {
+	public static TreeMap<String, String> getSpecificProperties(String filePath, String regex) {
+		regex = regex + ".*";
 		Properties properties = new Properties();
 		InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(filePath);
+		// For test.
+		// InputStream inputStream =
+		// ClassLoader.class.getResourceAsStream(filePath);
 
-		HashMap<String,String> propertyMap=new HashMap<String,String>();
+		TreeMap<String, String> propertyMap = new TreeMap<String, String>();
 
 		try {
 			properties.load(inputStream);
 			Enumeration<Object> propertiesKeyEnumeration = properties.keys();
-			while(propertiesKeyEnumeration.hasMoreElements()){
-				String propertyKey=propertiesKeyEnumeration.nextElement().toString();
-				if(Pattern.matches(regex,propertyKey )){
+			while (propertiesKeyEnumeration.hasMoreElements()) {
+				String propertyKey = propertiesKeyEnumeration.nextElement().toString();
+				if (Pattern.matches(regex, propertyKey)) {
 					propertyMap.put(propertyKey, properties.getProperty(propertyKey).trim());
 				}
 			}
@@ -46,17 +51,32 @@ public class PropertiesUtil {
 		return propertyMap;
 	}
 
-	public static void main(String args[]) {
-		Map<String, String> aMap=PropertiesUtil.getSpecificProperties("/messages.properties","T_REGION_.*");
-		Set<String> keySet = aMap.keySet();
-		Iterator<String> iterator=keySet.iterator();
-		List<String> list=new ArrayList<String>();
-		while(iterator.hasNext()){
-			list.add(iterator.next().toString());
+	public static Map<TreeMap<String, String>, TreeMap<String, String>> getCascadeDropDownValsFromProperties(String countryProperties, String cityProperties, String regex) {
+		Map<TreeMap<String, String>, TreeMap<String, String>> resultMap = new HashMap<TreeMap<String, String>, TreeMap<String, String>>();
+
+		TreeMap<String, String> allCountries = PropertiesUtil.getSpecificProperties(countryProperties, "T_REGION_COUNTRY_");
+
+		// get a list of key for Map<String, String> allCountries.
+		Set<String> keySet = allCountries.keySet();
+		Iterator<String> iterator = keySet.iterator();
+		List<String> keySetList = new ArrayList<String>();
+		while (iterator.hasNext()) {
+			keySetList.add(iterator.next().toString());
 		}
 
-		for(int i=0;i<aMap.size();i++){
-			System.out.println(list.get(i));
+		for (int i = 0; i < keySetList.size(); i++) {
+			TreeMap<String, String> allCitysForSpecificCountry = PropertiesUtil.getSpecificProperties(cityProperties, keySetList.get(i));
+
+			TreeMap<String, String> countryMap = new TreeMap<String, String>();
+			countryMap.put(keySetList.get(i), allCountries.get(keySetList.get(i)));
+			resultMap.put(countryMap, allCitysForSpecificCountry);
 		}
+
+		return resultMap;
+	}
+
+	public static void main(String args[]) {
+		Map<TreeMap<String, String>, TreeMap<String, String>> resultTreeMap = PropertiesUtil.getCascadeDropDownValsFromProperties("/country.properties", "/city.properties", "T_REGION_COUNTRY_");
+		System.out.print("1");
 	}
 }

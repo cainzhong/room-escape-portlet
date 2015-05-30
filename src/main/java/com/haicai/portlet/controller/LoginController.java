@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/loginAjax.do")
+	@RequestMapping(value = "/loginAjax")
 	public @ResponseBody
 	String loginPage(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "password", required = false) String password, Model model) {
 		if(username.isEmpty()||password.isEmpty()){
@@ -50,7 +50,7 @@ public class LoginController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getloginPage(@RequestParam(value = "error", required = false) boolean error, Model model) {
 		LoginController.logger.debug("Received request to show login page.");
 
@@ -68,7 +68,7 @@ public class LoginController {
 	 *
 	 * @return
 	 */
-	@RequestMapping(value = "/denied.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/denied", method = RequestMethod.GET)
 	public String getDeniedPage() {
 		return "403";
 	}
@@ -79,7 +79,7 @@ public class LoginController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "logoff.do")
+	@RequestMapping(value = "logoff")
 	public String logOff(HttpServletRequest request) {
 		Enumeration<?> enu = request.getSession().getAttributeNames();
 		while (enu.hasMoreElements()) {

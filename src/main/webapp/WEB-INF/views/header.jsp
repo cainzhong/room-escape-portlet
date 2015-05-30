@@ -43,7 +43,7 @@
 			<li id="loginUser">
 				<a id="loginUserLink"></a>
 				<b class="split">|</b>
-				<a title="Sign out" href="logoff.do">注销</a>
+				<a title="Sign out" href="logoff">注销</a>
 			</li>
 			<li id="noLoginUser">
 				<a id="loginButton" title="Login" href="#"><span>登录</span></a>
@@ -67,7 +67,7 @@
 	              		</div>
 	              	 <!-- Login Form Ends Here -->
 				<b class="split">|</b>
-				<a id="registerButton" title="Sign in" href="register-flow.do"><span>注册</span></a>
+				<a id="registerButton" title="Sign in" href="register-flow"><span>注册</span></a>
 			</li>
 		</ul>
 	</nav>
@@ -103,7 +103,7 @@ $(function() {
 		$.ajax({
 			type : 'POST',
 			dataType : 'text',
-			url : 'loginAjax.do',
+			url : 'loginAjax',
 			data : {
 				username : email,
 				password : password
