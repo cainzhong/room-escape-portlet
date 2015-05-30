@@ -81,6 +81,27 @@ public class IndividualController {
 		model.addAttribute("personalHistories", map.get("personalHistories"));
 		model.addAttribute("awards", map.get("awards"));
 
+		Map<String, String> countryMap = PropertiesUtil.getSpecificProperties("/country.properties", "T_REGION_COUNTRY_");
+		model.addAttribute("countries", countryMap);
+		
+		//get a list of country key.
+		Set<String> countryKeySet=countryMap.keySet();
+		Iterator<String> countryIterator=countryKeySet.iterator();
+		List<String> countryKeyList=new ArrayList<String>();
+		while(countryIterator.hasNext()){
+			countryKeyList.add(countryIterator.next());
+		}
+		
+		Map<String, Map<String, String>> cityCountryMap=new TreeMap<String, Map<String, String>>();
+		for(String countryKey:countryKeyList){
+			Map<String, String> cityMap = PropertiesUtil.getSpecificProperties("/city.properties", countryKey);
+			cityCountryMap.put(countryKey, cityMap);
+		}
+		
+		model.addAttribute("countries", countryMap);
+		model.addAttribute("citiesCountry", cityCountryMap);
+
+		
 		return "individual/profile";
 	}
 

@@ -38,7 +38,26 @@
 					</tr>
 					<tr>
 						<td>所在地区</td>
-						<td id="current_region"><span class="current_country"><c:out value="${user.currentCountry}" /></span><span class="current_city"><c:out value="${user.currentCity}" /></span></td>
+						<td id="current_region">
+							<div id="current_region_view">
+								<span class="current_country_view"><c:out value="${user.currentCountry}" /></span><span class="current_city"> - <c:out value="${user.currentCity}" /></span>
+							</div>
+							<div id="current_region_edit" class="hide">
+								<select class="current_country_edit">
+									<c:forEach items="${countries}" var="country">
+										<option value="<c:out value="${country.key}" />"><c:out value="${country.value}" /></option>
+									</c:forEach>
+								</select>
+								<c:forEach items="${citiesCountry}" var="cityCountry">
+									<select class="current_city_edit ${cityCountry.key}">
+										<%-- ${cityCountry.value}为第一层map的值 --%>
+										<c:forEach var="secondMap" items="${cityCountry.value}"> 
+											<option value="<c:out value="${secondMap.key}" />"><c:out value="${secondMap.value}" /></option>
+										</c:forEach>
+									</select>
+								</c:forEach>
+							</div>
+						</td>
 						<td>邮箱地址</td>
 						<td id="email"><c:out value="${email}" /></td>
 					</tr>

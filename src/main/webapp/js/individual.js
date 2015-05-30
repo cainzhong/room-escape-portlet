@@ -7,76 +7,45 @@ $(document).ready(function() {
 		var current_city_id = "#basic_info" + " .current_city";
 		var current_country_val = $(current_country_id).html();
 		var current_city_val = $(current_city_id).html();
-		
+
 		var current_region_td = $("#current_region");
-		
+
 		var odd_td = $("#basic_info tbody td:odd");
 		odd_td.each(function() {
+			if ($(this).attr('id') == "current_region") {
+				// 跳出当前循环
+				return true;
+			}
 			var inputobj = $("<input type='text'>");
 			var tdobj = $(this);
 			var text = tdobj.html();
 			tdobj.html("");
 			inputobj.val(text).appendTo(tdobj);
 		});
-		
-		// get drop down values from property files for country and city.
-		$.ajax({
-			type : 'POST',
-			url : 'getCountryDropDownValsFromProperties',
-			dataType : "json",
-			data : {
-			},
-			success : function(data) {
-				var selectobj = $("<select>");
-				$.each(data, function(i, item) {
-					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
-				});
-				selectobj.append("</select>");
-				current_region_td.html("");
-				selectobj.appendTo(current_region_td);
-				var select_id = current_region_td + " select option:contains(" + current_country_val + ")";
-				$(select_id).map(function() {
-					if ($(this).text() == current_country_val) {
-						$(this).attr("selected", "selected");
-					}
-				});
-				
-				// get drop down values from property files for city.
-				$.ajax({
-					type : 'POST',
-					url : 'getCityDropDownValsFromProperties',
-					dataType : "json",
-					data : {
-					},
-					success : function(data) {
-						var selectobj = $("<select>");
-						$.each(data, function(i, item) {
-							selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
-						});
-						selectobj.append("</select>");
-						selectobj.appendTo(current_region_td);
-						var select_id = current_city_id + " select option:contains(" + current_city_val + ")";
-						$(select_id).map(function() {
-							if ($(this).text() == current_city_val) {
-								$(this).attr("selected", "selected");
-							}
-						});
 
-					},
-					error : function(data) {
-						$("#dialog-ajax-error").dialog("open");
-					}
-				});
+		$("#current_region_view").addClass("hide");
+		$("#current_region_edit").removeClass("hide");
 
-			},
-			error : function(data) {
-				$("#dialog-ajax-error").dialog("open");
-			}
-		});
-		
 		$("#basic_info_edit_btn").css("pointer-events", "none");
 		$("#basic_info_submit").css("display", "block");
 	});
+
+	$("#current_region_edit .current_country_edit").change(function() {
+		changeCountryCity();
+	});
+	
+	changeCountryCity();
+	
+	function changeCountryCity(){
+		$("#current_region_edit .current_country_edit option").each(function() {
+			if($(this).is(":selected")){
+				var option_val = $(this).val();
+				$(".current_city_edit").hide();
+				var select_id = "#current_region_edit" + " ." + option_val;
+				$(select_id).show();
+			}
+		});
+	}
 
 	// submit profile, invoke the controller through ajax
 	$('#basic_info_submit_btn').click(function() {
@@ -88,7 +57,7 @@ $(document).ready(function() {
 				"username" : $("#username").text(),
 				"realName" : $("#real_name :first-child").val(),
 				"englishName" : $("#english_name :first-child").val(),
-				//TODO
+				// TODO
 				"currentCountry" : $("#current_country :first-child").val(),
 				"email" : $("#email :first-child").val(),
 				"telephone" : $("#telephone :first-child").val(),
