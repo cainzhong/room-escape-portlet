@@ -94,3 +94,38 @@
 .fa.fa-times {
 	color: #ff4136;
 }
+
+.dialog_row {
+	text-align: center;
+	padding-top: 5px;
+	text-align: center;
+}
+
+.dialog_row>label {
+	display: inline-block;
+	text-align: right;
+	width: 80px;
+}
+
+.dialog_row>input {
+	margin-left: 20px;
+	width: 160px;
+}
+
+.dialog_row .university_degree {
+	display: inline;
+}
+
+.dialog_row .graduation_year {
+	display: inline;
+}
+
+.dialog_row .university_degree>select {
+	margin-left: 20px;
+	width: 160px;
+}
+
+.dialog_row .graduation_year>select {
+	margin-left: 20px;
+	width: 160px;
+}

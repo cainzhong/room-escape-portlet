@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,25 +84,25 @@ public class IndividualController {
 
 		Map<String, String> countryMap = PropertiesUtil.getSpecificProperties("/country.properties", "T_REGION_COUNTRY_");
 		model.addAttribute("countries", countryMap);
-		
-		//get a list of country key.
-		Set<String> countryKeySet=countryMap.keySet();
-		Iterator<String> countryIterator=countryKeySet.iterator();
-		List<String> countryKeyList=new ArrayList<String>();
-		while(countryIterator.hasNext()){
+
+		// get a list of country key.
+		Set<String> countryKeySet = countryMap.keySet();
+		Iterator<String> countryIterator = countryKeySet.iterator();
+		List<String> countryKeyList = new ArrayList<String>();
+		while (countryIterator.hasNext()) {
 			countryKeyList.add(countryIterator.next());
 		}
-		
-		//structure a map, key is country and value is the corresponding cities.
-		Map<String, Map<String, String>> cityCountryMap=new TreeMap<String, Map<String, String>>();
-		for(String countryKey:countryKeyList){
+
+		// structure a map, key is country and value is the corresponding
+		// cities.
+		Map<String, Map<String, String>> cityCountryMap = new TreeMap<String, Map<String, String>>();
+		for (String countryKey : countryKeyList) {
 			Map<String, String> cityMap = PropertiesUtil.getSpecificProperties("/city.properties", countryKey);
 			cityCountryMap.put(countryKey, cityMap);
 		}
-		
+
 		model.addAttribute("citiesCountry", cityCountryMap);
 
-		
 		return "individual/profile";
 	}
 
@@ -137,8 +138,8 @@ public class IndividualController {
 	@Transactional(propagation = Propagation.REQUIRED)
 	@RequestMapping(value = "editBasicInfo", method = RequestMethod.POST)
 	public @ResponseBody
-	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry,@RequestParam(value = "currentCity", required = false) String currentCity, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
-			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
+	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "currentCity", required = false) String currentCity, @RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "telephone", required = false) String telephone, @RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
 		User user = this.portletService.findUserByUserName(username);
 		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCity, null);
 
@@ -247,6 +248,23 @@ public class IndividualController {
 		}
 
 		return jsonArray.toString();
+	}
+
+	/**
+	 * Add personal history for a user.
+	 * 
+	 * @param username
+	 * @param university
+	 * @param major
+	 * @param universityDegree
+	 * @param graduationYear
+	 * @return
+	 */
+	@RequestMapping("/addPersonalHistory")
+	public String addPersonalHistory(@RequestParam(value="username") String username, @RequestParam(value = "university") String university, @RequestParam(value = "major") String major, @RequestParam(value = "university_degree") String universityDegree, @RequestParam(value = "graduation_year") String graduationYear) {
+		User user = this.portletService.findUserByUserName(username);
+		this.portletService.createPersonalHistory(user, university, universityDegree, major, graduationYear.substring(7));
+		return "redirect:/individual/profile";
 	}
 
 	/**

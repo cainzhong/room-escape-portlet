@@ -20,6 +20,10 @@
 		<div>
 			<span id="username" class="hide"><c:out value="${username}" /></span>
 		</div>
+		
+		<c:url var="addPersonalHistory" value="/individual/addPersonalHistory">
+			<c:param name="username" value="${username}"/>
+		</c:url>
 
 		<div class="content">
 			<table id="basic_info">
@@ -81,25 +85,21 @@
 				<table class="personal_history" id="personal_history_table${personalHistory.id}">
 					<thead>
 						<tr>
-							<th colspan=3>学历资料</th>
-							<th>
-								<a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a>
-								<a><i class="fa fa-plus"></i></a>
-								<span class="hide"><c:out value="${personalHistory.id}" /></span>
-							</th>
+							<th colspan=3><spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" /></th>
+							<th><a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a> <a name="personal_history_add_btn"><i class="fa fa-plus"></i></a> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>毕业学校</td>
+							<td><spring:message code="T_PERSONAL_HISTORY_GRADUATED_UNIVERSITY" /></td>
 							<td class="university"><c:out value="${personalHistory.university}" /></td>
-							<td>所在专业</td>
+							<td><spring:message code="T_PERSONAL_HISTORY_MAJOR" /></td>
 							<td class="major"><c:out value="${personalHistory.major}" /></td>
 						</tr>
 						<tr>
-							<td>学历</td>
+							<td><spring:message code="T_PERSONAL_HISTORY_UNIVERSITY_DEGREE" /></td>
 							<td class="university_degree"><spring:message code="${personalHistory.universityDegree.degree}" /></td>
-							<td>毕业年份</td>
+							<td><spring:message code="T_PERSONAL_HISTORY_GRADUATION_YEAR" /></td>
 							<td class="graduation_year"><c:out value="${personalHistory.graduationYear}" /></td>
 						</tr>
 					</tbody>
@@ -184,11 +184,44 @@
 		<p>The data can not be retrived from serve! Please try again.</p>
 	</div>
 
+	<div id="dialog_add_personal_history" title="<spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" />" class="hide">
+		<form class="personal_history" id="add_personal_history" method="post" action="${addPersonalHistory}">
+			<fieldset>
+				<div class="dialog_row">
+					<label for="university"><spring:message code="T_PERSONAL_HISTORY_GRADUATED_UNIVERSITY" /></label>
+					<input class="university" name="university" />
+				</div>
+				<div class="dialog_row">
+					<label for="major"><spring:message code="T_PERSONAL_HISTORY_MAJOR" /></label> 
+					<input class="major" name="major" />
+				</div>
+				<div class="dialog_row">
+					<label for="university_degree"><spring:message code="T_PERSONAL_HISTORY_UNIVERSITY_DEGREE" /></label> 
+					<div class="university_degree"></div>
+				</div> 
+				<div class="dialog_row">
+					<label for="graduation_year"><spring:message code="T_PERSONAL_HISTORY_GRADUATION_YEAR" /></label> 
+					<div class="graduation_year"></div>
+				</div>
+				<input class="submit" type="submit" value="<spring:message code='T_SUBMIT' />">
+                <input class="reset" type="reset" value="<spring:message code='T_RESET' />">
+			</fieldset>
+		</form>
+	</div>
+
 	<jsp:include page="../footer.jsp" />
 
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		$("#dialog_add_personal_history").dialog({
+			modal : true,
+			autoOpen : false,
+			resizable : false,
+			width : 480,
+			height: 260
+		});
 
 		$("a[name='cancel_btn']").click(function() {
 			location.reload();
