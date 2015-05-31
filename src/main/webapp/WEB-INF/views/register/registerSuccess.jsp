@@ -7,11 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>View Cart</title>
-<jsp:include page="resourceInclude.jsp"/>
+<jsp:include page="../resourceInclude.jsp"/>
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 
 <div id="main">
      <div class="homePage">
@@ -21,7 +21,7 @@
    </div>
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 </body>
 
 </html>

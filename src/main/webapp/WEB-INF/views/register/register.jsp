@@ -5,12 +5,8 @@
 <html>
 <head>
 <title>中华英才网注册页面</title>
-<jsp:include page="resourceInclude.jsp"/>
+<jsp:include page="../resourceInclude.jsp"/>
 
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript"src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-<script type="text/javascript" src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script> -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/messages_zh.js"></script>
 <link rel='stylesheet' href='css/screen.css' type="text/css">
@@ -18,7 +14,7 @@
 
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <div id="main">
      <div class="homePage">
            <div class="registerBasicInfo">
@@ -78,7 +74,7 @@
            </div>
      </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 
 </body>
 

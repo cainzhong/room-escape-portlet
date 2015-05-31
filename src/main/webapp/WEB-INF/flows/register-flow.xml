@@ -6,10 +6,11 @@
 
 	<var name="registerForm" class="com.haicai.portlet.form.RegisterForm" />
 	<var name="identityForm" class="com.haicai.portlet.form.IdentityForm" />
+	<var name="historyForm" class="com.haicai.portlet.form.HistoryForm" />
 	<var name="registerAction" class="com.haicai.portlet.action.RegisterAction" />
 
 	<!-- view-state中的view对应jsp文件夹中的jsp页面，on是触发事件，to对应state id -->
-	<view-state id="register" model="registerForm" view="register">
+	<view-state id="register" model="registerForm" view="register/register">
 		<transition on="submit" to="createUserAndRelatedContact">
 		</transition>
 	</view-state>
@@ -20,26 +21,31 @@
 		<transition on="fail" to="register" />
 	</action-state>
 
-	<view-state id="registerSuccess" view="registerSuccess">
+	<view-state id="registerSuccess" view="register/registerSuccess">
 		<transition on="next" to="identityConfirm">
 		</transition>
 	</view-state>
 
-	<view-state id="identityConfirm" model="identityForm" view="identityConfirm">
+	<view-state id="identityConfirm" model="identityForm" view="register/identityConfirm">
 		<transition on="submit" to="updateUserInfo">
 		</transition>
 	</view-state>
 	
 	<action-state id="updateUserInfo">
           <evaluate expression="registerAction.updateUser(identityForm)" />
-          <transition to="orderConfirmed" />
+          <transition to="personalHistory" />
      </action-state>
+     
+     <view-state id="personalHistory" model="historyForm" view="register/personalHistory">
+           <transition on="submit" to="orderConfirmed">
+           </transition>
+     </view-state>
 
-	<view-state id="orderConfirmed" view="orderConfirmed">
+	<view-state id="orderConfirmed" view="register/orderConfirmed">
 		<transition on="returnToIndex" to="returnToIndex">
 		</transition>
 	</view-state>
 
-	<end-state id="returnToIndex" view="register">
+	<end-state id="returnToIndex" view="register/register">
 	</end-state>
 </flow>
