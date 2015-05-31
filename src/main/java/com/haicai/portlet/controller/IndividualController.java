@@ -92,13 +92,13 @@ public class IndividualController {
 			countryKeyList.add(countryIterator.next());
 		}
 		
+		//structure a map, key is country and value is the corresponding cities.
 		Map<String, Map<String, String>> cityCountryMap=new TreeMap<String, Map<String, String>>();
 		for(String countryKey:countryKeyList){
 			Map<String, String> cityMap = PropertiesUtil.getSpecificProperties("/city.properties", countryKey);
 			cityCountryMap.put(countryKey, cityMap);
 		}
 		
-		model.addAttribute("countries", countryMap);
 		model.addAttribute("citiesCountry", cityCountryMap);
 
 		
@@ -137,10 +137,10 @@ public class IndividualController {
 	@Transactional(propagation = Propagation.REQUIRED)
 	@RequestMapping(value = "editBasicInfo", method = RequestMethod.POST)
 	public @ResponseBody
-	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
+	String editBasicInfoTable(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "realName", required = false) String realName, @RequestParam(value = "englishName", required = false) String englishName, @RequestParam(value = "currentCountry", required = false) String currentCountry,@RequestParam(value = "currentCity", required = false) String currentCity, @RequestParam(value = "email", required = false) String email, @RequestParam(value = "telephone", required = false) String telephone,
 			@RequestParam(value = "qq", required = false) String qq, @RequestParam(value = "webchat", required = false) String webchat) {
 		User user = this.portletService.findUserByUserName(username);
-		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCountry, null);
+		this.portletService.updateUser(username, realName, englishName, user.getPassword(), user.getSex(), user.getIdNumber(), user.getIdNumberType(), currentCountry, currentCity, null);
 
 		Contact originEmailcontact = this.portletService.findSpecificActiveContact(user, ContactType.EMAIL, null);
 		if (originEmailcontact == null && !email.isEmpty()) {

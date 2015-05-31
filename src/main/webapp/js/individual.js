@@ -2,18 +2,10 @@ $(document).ready(function() {
 
 	// edit profile
 	$("#basic_info_edit_btn").click(function() {
-		// store university_degree value
-		var current_country_id = "#basic_info" + " .current_country";
-		var current_city_id = "#basic_info" + " .current_city";
-		var current_country_val = $(current_country_id).html();
-		var current_city_val = $(current_city_id).html();
-
-		var current_region_td = $("#current_region");
-
 		var odd_td = $("#basic_info tbody td:odd");
 		odd_td.each(function() {
 			if ($(this).attr('id') == "current_region") {
-				// 跳出当前循环
+				// break current loop
 				return true;
 			}
 			var inputobj = $("<input type='text'>");
@@ -30,15 +22,16 @@ $(document).ready(function() {
 		$("#basic_info_submit").css("display", "block");
 	});
 
+	// trigger when the page on load.
+	changeCountryCity();
+
+	// cascade drop down list.
 	$("#current_region_edit .current_country_edit").change(function() {
 		changeCountryCity();
 	});
-	
-	changeCountryCity();
-	
-	function changeCountryCity(){
+	function changeCountryCity() {
 		$("#current_region_edit .current_country_edit option").each(function() {
-			if($(this).is(":selected")){
+			if ($(this).is(":selected")) {
 				var option_val = $(this).val();
 				$(".current_city_edit").hide();
 				var select_id = "#current_region_edit" + " ." + option_val;
@@ -49,6 +42,10 @@ $(document).ready(function() {
 
 	// submit profile, invoke the controller through ajax
 	$('#basic_info_submit_btn').click(function() {
+		var current_country_edit_val = $("#current_region_edit .current_country_edit").val();
+		var current_city_edit_id = "#current_region_edit" + " ." + current_country_edit_val;
+		var current_city_edit_val = $(current_city_edit_id).val();
+
 		$.ajax({
 			type : 'POST',
 			url : 'editBasicInfo',
@@ -58,7 +55,8 @@ $(document).ready(function() {
 				"realName" : $("#real_name :first-child").val(),
 				"englishName" : $("#english_name :first-child").val(),
 				// TODO
-				"currentCountry" : $("#current_country :first-child").val(),
+				"currentCountry" : current_country_edit_val,
+				"currentCity" : current_city_edit_val,
 				"email" : $("#email :first-child").val(),
 				"telephone" : $("#telephone :first-child").val(),
 				"qq" : $("#qq :first-child").val(),

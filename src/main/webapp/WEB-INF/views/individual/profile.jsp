@@ -40,7 +40,7 @@
 						<td>所在地区</td>
 						<td id="current_region">
 							<div id="current_region_view">
-								<span class="current_country_view"><c:out value="${user.currentCountry}" /></span><span class="current_city"> - <c:out value="${user.currentCity}" /></span>
+								<span class="current_country_view"><spring:message code="${user.currentCountry}" /></span><span class="current_city"> - <spring:message code="${user.currentCity}" /></span>
 							</div>
 							<div id="current_region_edit" class="hide">
 								<select class="current_country_edit">
