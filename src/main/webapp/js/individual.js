@@ -78,7 +78,7 @@ $(document).ready(function() {
 	// edit personal history.
 	$("a[name='personal_history_edit_btn']").each(function() {
 		$(this).click(function() {
-			var personal_history_id = $(this).next("span").text();
+			var personal_history_id = $(this).next("a").next("span").text();
 
 			// store university_degree value
 			var university_degree_id = "#personal_history_table" + personal_history_id + " .university_degree";
@@ -99,6 +99,7 @@ $(document).ready(function() {
 				inputobj.val(text).appendTo(tdobj);
 			});
 			$(this).css("pointer-events", "none");
+			$(this).next("a").hide();
 			$("#personal_history_submit" + personal_history_id).css("display", "block");
 
 			// get drop down values from property files for university degree.
@@ -239,9 +240,9 @@ $(document).ready(function() {
 		award_description_td.html("");
 		input_award_description.val(award_description_val).appendTo(award_description_td);
 
-		$(this).addClass("hide");
-		$(this).next("div").removeClass("hide");
-		$(this).next("div").addClass("show");
+		$(this).hide();
+		$(this).next("a").hide();
+		$(this).next("a").next("div").show();
 	});
 
 	// submit award, invoke the controller through ajax

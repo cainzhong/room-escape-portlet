@@ -1,45 +1,45 @@
 /* @override main.css */
 /*home page*/
-.homePage{
-    width: 960px;
-    height: 600px;
-    align: center;
-    margin: 0 auto;
-    margin-top: 100px;
+.homePage {
+	width: 960px;
+	height: 600px;
+	align: center;
+	margin: 0 auto;
+	margin-top: 100px;
 }
 
-.leftHomePageStyle{
+.leftHomePageStyle {
 	float: left;
 	height: 600px;
 	width: 300px;;
 	margin-left: 10px;
 }
 
-.navFont{
+.navFont {
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.floatLeft{
-	float:left;
-	margin-top:5px;
+.floatLeft {
+	float: left;
+	margin-top: 5px;
 }
 
-.centerHomePageStyle{
+.centerHomePageStyle {
 	float: left;
 	width: 320px;
 	height: 600px;
 	margin-left: 10px;
 }
 
-.rightHomePageStyle{
+.rightHomePageStyle {
 	float: left;
 	width: 150px;
 	height: 600px;
 	margin-left: 10px;
 }
 
-.underlineWord{
+.underlineWord {
 	width: 250px;
 	border-bottom-style: solid;
 	border-bottom-width: thin;
@@ -48,7 +48,7 @@
 }
 
 /*register page*/
-.registerBasicInfo{
+.registerBasicInfo {
 	margin-left: 100px;
 }
 
@@ -61,7 +61,36 @@
 	display: block;
 }
 
-.tableBtn {
+.content {
 	position: relative;
-	left: 930px;
+}
+
+.table_btn {
+	position: absolute;
+}
+
+#basic_info_submit.table_btn {
+	left: 960px;
+	top: 100px;
+}
+
+[id^="personal_history_submit"].table_btn {
+	left: 960px;
+}
+
+.fa {
+	font-size: 18px;
+	width: 30px;
+}
+
+.fa.fa-pencil-square-o {
+	color: #ffffff;
+}
+
+.fa.fa-check {
+	color: #2ecc40;
+}
+
+.fa.fa-times {
+	color: #ff4136;
 }

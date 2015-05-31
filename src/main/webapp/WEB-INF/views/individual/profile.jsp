@@ -21,12 +21,12 @@
 			<span id="username" class="hide"><c:out value="${username}" /></span>
 		</div>
 
-		<div>
+		<div class="content">
 			<table id="basic_info">
 				<thead>
 					<tr>
 						<th colspan=3>基本资料</th>
-						<th><a id="basic_info_edit_btn">Edit</a></th>
+						<th><a id="basic_info_edit_btn"><i class="fa fa-pencil-square-o"></i></a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,7 +51,7 @@
 								<c:forEach items="${citiesCountry}" var="cityCountry">
 									<select class="current_city_edit ${cityCountry.key}">
 										<%-- ${cityCountry.value}为第一层map的值 --%>
-										<c:forEach var="secondMap" items="${cityCountry.value}"> 
+										<c:forEach var="secondMap" items="${cityCountry.value}">
 											<option value="<c:out value="${secondMap.key}" />"><c:out value="${secondMap.value}" /></option>
 										</c:forEach>
 									</select>
@@ -73,8 +73,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<div id="basic_info_submit" class="hide tableBtn">
-				<a id="basic_info_submit_btn">Submit</a><a>Cancel</a>
+			<div id="basic_info_submit" class="hide table_btn">
+				<a id="basic_info_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 			</div>
 
 			<c:forEach items="${personalHistories}" var="personalHistory">
@@ -82,7 +82,11 @@
 					<thead>
 						<tr>
 							<th colspan=3>学历资料</th>
-							<th><a name="personal_history_edit_btn">Edit</a> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
+							<th>
+								<a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a>
+								<a><i class="fa fa-plus"></i></a>
+								<span class="hide"><c:out value="${personalHistory.id}" /></span>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -100,8 +104,8 @@
 						</tr>
 					</tbody>
 				</table>
-				<div id="personal_history_submit${personalHistory.id}" class="hide tableBtn">
-					<a name="personal_history_submit_btn${personalHistory.id}">Submit</a> <a>Cancel</a>
+				<div id="personal_history_submit${personalHistory.id}" class="hide table_btn">
+					<a name="personal_history_submit_btn${personalHistory.id}"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 				</div>
 			</c:forEach>
 
@@ -118,21 +122,21 @@
 								<td>荣誉称号</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
 							</tr>
 						</c:if>
-					
+
 						<c:if test="${award.type.identify eq 1}">
 							<tr id="award_tr${award.id}">
 								<td>论文专著</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
 							</tr>
 						</c:if>
@@ -141,27 +145,24 @@
 								<td>INTELLECTUAL PROPERTY</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
 							</tr>
 						</c:if>
 						<c:if test="${award.type.identify eq 3}">
 							<tr id="award_tr${award.id}">
-								<td>
-									<c:if test="${empty award.other}">
+								<td><c:if test="${empty award.other}">
 										其他
-									</c:if>
-									<c:if test="${not empty award.other}">
+									</c:if> <c:if test="${not empty award.other}">
 										${award.other}
-									</c:if>
-								</td>
+									</c:if></td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn">Edit</a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
-										<a name="award_submit_btn">Submit</a> <a>Cancel</a>
+										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
 							</tr>
 						</c:if>
@@ -187,52 +188,59 @@
 
 </body>
 <script type="text/javascript">
-	$("#dialog-success").dialog({
-		modal : true,
-		autoOpen : false,
-		resizable:false,
-		width: 480,
-		height: 200,
-		buttons : {
-			"Ok" : function() {
-				location.reload();
-			},
-			"Cancel" : function() {
-				$(this).dialog('close');
-			}
-		}
-	});
+	$(document).ready(function() {
 
-	$("#dialog-error").dialog({
-		modal : true,
-		autoOpen : false,
-		resizable:false,
-		width: 480,
-		height: 200,
-		buttons : {
-			"Ok" : function() {
-				location.reload();
-			},
-			"Cancel" : function() {
-				$(this).dialog('close');
-			}
-		}
-	});
+		$("a[name='cancel_btn']").click(function() {
+			location.reload();
+		});
 
-	$("#dialog-ajax-error").dialog({
-		modal : true,
-		autoOpen : false,
-		resizable:false,
-		width: 480,
-		height: 200,
-		buttons : {
-			"Ok" : function() {
-				location.reload();
-			},
-			"Cancel" : function() {
-				$(this).dialog('close');
+		$("#dialog-success").dialog({
+			modal : true,
+			autoOpen : false,
+			resizable : false,
+			width : 480,
+			height : 200,
+			buttons : {
+				"Ok" : function() {
+					location.reload();
+				},
+				"Cancel" : function() {
+					$(this).dialog('close');
+				}
 			}
-		}
+		});
+
+		$("#dialog-error").dialog({
+			modal : true,
+			autoOpen : false,
+			resizable : false,
+			width : 480,
+			height : 200,
+			buttons : {
+				"Ok" : function() {
+					location.reload();
+				},
+				"Cancel" : function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+
+		$("#dialog-ajax-error").dialog({
+			modal : true,
+			autoOpen : false,
+			resizable : false,
+			width : 480,
+			height : 200,
+			buttons : {
+				"Ok" : function() {
+					location.reload();
+				},
+				"Cancel" : function() {
+					$(this).dialog('close');
+				}
+			}
+		});
 	});
 </script>
 </html>
