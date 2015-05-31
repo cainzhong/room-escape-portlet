@@ -7,8 +7,8 @@
 <title>中华英才网注册页面</title>
 <jsp:include page="../resourceInclude.jsp"/>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/messages_zh.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/validate/jquery.validate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/validate/messages_zh.js"></script>
 <link rel='stylesheet' href='css/screen.css' type="text/css">
 <link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
 
