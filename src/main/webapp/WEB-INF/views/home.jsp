@@ -7,7 +7,8 @@
 <head>
 <title>中华海外人才网</title>
 <jsp:include page="resourceInclude.jsp"/>
-<link rel='stylesheet' href='css/custom.css' type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/3DGallery/demo.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/3DGallery/style.css" type="text/css" media="screen" />
 </head>
 <body class="">
 	<jsp:include page="header.jsp"/>

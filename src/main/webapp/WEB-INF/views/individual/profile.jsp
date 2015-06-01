@@ -24,17 +24,22 @@
 		<c:url var="addPersonalHistory" value="/individual/addPersonalHistory">
 			<c:param name="username" value="${username}" />
 		</c:url>
-		
+
 		<c:url var="addAward" value="/individual/addAward">
 			<c:param name="username" value="${username}" />
 		</c:url>
+
+		<div>
+			<c:out value="${pageContext.request.contextPath}" />
+			<c:out value="${pageContext.request.serverName}" />
+		</div>
 
 		<div class="content">
 			<table id="basic_info">
 				<thead>
 					<tr>
 						<th colspan=3>基本资料</th>
-						<th><a id="basic_info_edit_btn"><i class="fa fa-pencil-square-o"></i></a></th>
+						<th class="fa-hover"><a id="basic_info_edit_btn"><i class="fa fa-pencil-square-o"></i></a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -82,7 +87,7 @@
 				</tbody>
 			</table>
 			<div id="basic_info_submit" class="hide table_btn">
-				<a id="basic_info_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
+				<a id="basic_info_submit_btn" class="fa-hover"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 			</div>
 
 			<c:forEach items="${personalHistories}" var="personalHistory">
@@ -90,7 +95,7 @@
 					<thead>
 						<tr>
 							<th colspan=3><spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" /></th>
-							<th><a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a> <a name="personal_history_add_btn"><i class="fa fa-plus"></i></a> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
+							<th class="fa-hover"><a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a> <a name="personal_history_add_btn"><i class="fa fa-plus"></i></a> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -126,7 +131,7 @@
 								<td>荣誉称号</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
+								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -138,7 +143,7 @@
 								<td>论文专著</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
+								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -149,7 +154,7 @@
 								<td>INTELLECTUAL PROPERTY</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
+								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -164,7 +169,7 @@
 									</c:if></td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
+								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -177,7 +182,7 @@
 	</div>
 
 	<p id="back-to-top">
-		<a href="#top"><span></span>回到顶部</a>
+		<a href="#top" title="回到顶部"><i class="fa fa-chevron-circle-up fa-2x"></i></a>
 	</p>
 
 	<div id="dialog-success" title="Confirm" class="hide">
@@ -213,7 +218,7 @@
 			</fieldset>
 		</form>
 	</div>
-	
+
 	<div id="dialog_add_award" title="<spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" />" class="hide">
 		<form class="personal_history" id="add_award" method="post" action="${addAward}">
 			<fieldset>
@@ -222,8 +227,7 @@
 					<div class="award_type"></div>
 				</div>
 				<div class="dialog_row">
-					<label for="award_description"><spring:message code="T_AWARD_DESCRIPTION" /></label>
-					<input class="award_description" name="award_description" />
+					<label for="award_description"><spring:message code="T_AWARD_DESCRIPTION" /></label> <input class="award_description" name="award_description" />
 				</div>
 				<input class="submit" type="submit" value="<spring:message code='T_SUBMIT' />"> <input class="reset" type="reset" value="<spring:message code='T_RESET' />">
 			</fieldset>
@@ -243,7 +247,7 @@
 			width : 480,
 			height : 260
 		});
-		
+
 		$("#dialog_add_award").dialog({
 			modal : true,
 			autoOpen : false,
@@ -319,7 +323,7 @@
 			$("#back-to-top").click(function() {
 				$('body,html').animate({
 					scrollTop : 0
-				}, 1000);
+				}, 10);
 				return false;
 			});
 		});

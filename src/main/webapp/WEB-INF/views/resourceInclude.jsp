@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<link rel='stylesheet' href='css/main.css' type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/3DGallery/demo.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/3DGallery/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.min.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/font/font-awesome-4.3.0/css/font-awesome.css" type="text/css" media="screen" />
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/main.css' type="text/css">

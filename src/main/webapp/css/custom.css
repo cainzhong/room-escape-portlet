@@ -79,7 +79,7 @@
 }
 
 .fa {
-	font-size: 18px;
+	font-size: 1em;
 	width: 30px;
 }
 
@@ -133,5 +133,16 @@
 #back-to-top {
 	position: fixed;
 	bottom: 10px;
-	right: 20px;
+	right: 5px;
+}
+
+.fa-hover a:hover {
+	background-color: #1d9d74;
+	color: #ffffff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.fa-2x {
+	font-size: 2em;
 }

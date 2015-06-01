@@ -5,7 +5,6 @@
 <html>
 <head>
 <title>Online Shopping - Product Detail</title>
-<link rel='stylesheet' href='css/custom.css' type="text/css">
 <jsp:include page="resourceInclude.jsp" />
 </head>
 <body class="">
