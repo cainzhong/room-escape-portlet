@@ -32,7 +32,7 @@ public class IdentityFormValidator{
 
 		String errorMsg = null;
 
-		if (identityForm.getFile() == null) {
+		if (StringUtils.isEmpty(identityForm.getFormatedFileName())) {
 			LOGGER.error("User's profile file is empty!");
 			errorMsg = "T_ERROR";
 			messages.addMessage(new MessageBuilder().error().code(errorMsg).build());

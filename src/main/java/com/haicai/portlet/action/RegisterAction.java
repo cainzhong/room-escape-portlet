@@ -88,7 +88,7 @@ public class RegisterAction implements Serializable{
            this.portletService.updateUser(user.getUsername(), user.getRealName(),
                   user.getEnglishName(), user.getPassword(), user.getSex(),
                   form.getIdNumber(), PASSPORT.equals(form.getIdType())?IdNumberType.PASSPORT:IdNumberType.IDENTITYCARD,
-                  form.getCurrentCountry(), form.getCurrentCity(),form.getFile().getBytes());
+                  form.getCurrentCountry(), form.getCurrentCity(),null);
     }
 
  
