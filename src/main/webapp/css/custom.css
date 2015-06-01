@@ -129,3 +129,9 @@
 	margin-left: 20px;
 	width: 160px;
 }
+
+#back-to-top {
+	position: fixed;
+	bottom: 10px;
+	right: 20px;
+}

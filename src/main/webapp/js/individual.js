@@ -298,6 +298,7 @@ $(document).ready(function() {
 	}
 	/* For reference only */
 	
+	// add personal history
 	$("a[name='personal_history_add_btn']").click(function(){
 		$("#dialog_add_personal_history").dialog("open");
 		
@@ -346,5 +347,31 @@ $(document).ready(function() {
 		});
 	});
 	
+	// add award
+	$("a[name='award_add_btn']").click(function(){
+		$("#dialog_add_award").dialog("open");
+		
+		// get drop down values from property files for award type.
+		var award_type_div = $("#add_award .award_type");
+		$.ajax({
+			type : 'POST',
+			url : 'getDropDownValsFromProperties',
+			dataType : "json",
+			data : {
+				"regex" : "T_AWARD_TYPE_"
+			},
+			success : function(data) {
+				var selectobj = $("<select name='award_type'>");
+				$.each(data, function(i, item) {
+					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
+				});
+				selectobj.append("</select>");
+				selectobj.appendTo(award_type_div);
+			},
+			error : function(data) {
+				$("#dialog-ajax-error").dialog("open");
+			}
+		});
+	});
 
 });

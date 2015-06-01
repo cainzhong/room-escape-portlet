@@ -1,17 +1,12 @@
 package com.haicai.portlet.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.codehaus.jackson.map.util.Comparators;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,14 +24,13 @@ import com.haicai.domain.Contact;
 import com.haicai.domain.PersonalHistory;
 import com.haicai.domain.User;
 import com.haicai.domain.type.ContactType;
-import com.haicai.domain.type.UniversityDegree;
 import com.haicai.portlet.service.IndividualService;
 import com.haicai.portlet.service.PortletService;
 import com.haicai.portlet.util.PropertiesUtil;
 
 /**
  * @author Cain
- * 
+ *
  */
 @Controller
 @RequestMapping("/individual")
@@ -51,7 +44,7 @@ public class IndividualController {
 
 	/**
 	 * Render to individual profile page.
-	 * 
+	 *
 	 * @param username
 	 * @param model
 	 * @return
@@ -111,20 +104,20 @@ public class IndividualController {
 	 * produces = "application/json;charset=UTF-8") public @ResponseBody String
 	 * editBasicInfoTable(@RequestBody User user, HttpServletRequest request) {
 	 * String realName = user.getRealName();
-	 * 
+	 *
 	 * JSONArray jsonArray = new JSONArray(); JSONObject jsonItem1 = new
 	 * JSONObject(); jsonItem1.put("id", "1"); jsonItem1.put("name",
 	 * "My Test Project"); JSONObject jsonItem2 = new JSONObject();
 	 * jsonItem2.put("id", "4"); jsonItem2.put("name", "Another one");
-	 * 
+	 *
 	 * jsonArray.put(jsonItem1); jsonArray.put(jsonItem2);
-	 * 
+	 *
 	 * return jsonArray.toString(); }
 	 */
 
 	/**
 	 * Edit basic info through ajax call.
-	 * 
+	 *
 	 * @param username
 	 * @param realName
 	 * @param englishName
@@ -180,7 +173,7 @@ public class IndividualController {
 
 	/**
 	 * Edit personal history through ajax call.
-	 * 
+	 *
 	 * @param personalHistoryId
 	 * @param university
 	 * @param major
@@ -201,7 +194,7 @@ public class IndividualController {
 
 	/**
 	 * Edit award through ajax call.
-	 * 
+	 *
 	 * @param awardId
 	 * @param awardType
 	 * @param awardDescription
@@ -220,7 +213,7 @@ public class IndividualController {
 
 	/**
 	 * Get single drop down values from property file.
-	 * 
+	 *
 	 * @param regex
 	 * @return
 	 */
@@ -252,7 +245,7 @@ public class IndividualController {
 
 	/**
 	 * Add personal history for a user.
-	 * 
+	 *
 	 * @param username
 	 * @param university
 	 * @param major
@@ -268,8 +261,23 @@ public class IndividualController {
 	}
 
 	/**
+	 * Add award for a user.
+	 *
+	 * @param username
+	 * @param awardType
+	 * @param awardDescription
+	 * @return
+	 */
+	@RequestMapping("/addAward")
+	public String addAward(@RequestParam(value="username") String username, @RequestParam(value = "award_type") String awardType, @RequestParam(value = "award_description") String awardDescription) {
+		User user = this.portletService.findUserByUserName(username);
+		this.portletService.createAward(user, awardType, awardDescription, null, null);
+		return "redirect:/individual/profile";
+	}
+
+	/**
 	 * Get drop down values from property files for country.
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(value = "getCountryDropDownValsFromProperties", method = RequestMethod.POST)
@@ -306,7 +314,7 @@ public class IndividualController {
 
 	/**
 	 * Get drop down values from property files for city.
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(value = "getCityDropDownValsFromProperties", method = RequestMethod.POST)

@@ -20,9 +20,13 @@
 		<div>
 			<span id="username" class="hide"><c:out value="${username}" /></span>
 		</div>
-		
+
 		<c:url var="addPersonalHistory" value="/individual/addPersonalHistory">
-			<c:param name="username" value="${username}"/>
+			<c:param name="username" value="${username}" />
+		</c:url>
+		
+		<c:url var="addAward" value="/individual/addAward">
+			<c:param name="username" value="${username}" />
 		</c:url>
 
 		<div class="content">
@@ -122,7 +126,7 @@
 								<td>荣誉称号</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -134,7 +138,7 @@
 								<td>论文专著</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -145,7 +149,7 @@
 								<td>INTELLECTUAL PROPERTY</td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -160,7 +164,7 @@
 									</c:if></td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
-								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a><i class="fa fa-plus"></i></a>
+								<td><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
 									<div class="award_submit hide">
 										<a name="award_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 									</div> <span class="hide"><c:out value="${award.id}" /></span></td>
@@ -171,6 +175,10 @@
 			</table>
 		</div>
 	</div>
+
+	<p id="back-to-top">
+		<a href="#top"><span></span>回到顶部</a>
+	</p>
 
 	<div id="dialog-success" title="Confirm" class="hide">
 		<p>The data has been updated successfully.</p>
@@ -188,23 +196,36 @@
 		<form class="personal_history" id="add_personal_history" method="post" action="${addPersonalHistory}">
 			<fieldset>
 				<div class="dialog_row">
-					<label for="university"><spring:message code="T_PERSONAL_HISTORY_GRADUATED_UNIVERSITY" /></label>
-					<input class="university" name="university" />
+					<label for="university"><spring:message code="T_PERSONAL_HISTORY_GRADUATED_UNIVERSITY" /></label> <input class="university" name="university" />
 				</div>
 				<div class="dialog_row">
-					<label for="major"><spring:message code="T_PERSONAL_HISTORY_MAJOR" /></label> 
-					<input class="major" name="major" />
+					<label for="major"><spring:message code="T_PERSONAL_HISTORY_MAJOR" /></label> <input class="major" name="major" />
 				</div>
 				<div class="dialog_row">
-					<label for="university_degree"><spring:message code="T_PERSONAL_HISTORY_UNIVERSITY_DEGREE" /></label> 
+					<label for="university_degree"><spring:message code="T_PERSONAL_HISTORY_UNIVERSITY_DEGREE" /></label>
 					<div class="university_degree"></div>
-				</div> 
+				</div>
 				<div class="dialog_row">
-					<label for="graduation_year"><spring:message code="T_PERSONAL_HISTORY_GRADUATION_YEAR" /></label> 
+					<label for="graduation_year"><spring:message code="T_PERSONAL_HISTORY_GRADUATION_YEAR" /></label>
 					<div class="graduation_year"></div>
 				</div>
-				<input class="submit" type="submit" value="<spring:message code='T_SUBMIT' />">
-                <input class="reset" type="reset" value="<spring:message code='T_RESET' />">
+				<input class="submit" type="submit" value="<spring:message code='T_SUBMIT' />"> <input class="reset" type="reset" value="<spring:message code='T_RESET' />">
+			</fieldset>
+		</form>
+	</div>
+	
+	<div id="dialog_add_award" title="<spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" />" class="hide">
+		<form class="personal_history" id="add_award" method="post" action="${addAward}">
+			<fieldset>
+				<div class="dialog_row">
+					<label for="award_type"><spring:message code="T_AWARD_TYPE" /></label>
+					<div class="award_type"></div>
+				</div>
+				<div class="dialog_row">
+					<label for="award_description"><spring:message code="T_AWARD_DESCRIPTION" /></label>
+					<input class="award_description" name="award_description" />
+				</div>
+				<input class="submit" type="submit" value="<spring:message code='T_SUBMIT' />"> <input class="reset" type="reset" value="<spring:message code='T_RESET' />">
 			</fieldset>
 		</form>
 	</div>
@@ -214,13 +235,21 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+
 		$("#dialog_add_personal_history").dialog({
 			modal : true,
 			autoOpen : false,
 			resizable : false,
 			width : 480,
-			height: 260
+			height : 260
+		});
+		
+		$("#dialog_add_award").dialog({
+			modal : true,
+			autoOpen : false,
+			resizable : false,
+			width : 480,
+			height : 260
 		});
 
 		$("a[name='cancel_btn']").click(function() {
@@ -273,6 +302,26 @@
 					$(this).dialog('close');
 				}
 			}
+		});
+
+		//首先将#back-to-top隐藏
+		$("#back-to-top").hide();
+		//当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+		$(function() {
+			$(window).scroll(function() {
+				if ($(window).scrollTop() > 100) {
+					$("#back-to-top").fadeIn(1500);
+				} else {
+					$("#back-to-top").fadeOut(1500);
+				}
+			});
+			//当点击跳转链接后，回到页面顶部位置
+			$("#back-to-top").click(function() {
+				$('body,html').animate({
+					scrollTop : 0
+				}, 1000);
+				return false;
+			});
 		});
 	});
 </script>
