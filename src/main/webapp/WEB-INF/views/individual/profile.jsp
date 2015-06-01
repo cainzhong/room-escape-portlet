@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>中华海外人才网</title>
+<title><spring:message code="T_PORTLET_TITLE" /></title>
 <jsp:include page="../resourceInclude.jsp" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/individual.js"></script>
 </head>
@@ -29,28 +29,23 @@
 			<c:param name="username" value="${username}" />
 		</c:url>
 
-		<div>
-			<c:out value="${pageContext.request.contextPath}" />
-			<c:out value="${pageContext.request.serverName}" />
-		</div>
-
 		<div class="content">
 			<table id="basic_info">
 				<thead>
 					<tr>
-						<th colspan=3>基本资料</th>
+						<th colspan=3><spring:message code="T_INDIVIDUAL_BASIC_INFO" /></th>
 						<th class="fa-hover"><a id="basic_info_edit_btn"><i class="fa fa-pencil-square-o"></i></a></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>真实姓名</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_REAL_NAME" /></td>
 						<td id="real_name"><c:out value="${user.realName}" /></td>
-						<td>英文名</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_ENGLISH_NAME" /></td>
 						<td id="english_name"><c:out value="${user.englishName}" /></td>
 					</tr>
 					<tr>
-						<td>所在地区</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_REGION" /></td>
 						<td id="current_region">
 							<div id="current_region_view">
 								<span class="current_country_view"><spring:message code="${user.currentCountry}" /></span><span class="current_city"> - <spring:message code="${user.currentCity}" /></span>
@@ -71,23 +66,23 @@
 								</c:forEach>
 							</div>
 						</td>
-						<td>邮箱地址</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_EMAIL_ADDRESS" /></td>
 						<td id="email"><c:out value="${email}" /></td>
 					</tr>
 					<tr>
-						<td>手机号码</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_TELEPHONE" /></td>
 						<td id="telephone"><c:out value="${telephone}" /></td>
-						<td>QQ号码</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_QQ" /></td>
 						<td id="qq"><c:out value="${qq}" /></td>
 					</tr>
 					<tr>
-						<td>微信号</td>
+						<td><spring:message code="T_INDIVIDUAL_BASIC_INFO_WEBCHAT" /></td>
 						<td id="webchat"><c:out value="${webchat}" /></td>
 					</tr>
 				</tbody>
 			</table>
-			<div id="basic_info_submit" class="hide table_btn">
-				<a id="basic_info_submit_btn" class="fa-hover"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
+			<div id="basic_info_submit" class="hide table_btn fa-hover">
+				<a id="basic_info_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 			</div>
 
 			<c:forEach items="${personalHistories}" var="personalHistory">
@@ -113,7 +108,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<div id="personal_history_submit${personalHistory.id}" class="hide table_btn">
+				<div id="personal_history_submit${personalHistory.id}" class="hide table_btn fa-hover">
 					<a name="personal_history_submit_btn${personalHistory.id}"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
 				</div>
 			</c:forEach>
@@ -121,14 +116,14 @@
 			<table id="awards">
 				<thead>
 					<tr>
-						<th colspan=3>获得荣誉</th>
+						<th colspan=4><spring:message code="T_AWARD_ACHIEVED" /></th>
 					</tr>
 				</thead>
 				<c:forEach items="${awards}" var="award">
 					<tbody>
 						<c:if test="${award.type.identify eq 0}">
 							<tr id="award_tr${award.id}">
-								<td>荣誉称号</td>
+								<td><spring:message code="T_AWARD_TYPE_HONORARY_TITLE" /></td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
@@ -140,7 +135,7 @@
 
 						<c:if test="${award.type.identify eq 1}">
 							<tr id="award_tr${award.id}">
-								<td>论文专著</td>
+								<td><spring:message code="T_AWARD_TYPE_THESIS" /></td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
@@ -151,7 +146,7 @@
 						</c:if>
 						<c:if test="${award.type.identify eq 2}">
 							<tr id="award_tr${award.id}">
-								<td>INTELLECTUAL PROPERTY</td>
+								<td><spring:message code="T_AWARD_TYPE_INTELLECTUAL_PROPERTY" /></td>
 								<td class="award_type"><spring:message code="${award.type.type}" /></td>
 								<td class="award_description"><c:out value="${award.description}" /></td>
 								<td class="fa-hover"><a name="award_edit_btn"><i class="fa fa-pencil-square-o"></i></a><a name="award_add_btn"><i class="fa fa-plus"></i></a>
@@ -163,7 +158,7 @@
 						<c:if test="${award.type.identify eq 3}">
 							<tr id="award_tr${award.id}">
 								<td><c:if test="${empty award.other}">
-										其他
+										<spring:message code="T_UNIVERSITY_DEGREE_OTHER" />
 									</c:if> <c:if test="${not empty award.other}">
 										${award.other}
 									</c:if></td>
@@ -182,19 +177,19 @@
 	</div>
 
 	<p id="back-to-top">
-		<a href="#top" title="回到顶部"><i class="fa fa-chevron-circle-up fa-2x"></i></a>
+		<a href="#top" title="<spring:message code="T_INDIVIDUAL_BACK_TO_TOP" />"><i class="fa fa-chevron-circle-up fa-2x"></i></a>
 	</p>
 
 	<div id="dialog-success" title="Confirm" class="hide">
-		<p>The data has been updated successfully.</p>
+		<p><spring:message code="T_INDIVIDUAL_DATA_UPDATE_SUCCESS" /></p>
 	</div>
 
 	<div id="dialog-error" title="Confirm" class="hide">
-		<p>The data can not be updated! Please try again.</p>
+		<p><spring:message code="T_INDIVIDUAL_DATA_UPDATE_FAIL" /></p>
 	</div>
 
 	<div id="dialog-ajax-error" title="Ajax Error" class="hide">
-		<p>The data can not be retrived from serve! Please try again.</p>
+		<p><spring:message code="T_INDIVIDUAL_DATA_RETRIVE_FAIL" /></p>
 	</div>
 
 	<div id="dialog_add_personal_history" title="<spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" />" class="hide">
