@@ -30,7 +30,7 @@ public class RegisterController implements Serializable{
 	UploadedFile ufile;
 	
   public RegisterController(){
-    System.out.println("init RestController");
+    System.out.println("init RegisterController");
     ufile = new UploadedFile();
   }
  
@@ -50,8 +50,9 @@ public class RegisterController implements Serializable{
   }
  
    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-   public @ResponseBody String upload(MultipartHttpServletRequest request, HttpServletResponse response) {                 
- 
+   public @ResponseBody String upload(MultipartHttpServletRequest request, HttpServletResponse response) {  
+	   
+	  long timeStamp = Calendar.getInstance().getTimeInMillis();
      //0. notice, we have used MultipartHttpServletRequest
  
      //1. get the files from the request object
@@ -68,8 +69,8 @@ public class RegisterController implements Serializable{
         ufile.name = mpf.getOriginalFilename();
         //upload file to server
         String rootPath = request.getSession().getServletContext().getRealPath("/"); 
-        System.out.print(rootPath+"uploadImg/"+ufile.name);
-        FileOutputStream output = new FileOutputStream(new File(rootPath+"WEB-INF/uploadImg/"+ufile.name));
+        FileOutputStream output = new FileOutputStream(new File(rootPath+"WEB-INF/uploadImg/"+String.valueOf(timeStamp)+"-"+ufile.name));
+        System.out.println(output);
         IOUtils.write(ufile.bytes, output);
     } catch (IOException e) {
         // TODO Auto-generated catch block
@@ -78,7 +79,7 @@ public class RegisterController implements Serializable{
      //2. send it back to the client as <img> that calls get method
      //we are using getTimeInMillis to avoid server cached image 
  
-     return "<img src='http://localhost:9002/hc-portlet/cont/get/"+Calendar.getInstance().getTimeInMillis()+"' />"+"##"+ufile.name+Calendar.getInstance().getTimeInMillis();
+     return "<img src='http://localhost:9002/hc-portlet/cont/get/"+String.valueOf(timeStamp)+"' />"+"##"+String.valueOf(timeStamp)+"-"+ufile.name;
  
   }
  

@@ -2,8 +2,13 @@ package com.haicai.portlet.action;
  
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,17 +85,43 @@ public class RegisterAction implements Serializable{
     /**
      * Update user for other information
      *
-     * @param form
+     * @param form identityForm
+     * @param request HttpServletRequest
      * @throws IOException
      */
-   public void updateUser(IdentityForm form) throws IOException{
+   public void updateUser(IdentityForm form, HttpServletRequest request) throws IOException{
+	   		//Get root path of server
+	   		String rootPath = request.getSession().getServletContext().getRealPath("/");
+	   		System.out.println(rootPath+"WEB-INF/uploadImg/"+form.getFormatedFileName());
+	   		//Convert file to byte[]
+	   		Path path = Paths.get(rootPath+"WEB-INF/uploadImg/"+form.getFormatedFileName());
+	   		byte[] data = Files.readAllBytes(path);
             User user = (User) RequestContextHolder.getRequestContext().getFlowScope().get("user");
-           this.portletService.updateUser(user.getUsername(), user.getRealName(),
+            this.portletService.updateUser(user.getUsername(), user.getRealName(),
                   user.getEnglishName(), user.getPassword(), user.getSex(),
                   form.getIdNumber(), PASSPORT.equals(form.getIdType())?IdNumberType.PASSPORT:IdNumberType.IDENTITYCARD,
-                  form.getCurrentCountry(), form.getCurrentCity(),null);
+                  form.getCurrentCountry(), form.getCurrentCity(),data);
     }
+   
 
+	   /**
+	    * Create award for the user
+	    * 
+	    * @param request HttpServletRequest
+	    */
+	public void createAwardForUser(HttpServletRequest request){
+	       User user = (User) RequestContextHolder.getRequestContext().getFlowScope().get("user");
+	       String rowOrder = request.getParameter("tblAppendGrid_rowOrder");
+	       	for (String row : rowOrder.split(",")) {
+	             String awardType = request.getParameter("tblAppendGrid_awardType_" + row);
+	             String description = request.getParameter("tblAppendGrid_description_" + row);
+	             String referrer = request.getParameter("tblAppendGrid_referrer_" + row);
+	             String other = request.getParameter("tblAppendGrid_other_" + row);
+	            // Save to database or other operations
+	           this.portletService.createAward(user, awardType, description, referrer, other);
+	         }
+	
+	 }
  
 	/**
 	 * Create User

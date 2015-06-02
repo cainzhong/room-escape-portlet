@@ -32,7 +32,7 @@
 	</view-state>
 	
 	<action-state id="updateUserInfo">
-          <evaluate expression="registerAction.updateUser(identityForm)" />
+          <evaluate expression="registerAction.updateUser(identityForm,externalContext.nativeRequest)" />
           <transition to="personalHistory" />
      </action-state>
      
