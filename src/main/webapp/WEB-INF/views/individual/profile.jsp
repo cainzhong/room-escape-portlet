@@ -90,7 +90,7 @@
 					<thead>
 						<tr>
 							<th colspan=3><spring:message code="T_PERSONAL_HISTORY_ACADEMIC_INFO" /></th>
-							<th class="fa-hover"><a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a> <a name="personal_history_add_btn"><i class="fa fa-plus"></i></a> <span class="hide"><c:out value="${personalHistory.id}" /></span></th>
+							<th class="fa-hover"><a name="personal_history_edit_btn"><i class="fa fa-pencil-square-o"></i></a><span class="hide"><c:out value="${personalHistory.id}" /></span><a name="personal_history_add_btn"><i class="fa fa-plus"></i></a></th>
 						</tr>
 					</thead>
 					<tbody>

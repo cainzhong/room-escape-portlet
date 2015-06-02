@@ -130,6 +130,15 @@
 	width: 160px;
 }
 
+.dialog_row .award_type {
+	display: inline;
+}
+
+.dialog_row .award_type>select {
+	margin-left: 20px;
+	width: 160px;
+}
+
 #back-to-top {
 	position: fixed;
 	bottom: 10px;

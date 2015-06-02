@@ -78,7 +78,7 @@ $(document).ready(function() {
 	// edit personal history.
 	$("a[name='personal_history_edit_btn']").each(function() {
 		$(this).click(function() {
-			var personal_history_id = $(this).next("a").next("span").text();
+			var personal_history_id = $(this).next("span").text();
 
 			// store university_degree value
 			var university_degree_id = "#personal_history_table" + personal_history_id + " .university_degree";
@@ -199,6 +199,57 @@ $(document).ready(function() {
 		});
 	});
 
+	// add personal history
+	$("a[name='personal_history_add_btn']").click(function() {
+		$("#dialog_add_personal_history").dialog("open");
+
+		// get drop down values from property files for university degree.
+		var university_degree_div = $("#add_personal_history .university_degree");
+		university_degree_div.empty();
+		$.ajax({
+			type : 'POST',
+			url : 'getDropDownValsFromProperties',
+			dataType : "json",
+			data : {
+				"regex" : "T_UNIVERSITY_DEGREE_"
+			},
+			success : function(data) {
+				var selectobj = $("<select name='university_degree'>");
+				$.each(data, function(i, item) {
+					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
+				});
+				selectobj.append("</select>");
+				selectobj.appendTo(university_degree_div);
+			},
+			error : function(data) {
+				$("#dialog-ajax-error").dialog("open");
+			}
+		});
+
+		// get drop down values form property files for graduation year.
+		var graduation_year_div = $("#add_personal_history .graduation_year");
+		graduation_year_div.empty();
+		$.ajax({
+			type : 'POST',
+			url : 'getDropDownValsFromProperties',
+			dataType : "json",
+			data : {
+				"regex" : "T_YEAR_"
+			},
+			success : function(data) {
+				var selectobj = $("<select name='graduation_year'>");
+				$.each(data, function(i, item) {
+					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
+				});
+				selectobj.append("</select>");
+				selectobj.appendTo(graduation_year_div);
+			},
+			error : function(data) {
+				$("#dialog-ajax-error").dialog("open");
+			}
+		});
+	});
+
 	// edit award
 	$("a[name='award_edit_btn']").click(function() {
 		var award_tr_id = $(this).parent().parent().attr('id');
@@ -213,7 +264,7 @@ $(document).ready(function() {
 			url : 'getDropDownValsFromProperties',
 			dataType : "json",
 			data : {
-				"regex" : "T_AWARD_"
+				"regex" : "T_AWARD_TYPE_"
 			},
 			success : function(data) {
 				var selectobj = $("<select>");
@@ -271,6 +322,35 @@ $(document).ready(function() {
 		});
 	});
 
+	// add award
+	$("a[name='award_add_btn']").click(function() {
+		$("#dialog_add_award").dialog("open");
+
+		// get drop down values from property files for award type.
+		var award_type_div = $("#add_award .award_type");
+		award_type_div.empty();
+		
+		$.ajax({
+			type : 'POST',
+			url : 'getDropDownValsFromProperties',
+			dataType : "json",
+			data : {
+				"regex" : "T_AWARD_TYPE_"
+			},
+			success : function(data) {
+				var selectobj = $("<select name='award_type'>");
+				$.each(data, function(i, item) {
+					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
+				});
+				selectobj.append("</select>");
+				selectobj.appendTo(award_type_div);
+			},
+			error : function(data) {
+				$("#dialog-ajax-error").dialog("open");
+			}
+		});
+	});
+
 	/* For reference only */
 	// submit profile
 	/*
@@ -297,81 +377,5 @@ $(document).ready(function() {
 		return json;
 	}
 	/* For reference only */
-	
-	// add personal history
-	$("a[name='personal_history_add_btn']").click(function(){
-		$("#dialog_add_personal_history").dialog("open");
-		
-		// get drop down values from property files for university degree.
-		var university_degree_div = $("#add_personal_history .university_degree");
-		$.ajax({
-			type : 'POST',
-			url : 'getDropDownValsFromProperties',
-			dataType : "json",
-			data : {
-				"regex" : "T_UNIVERSITY_DEGREE_"
-			},
-			success : function(data) {
-				var selectobj = $("<select name='graduation_year'>");
-				$.each(data, function(i, item) {
-					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
-				});
-				selectobj.append("</select>");
-				selectobj.appendTo(university_degree_div);
-			},
-			error : function(data) {
-				$("#dialog-ajax-error").dialog("open");
-			}
-		});
-
-		// get drop down values form property files for graduation year.
-		var graduation_year_div = $("#add_personal_history .graduation_year");
-		$.ajax({
-			type : 'POST',
-			url : 'getDropDownValsFromProperties',
-			dataType : "json",
-			data : {
-				"regex" : "T_YEAR_"
-			},
-			success : function(data) {
-				var selectobj = $("<select name='graduation_year'>");
-				$.each(data, function(i, item) {
-					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
-				});
-				selectobj.append("</select>");
-				selectobj.appendTo(graduation_year_div);
-			},
-			error : function(data) {
-				$("#dialog-ajax-error").dialog("open");
-			}
-		});
-	});
-	
-	// add award
-	$("a[name='award_add_btn']").click(function(){
-		$("#dialog_add_award").dialog("open");
-		
-		// get drop down values from property files for award type.
-		var award_type_div = $("#add_award .award_type");
-		$.ajax({
-			type : 'POST',
-			url : 'getDropDownValsFromProperties',
-			dataType : "json",
-			data : {
-				"regex" : "T_AWARD_TYPE_"
-			},
-			success : function(data) {
-				var selectobj = $("<select name='award_type'>");
-				$.each(data, function(i, item) {
-					selectobj.append("<option value=" + item.key + ">" + item.value + "</option>");
-				});
-				selectobj.append("</select>");
-				selectobj.appendTo(award_type_div);
-			},
-			error : function(data) {
-				$("#dialog-ajax-error").dialog("open");
-			}
-		});
-	});
 
 });

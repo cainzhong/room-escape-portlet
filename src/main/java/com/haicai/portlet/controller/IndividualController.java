@@ -184,7 +184,7 @@ public class IndividualController {
 	@Transactional(propagation = Propagation.REQUIRED)
 	@RequestMapping(value = "editPerHistory", method = RequestMethod.POST)
 	public @ResponseBody
-	String editPerHistoryTable(@RequestParam(value = "personalHistoryId", required = false) int personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
+	String editPerHistoryTable(@RequestParam(value = "personalHistoryId", required = true) int personalHistoryId, @RequestParam(value = "university", required = false) String university, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "universityDegree", required = false) String universityDegree, @RequestParam(value = "graduationYear", required = false) String graduationYear) {
 		PersonalHistory personalHistory = this.individualService.findPersonalHistory(personalHistoryId);
 		if (!personalHistory.getUniversity().equals(university) || !personalHistory.getMajor().equals(major) || !personalHistory.getUniversityDegree().getDegree().equals(universityDegree) || !personalHistory.getGraduationYear().equals(graduationYear)) {
 			this.portletService.updatePersonalHistory(personalHistoryId, university, universityDegree, major, graduationYear.substring(7));
