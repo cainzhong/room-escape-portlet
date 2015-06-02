@@ -107,7 +107,12 @@ public class RegisterAction implements Serializable{
                   form.getCurrentCountry(), form.getCurrentCity(),data);
     }
    
-     public void createPersonalHistoryForUser(HistoryForm form) {
+     /**
+      * Create personal history for user
+      * 
+      * @param form historyForm
+      */
+    public void createPersonalHistoryForUser(HistoryForm form) {
     	 User user = (User) RequestContextHolder.getRequestContext().getFlowScope().get("user");
     	 String graduationYear = this.convertStringToTimestamp(form.getGraduationTime());
     	 this.portletService.createPersonalHistory(user, form.getUniversity(), form.getDegree(), form.getDegree(), graduationYear);
