@@ -43,18 +43,21 @@
                                          <label for="degree">学历：</label>
                                          <select id="degree" name="degree" title="请选择您的学历!" required>
                                                <option value="">选择</option>
-                                               <option value="0">本科</option>
-                                               <option value="1">硕士</option>
-                                               <option value="2">博士</option>
-                                               <option value="3">博士后</option>
-                                               <option value="4">其他</option>
+                                               <option value="T_UNIVERSITY_DEGREE_BACHELOR">本科</option>
+                                               <option value="T_UNIVERSITY_DEGREE_MASTER">硕士</option>
+                                               <option value="T_UNIVERSITY_DEGREE_DOCTOR">博士</option>
+                                               <option value="T_UNIVERSITY_DEGREE_POSTDOCTOR">博士后</option>
+                                               <option value="T_UNIVERSITY_DEGREE_OTHER">其他</option>
                                          </select>
+                                   </p>
+                                    <p>
+                                         <label for="major">专业：</label>
+                                         <input id="major" name="major" type="text" required>
                                    </p>
                                    <p>
                                          <label for="graduationTime">毕业时间：</label>
                                          <input id="graduationTime" name="graduationTime" type="text" required>
-                                   </p>
-                                   <legend>获得荣誉</legend>                            
+                                   </p>                                                           
                                    <p>
                                          <input id="submit" name="_eventId_submit" class="submit" type="submit" value="<spring:message code='T_SUBMIT' />">
 

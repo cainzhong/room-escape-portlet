@@ -19,7 +19,7 @@ import com.haicai.portlet.form.HistoryForm;
 import com.haicai.portlet.service.PortletService;
 
 /**
-* This class is used for identity form submit validate
+* This class is used for history form submit validate
 *
 * @author Jason
 *
@@ -49,6 +49,11 @@ public class HistoryFormValidator{
                  errorMsg = "T_ERROR";
                  messages.addMessage(new MessageBuilder().error().code(errorMsg).build());
             }
+           if (StringUtils.isEmpty(historyForm.getMajor())) {
+               LOGGER.error("User's major is empty!");
+               errorMsg = "T_ERROR";
+               messages.addMessage(new MessageBuilder().error().code(errorMsg).build());
+          }
            if (StringUtils.isEmpty(historyForm.getGraduationTime())) {
                  LOGGER.error("User's id type is empty!");
                  errorMsg = "T_ERROR";
@@ -56,23 +61,6 @@ public class HistoryFormValidator{
             }
 
       }
-
-     
-
-     private Timestamp convertStringToTimestamp(String sss){
-             Date date = null ;
-             DateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
-              try {
-                  date = (Date)formatter.parse(sss);
-            } catch (ParseException e) {
-                 // TODO Auto-generated catch block
-                  e.printStackTrace();
-            }
-               java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
-                 return timeStampDate;
-      }
-
- 
 
 }
 

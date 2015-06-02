@@ -37,14 +37,25 @@
      </action-state>
      
      <view-state id="personalHistory" model="historyForm" view="register/personalHistory">
-           <transition on="submit" to="orderConfirmed">
+           <transition on="submit" to="createPersonalHistoryForUser">
            </transition>
      </view-state>
 
-	<view-state id="orderConfirmed" view="register/orderConfirmed">
-		<transition on="returnToIndex" to="returnToIndex">
+	<action-state id="createPersonalHistoryForUser">
+          <evaluate expression="registerAction.createPersonalHistoryForUser(historyForm)" />
+          <transition to="award" />
+     </action-state>
+	
+
+	<view-state id="award" view="register/award">
+		<transition on="submit" to="createAwardForUser">
 		</transition>
 	</view-state>
+	
+	<action-state id="createAwardForUser">
+          <evaluate expression="registerAction.createAwardForUser(externalContext.nativeRequest)" />
+          <transition to="returnToIndex" />
+     </action-state>
 
 	<end-state id="returnToIndex" view="register/register">
 	</end-state>

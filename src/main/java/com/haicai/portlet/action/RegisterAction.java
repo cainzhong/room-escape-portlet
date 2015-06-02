@@ -6,6 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +25,7 @@ import com.haicai.domain.type.ContactType;
 import com.haicai.domain.type.IdNumberType;
 import com.haicai.domain.type.Sex;
 import com.haicai.domain.type.Status;
+import com.haicai.portlet.form.HistoryForm;
 import com.haicai.portlet.form.IdentityForm;
 import com.haicai.portlet.form.RegisterForm;
 import com.haicai.portlet.service.PortletService;
@@ -92,7 +96,7 @@ public class RegisterAction implements Serializable{
    public void updateUser(IdentityForm form, HttpServletRequest request) throws IOException{
 	   		//Get root path of server
 	   		String rootPath = request.getSession().getServletContext().getRealPath("/");
-	   		System.out.println(rootPath+"WEB-INF/uploadImg/"+form.getFormatedFileName());
+	   		LOGGER.info(rootPath+"WEB-INF/uploadImg/"+form.getFormatedFileName());
 	   		//Convert file to byte[]
 	   		Path path = Paths.get(rootPath+"WEB-INF/uploadImg/"+form.getFormatedFileName());
 	   		byte[] data = Files.readAllBytes(path);
@@ -102,6 +106,13 @@ public class RegisterAction implements Serializable{
                   form.getIdNumber(), PASSPORT.equals(form.getIdType())?IdNumberType.PASSPORT:IdNumberType.IDENTITYCARD,
                   form.getCurrentCountry(), form.getCurrentCity(),data);
     }
+   
+     public void createPersonalHistoryForUser(HistoryForm form) {
+    	 User user = (User) RequestContextHolder.getRequestContext().getFlowScope().get("user");
+    	 String graduationYear = this.convertStringToTimestamp(form.getGraduationTime());
+    	 this.portletService.createPersonalHistory(user, form.getUniversity(), form.getDegree(), form.getDegree(), graduationYear);
+    	 LOGGER.info("User's personal history has been created!!!!!");
+     }
    
 
 	   /**
@@ -120,7 +131,7 @@ public class RegisterAction implements Serializable{
 	            // Save to database or other operations
 	           this.portletService.createAward(user, awardType, description, referrer, other);
 	         }
-	
+	        LOGGER.info("User's award has been created!!!!!");
 	 }
  
 	/**
@@ -159,5 +170,21 @@ public class RegisterAction implements Serializable{
 	       contact.setUpdateTime(new Timestamp(new Date().getTime()));
 	       return contact;
 	     }
+	
+    private String convertStringToTimestamp(String graduationYear){
+        Date date = null ;
+        DateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+         try {
+             date = (Date)formatter.parse(graduationYear);
+       } catch (ParseException e) {
+            // TODO Auto-generated catch block
+             e.printStackTrace();
+       }
+          java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
+          DateFormat sdf = new SimpleDateFormat("yyyy");
+          String tsStr = "";
+          tsStr = sdf.format(timeStampDate);
+          return tsStr;
+ }
 
 }

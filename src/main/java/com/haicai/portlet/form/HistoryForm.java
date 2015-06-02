@@ -16,6 +16,8 @@ public class HistoryForm implements Serializable{
      private String university;
 
      private String degree;  
+     
+     private String major;
 
      private String graduationTime;
 
@@ -32,14 +34,19 @@ public class HistoryForm implements Serializable{
      }
 
      public void setDegree(String degree) {
-
           this.degree = degree;
-
      } 
 
-     public String getGraduationTime() {
-          return graduationTime;
+     public String getMajor() {
+		return major;
+	}
 
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getGraduationTime() {
+          return graduationTime;
      }
 
      public void setGraduationTime(String graduationTime) {
