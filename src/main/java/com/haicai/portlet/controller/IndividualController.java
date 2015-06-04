@@ -193,6 +193,23 @@ public class IndividualController {
 	}
 
 	/**
+	 * Add personal history for a user.
+	 *
+	 * @param username
+	 * @param university
+	 * @param major
+	 * @param universityDegree
+	 * @param graduationYear
+	 * @return
+	 */
+	@RequestMapping("/addPersonalHistory")
+	public String addPersonalHistory(@RequestParam(value="username") String username, @RequestParam(value = "university") String university, @RequestParam(value = "major") String major, @RequestParam(value = "university_degree") String universityDegree, @RequestParam(value = "graduation_year") String graduationYear) {
+		User user = this.portletService.findUserByUserName(username);
+		this.portletService.createPersonalHistory(user, university, universityDegree, major, graduationYear.substring(7));
+		return "redirect:/individual/profile";
+	}
+
+	/**
 	 * Edit award through ajax call.
 	 *
 	 * @param awardId
@@ -209,6 +226,21 @@ public class IndividualController {
 			this.portletService.updateAward(award.getId(), awardType, awardDescription, award.getReferrer(), award.getOther());
 		}
 		return "success";
+	}
+
+	/**
+	 * Add award for a user.
+	 *
+	 * @param username
+	 * @param awardType
+	 * @param awardDescription
+	 * @return
+	 */
+	@RequestMapping("/addAward")
+	public String addAward(@RequestParam(value="username") String username, @RequestParam(value = "award_type") String awardType, @RequestParam(value = "award_description") String awardDescription) {
+		User user = this.portletService.findUserByUserName(username);
+		this.portletService.createAward(user, awardType, awardDescription, null, null);
+		return "redirect:/individual/profile";
 	}
 
 	/**
@@ -241,38 +273,6 @@ public class IndividualController {
 		}
 
 		return jsonArray.toString();
-	}
-
-	/**
-	 * Add personal history for a user.
-	 *
-	 * @param username
-	 * @param university
-	 * @param major
-	 * @param universityDegree
-	 * @param graduationYear
-	 * @return
-	 */
-	@RequestMapping("/addPersonalHistory")
-	public String addPersonalHistory(@RequestParam(value="username") String username, @RequestParam(value = "university") String university, @RequestParam(value = "major") String major, @RequestParam(value = "university_degree") String universityDegree, @RequestParam(value = "graduation_year") String graduationYear) {
-		User user = this.portletService.findUserByUserName(username);
-		this.portletService.createPersonalHistory(user, university, universityDegree, major, graduationYear.substring(7));
-		return "redirect:/individual/profile";
-	}
-
-	/**
-	 * Add award for a user.
-	 *
-	 * @param username
-	 * @param awardType
-	 * @param awardDescription
-	 * @return
-	 */
-	@RequestMapping("/addAward")
-	public String addAward(@RequestParam(value="username") String username, @RequestParam(value = "award_type") String awardType, @RequestParam(value = "award_description") String awardDescription) {
-		User user = this.portletService.findUserByUserName(username);
-		this.portletService.createAward(user, awardType, awardDescription, null, null);
-		return "redirect:/individual/profile";
 	}
 
 	/**
@@ -355,5 +355,12 @@ public class IndividualController {
 		}
 
 		return cityJSONArray.toString();
+	}
+
+	@RequestMapping(value="position")
+	public String renderToIndividualPositionPage(@RequestParam(value = "username", required = false) String username, Model model){
+
+
+		return "position";
 	}
 }

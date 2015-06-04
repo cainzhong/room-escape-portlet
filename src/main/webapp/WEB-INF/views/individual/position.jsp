@@ -40,40 +40,21 @@
 				<tbody>
 					<tr>
 						<td><spring:message code="T_INDIVIDUAL_POSITION_PROFESSIONAL_FIELD" /></td>
-						<td id="real_name"><c:out value="${user.realName}" /></td>
+						<td><input value="" /></td>
 						<td><spring:message code="T_INDIVIDUAL_POSITION_JOB_ASKED" /></td>
-						<td id="english_name"><c:out value="${user.englishName}" /></td>
+						<td><input value="" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="T_INDIVIDUAL_POSITION_WORK_TIME_TYPE" /></td>
-						<td id="current_region">
-							<div id="current_region_view">
-								<span class="current_country_view"><spring:message code="${user.currentCountry}" /></span><span class="current_city"> - <spring:message code="${user.currentCity}" /></span>
-							</div>
-							<div id="current_region_edit" class="hide">
-								<select class="current_country_edit">
-									<c:forEach items="${countries}" var="country">
-										<option value="<c:out value="${country.key}" />"><c:out value="${country.value}" /></option>
-									</c:forEach>
-								</select>
-								<c:forEach items="${citiesCountry}" var="cityCountry">
-									<select class="current_city_edit ${cityCountry.key}">
-										<%-- ${cityCountry.value}为第一层map的值 --%>
-										<c:forEach var="secondMap" items="${cityCountry.value}">
-											<option value="<c:out value="${secondMap.key}" />"><c:out value="${secondMap.value}" /></option>
-										</c:forEach>
-									</select>
-								</c:forEach>
-							</div>
-						</td>
+						<td><input value="" /></td>
 						<td><spring:message code="T_INDIVIDUAL_POSITION_OFFICE_AREA" /></td>
-						<td id="email"><c:out value="${email}" /></td>
+						<td><input value="" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="T_INDIVIDUAL_POSITION_EXPECT_SALARY" /></td>
-						<td id="telephone"><c:out value="${telephone}" /></td>
+						<td><input value="" /></td>
 						<td><spring:message code="T_INDIVIDUAL_POSITION_OTHER_REQUIREMENT" /></td>
-						<td id="qq"><c:out value="${qq}" /></td>
+						<td><input value="" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -87,14 +68,6 @@
 
 	<div id="dialog-success" title="Confirm" class="hide">
 		<p><spring:message code="T_INDIVIDUAL_DATA_UPDATE_SUCCESS" /></p>
-	</div>
-
-	<div id="dialog-error" title="Confirm" class="hide">
-		<p><spring:message code="T_INDIVIDUAL_DATA_UPDATE_FAIL" /></p>
-	</div>
-
-	<div id="dialog-ajax-error" title="Ajax Error" class="hide">
-		<p><spring:message code="T_INDIVIDUAL_DATA_RETRIVE_FAIL" /></p>
 	</div>
 
 	<jsp:include page="../footer.jsp" />
