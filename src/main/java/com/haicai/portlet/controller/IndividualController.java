@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haicai.domain.Award;
 import com.haicai.domain.Contact;
+import com.haicai.domain.JobAsked;
 import com.haicai.domain.PersonalHistory;
 import com.haicai.domain.User;
 import com.haicai.domain.type.ContactType;
@@ -359,7 +360,10 @@ public class IndividualController {
 
 	@RequestMapping(value="position")
 	public String renderToIndividualPositionPage(@RequestParam(value = "username", required = false) String username, Model model){
-
+		User user = this.portletService.findUserByUserName(username);
+		//TODO
+		List<JobAsked> jobAskeds = this.individualService.findJobAskeds(user);
+		model.addAttribute("jobAskeds", jobAskeds);
 
 		return "position";
 	}
