@@ -21,41 +21,45 @@
 			<span id="username" class="hide"><c:out value="${username}" /></span>
 		</div>
 
-		<c:url var="addPersonalHistory" value="/individual/addPersonalHistory">
-			<c:param name="username" value="${username}" />
-		</c:url>
-
-		<c:url var="addAward" value="/individual/addAward">
+		<c:url var="editJobAsked" value="/individual/editJobAsked">
 			<c:param name="username" value="${username}" />
 		</c:url>
 
 		<div class="content">
-			<table id="basic_info">
+			<table id="job_asked">
 				<thead>
 					<tr>
-						<th colspan=4><spring:message code="T_INDIVIDUAL_POSITION_JOB_ASKED" /></th>
-						<th class="fa-hover"><a id="basic_info_edit_btn"><i class="fa fa-pencil-square-o"></i></a></th>
+						<th colspan=3><spring:message code="T_INDIVIDUAL_POSITION_JOB_ASKED" /></th>
+						<th class="fa-hover">
+							<a id="job_asked_edit_btn"><i class="fa fa-pencil-square-o"></i></a>
+							<div id="job_asked_submit" class="hide fa-hover">
+								<a id="job_asked_submit_btn"><i class="fa fa-check"></i></a><a name="cancel_btn"><i class="fa fa-times"></i></a>
+							</div></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><spring:message code="T_INDIVIDUAL_POSITION_PROFESSIONAL_FIELD" /></td>
-						<td><input value="" /></td>
-						<td><spring:message code="T_INDIVIDUAL_POSITION_JOB_ASKED" /></td>
-						<td><input value="" /></td>
-					</tr>
-					<tr>
-						<td><spring:message code="T_INDIVIDUAL_POSITION_WORK_TIME_TYPE" /></td>
-						<td><input value="" /></td>
-						<td><spring:message code="T_INDIVIDUAL_POSITION_OFFICE_AREA" /></td>
-						<td><input value="" /></td>
-					</tr>
-					<tr>
-						<td><spring:message code="T_INDIVIDUAL_POSITION_EXPECT_SALARY" /></td>
-						<td><input value="" /></td>
-						<td><spring:message code="T_INDIVIDUAL_POSITION_OTHER_REQUIREMENT" /></td>
-						<td><input value="" /></td>
-					</tr>
+					<c:forEach items="${jobAskeds}" var="jobAsked">
+						<form id="job_asked_form" method="post" action="${editJobAsked}">
+							<tr>
+								<td><spring:message code="T_INDIVIDUAL_POSITION_PROFESSIONAL_FIELD" /></td>
+								<td><input name="proField" value="${jobAsked.proField}" /></td>
+								<td><spring:message code="T_INDIVIDUAL_POSITION_JOB_ASKED" /></td>
+								<td><input name="title" value="${jobAsked.title}" /></td>
+							</tr>
+							<tr>
+								<td><spring:message code="T_INDIVIDUAL_POSITION_WORK_TIME_TYPE" /></td>
+								<td><input name="workTimeType" value="<spring:message code="${jobAsked.workTimeType.type}" />" /></td>
+								<td><spring:message code="T_INDIVIDUAL_POSITION_OFFICE_AREA" /></td>
+								<td><input name="officeArea" value="${jobAsked.officeArea}" /></td>
+							</tr>
+							<tr>
+								<td><spring:message code="T_INDIVIDUAL_POSITION_EXPECT_SALARY" /></td>
+								<td><input name="expectSalary" value="${jobAsked.expectSalary}" /></td>
+								<td><spring:message code="T_INDIVIDUAL_POSITION_OTHER_REQUIREMENT" /></td>
+								<td><input name="requirement" value="${jobAsked.requirement}" /></td>
+							</tr>
+						</form>
+					</c:forEach>
 				</tbody>
 			</table>
 
@@ -67,7 +71,9 @@
 	</p>
 
 	<div id="dialog-success" title="Confirm" class="hide">
-		<p><spring:message code="T_INDIVIDUAL_DATA_UPDATE_SUCCESS" /></p>
+		<p>
+			<spring:message code="T_INDIVIDUAL_DATA_UPDATE_SUCCESS" />
+		</p>
 	</div>
 
 	<jsp:include page="../footer.jsp" />
@@ -76,72 +82,36 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$("#dialog_add_personal_history").dialog({
-			modal : true,
-			autoOpen : false,
-			resizable : false,
-			width : 480,
-			height : 260
-		});
+		disableAllInput();
+		
+		// disable all the input box in the page when first get into the page.
+		function disableAllInput() {
+			$("#job_asked").find("input").attr("disabled", true);
+		}
 
-		$("#dialog_add_award").dialog({
-			modal : true,
-			autoOpen : false,
-			resizable : false,
-			width : 480,
-			height : 260
+		//edit btn
+		$("#job_asked_edit_btn").click(function() {
+			$(this).hide();
+			$("#job_asked_submit").show();
+			$("#job_asked").find("input").attr("disabled", false);
 		});
-
-		$("a[name='cancel_btn']").click(function() {
+		
+		//cancel btn
+		$("job_asked_submit a[name='cancel_btn']").click(function() {
 			location.reload();
 		});
-
+		
+		//submit btn
+		$("#job_asked_submit_btn").click(function(){
+			$("#job_asked_form").submit();
+		});
+		
 		$("#dialog-success").dialog({
 			modal : true,
 			autoOpen : false,
 			resizable : false,
 			width : 480,
-			height : 200,
-			buttons : {
-				"Ok" : function() {
-					location.reload();
-				},
-				"Cancel" : function() {
-					$(this).dialog('close');
-				}
-			}
-		});
-
-		$("#dialog-error").dialog({
-			modal : true,
-			autoOpen : false,
-			resizable : false,
-			width : 480,
-			height : 200,
-			buttons : {
-				"Ok" : function() {
-					location.reload();
-				},
-				"Cancel" : function() {
-					$(this).dialog('close');
-				}
-			}
-		});
-
-		$("#dialog-ajax-error").dialog({
-			modal : true,
-			autoOpen : false,
-			resizable : false,
-			width : 480,
-			height : 200,
-			buttons : {
-				"Ok" : function() {
-					location.reload();
-				},
-				"Cancel" : function() {
-					$(this).dialog('close');
-				}
-			}
+			height : 260
 		});
 
 		//首先将#back-to-top隐藏
