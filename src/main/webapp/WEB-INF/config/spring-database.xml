@@ -49,23 +49,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<array>
-				<value>com.haicai.domain</value>
+				<value>com.room.escape.portlet.domain</value>
 			</array>
-		</property>
-		<property name="annotatedClasses">
-			<list>
-				<value>com.haicai.domain.User</value>
-				<value>com.haicai.domain.UserRole</value>
-				<value>com.haicai.domain.Contact</value>
-				<value>com.haicai.domain.PersonalHistory</value>
-				<value>com.haicai.domain.Award</value>
-				<value>com.haicai.domain.JobAsked</value>
-				<value>com.haicai.domain.Enterprise</value>
-				<value>com.haicai.domain.Project</value>
-				<value>com.haicai.domain.EnterpriseDetail</value>
-				<value>com.haicai.domain.Media</value>
-				<value>com.haicai.domain.JobPosted</value>
-			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
@@ -75,23 +60,4 @@
 			</props>
 		</property>
 	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> <tx:attributes> <tx:method name="save*" propagation="REQUIRED" /> <tx:method name="add*" propagation="REQUIRED" /> <tx:method name="create*" propagation="REQUIRED" /> <tx:method name="insert*" propagation="REQUIRED" /> <tx:method name="*" read-only="true" /> </tx:attributes> </tx:advice> -->
-
-	<aop:config>
-		<aop:pointcut id="serviceManager" expression="execution(* com.haicai.portlet.service..*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceManager" />
-	</aop:config>
 </beans>

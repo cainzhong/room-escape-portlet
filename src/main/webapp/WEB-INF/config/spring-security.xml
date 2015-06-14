@@ -31,7 +31,7 @@
 	<bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder" />
 
 	<!-- 通过 PortletService,Spring会自动的用户的访问级别. 也可以理解成:以后我们和数据库操作就是通过PortletService来进行关联. -->
-	<bean id="portletService" class="com.haicai.portlet.service.impl.PortletServiceImpl" />
+	<bean id="portletService" class="com.room.escape.portlet.service.impl.PortletServiceImpl" />
 
 	<!-- remember me Configuration start -->
 	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">

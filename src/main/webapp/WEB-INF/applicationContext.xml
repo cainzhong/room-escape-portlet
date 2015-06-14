@@ -11,13 +11,9 @@
 	<context:annotation-config />
 
 	<!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-	<context:component-scan base-package="com.haicai.portlet.controller" />
-	<context:component-scan base-package="com.haicai.portlet.service" />
-	<context:component-scan base-package="com.haicai.portlet.repository" />
-	<context:component-scan base-package="com.haicai.portlet.action" />
-	<context:component-scan base-package="com.haicai.portlet.form" />
-	<context:component-scan base-package="com.haicai.portlet.validator" />
-	<context:component-scan base-package="com.haicai.portlet.util" />
+	<context:component-scan base-package="com.room.escape.portlet.controller" />
+	<context:component-scan base-package="com.room.escape.portlet.service.impl" />
+	<context:component-scan base-package="com.room.escape.portlet.repository.impl" />
 
 	<!-- 配置注解驱动的Spring MVC Controller 的编程模型.注:次标签只在 Servlet MVC工作! -->
 	<mvc:annotation-driven />
