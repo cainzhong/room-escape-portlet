@@ -1,22 +1,25 @@
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
 @charset "utf-8";
 /* CSS Document */
 html { height:100%}
-body { font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif; font-family: Arial, "å¾®è½¯é›…é»‘"; background: url(../images/index_bg.jpg) #e6e4e5; margin: 0; padding: 0; color: #000;}
+body { font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif; font-family: Arial, "Î¢ÈíÑÅºÚ"; background: url(../images/index_bg.jpg) #e6e4e5; margin: 0; padding: 0; color: #000;}
 
 
-/* å®¹å™¨ */
+/* ÈİÆ÷ */
 .header, .nav, .container{
 	width: 90%;
-	max-width: 1260px;/* å¯èƒ½éœ€è¦æœ€å¤§å®½åº¦ï¼Œä»¥é˜²æ­¢æ­¤å¸ƒå±€åœ¨å¤§å‹æ˜¾ç¤ºå™¨ä¸Šè¿‡å®½ã€‚è¿™å°†ä½¿è¡Œé•¿åº¦æ›´ä¾¿äºé˜…è¯»ã€‚IE6 ä¸éµå¾ªæ­¤å£°æ˜ã€‚ */
-	min-width: 780px;/* å¯èƒ½éœ€è¦æœ€å°å®½åº¦ï¼Œä»¥é˜²æ­¢æ­¤å¸ƒå±€è¿‡çª„ã€‚è¿™å°†ä½¿ä¾§é¢åˆ—ä¸­çš„è¡Œé•¿åº¦æ›´ä¾¿äºé˜…è¯»ã€‚IE6 ä¸éµ  */
-	margin:0 auto; /* ä¾§è¾¹çš„è‡ªåŠ¨å€¼ä¸å®½åº¦ç»“åˆä½¿ç”¨ï¼Œå¯ä»¥å°†å¸ƒå±€å±…ä¸­å¯¹é½ã€‚å¦‚æœå°† .container å®½åº¦è®¾ç½®ä¸º 100%ï¼Œåˆ™ä¸éœ€è¦æ­¤è®¾ç½®ã€‚ */
+	max-width: 1260px;/* ¿ÉÄÜĞèÒª×î´ó¿í¶È£¬ÒÔ·ÀÖ¹´Ë²¼¾ÖÔÚ´óĞÍÏÔÊ¾Æ÷ÉÏ¹ı¿í¡£Õâ½«Ê¹ĞĞ³¤¶È¸ü±ãÓÚÔÄ¶Á¡£IE6 ²»×ñÑ­´ËÉùÃ÷¡£ */
+	min-width: 780px;/* ¿ÉÄÜĞèÒª×îĞ¡¿í¶È£¬ÒÔ·ÀÖ¹´Ë²¼¾Ö¹ıÕ­¡£Õâ½«Ê¹²àÃæÁĞÖĞµÄĞĞ³¤¶È¸ü±ãÓÚÔÄ¶Á¡£IE6 ²»×ñ  */
+	margin:0 auto; /* ²à±ßµÄ×Ô¶¯ÖµÓë¿í¶È½áºÏÊ¹ÓÃ£¬¿ÉÒÔ½«²¼¾Ö¾ÓÖĞ¶ÔÆë¡£Èç¹û½« .container ¿í¶ÈÉèÖÃÎª 100%£¬Ôò²»ĞèÒª´ËÉèÖÃ¡£ */
 	padding:10px 0;
-	overflow: hidden; /* æ­¤å£°æ˜å°†ä½¿ .container æ¸…é™¤å…¶åŒ…å«çš„æ‰€æœ‰æµ®åŠ¨åˆ—ã€‚ */
+	overflow: hidden; /* ´ËÉùÃ÷½«Ê¹ .container Çå³ıÆä°üº¬µÄËùÓĞ¸¡¶¯ÁĞ¡£ */
 }
-/* å¸ƒå±€ */
+/* ²¼¾Ö */
 .sidebar { float: left; width: 20%; }
 .content { padding: 10px 0; width: 80%; float: left; }
-/***************************** ç™»å½•æ¡† ***********************************/
+/***************************** µÇÂ¼¿ò ***********************************/
 .login-box{ margin:10% auto 0; width:320px; padding:4px; border:1px solid #dedede }
 .login-inner{ background:#fff; padding:10px;}
 .login-inner img{ margin-bottom:4px}
@@ -24,14 +27,14 @@ body { font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif; font-family: Arial,
 .login-box ul input{ border:1px solid #dedede; border-radius:0; width:230px; line-height:2; padding-left:44px; margin-bottom:20px;} 
 .login-box ul input[type=text]{ background:url(../images/bg-login.gif) no-repeat 0 -2px}
 .login-box ul input[type=password]{ background:url(../images/bg-login.gif) no-repeat 0 -38px}
-/***************************** æ ·å¼ ***********************************/
+/***************************** ÑùÊ½ ***********************************/
 .word-ellipsis { text-overflow: ellipsis; white-space: nowrap; overflow: hidden }
 h1 { color: #444; padding: 10px; margin-bottom: 10px; background: #f5f5f5; }
 h1 span{ float:right; font-size:12px; color:#999; line-height:24px;}
 .ui-state-highlight { height: 40px; line-height: 30px; background: #EDF9FF }
 a{color:#fff}
 a:hover{color:#34B8F6}
-/* è¡¨å• form*/
+/* ±íµ¥ form*/
 .form { font-size: 14px; margin: 10px; color: #666; line-height: 28px; }
 .form li *{ vertical-align:middle}
 input[type=text], input[type=password], select, textarea { border: 2px solid #dedede; padding: 4px; margin-left: 10px; border-radius: 4px }
@@ -40,9 +43,9 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
 .icheckbox_flat-blue, .iradio_flat-blue { display: inline-block; vertical-align: text-bottom; margin-right: 4px; }
 .checkbox_group { margin: 10px 0; }
 .checkbox_group label { font-size: 12px; margin-right: 10px; line-height: 30px; word-break: keep-all; white-space: nowrap }
-/* æŒ‰é’® button */
+/* °´Å¥ button */
 input[type=button]{ cursor:pointer}
-.btn-submit, .btn-delete { color: #fff; font-size: 16px; font-weight: 700; border: none; vertical-align: text-bottom; padding: 10px 20px; min-width: 100px; font-family: Arial, "å¾®è½¯é›…é»‘"; }
+.btn-submit, .btn-delete { color: #fff; font-size: 16px; font-weight: 700; border: none; vertical-align: text-bottom; padding: 10px 20px; min-width: 100px; font-family: Arial, "Î¢ÈíÑÅºÚ"; }
 .btn-submit { background: #34B8F6; }
 .btn-submit:hover { background: #66C5F1 }
 .btn-submit:active { background: #39A8DB }
@@ -54,14 +57,14 @@ input[type=button]{ cursor:pointer}
 .btn-icon:hover{ background-position-y:bottom}
 .btn-icon-del{ background:url(../images/icon-del.png);}
 .btn-icon-remove{ background:url(../images/icon-remove.png);}
-/* æç¤ºæ¡† message */
+/* ÌáÊ¾¿ò message */
 .tipbox, .errorbox, .warningbox, .successbox { border-radius: 4px; font-size: 14px; word-wrap: break-word; word-break: break-all; line-height: 24px; padding: 10px 20px; margin-bottom: 10px; }
 .tipbox { border: 1px solid #dedede; background: url(../images/bg_body.gif) #fefefe; color: #666; }
 .errorbox { border: 1px solid #FFC0C0; background: url(../images/bg_body.gif) #FFE4E4; color: #F05656; }
 .warningbox { border: 1px solid #FFC55F; background: url(../images/bg_body.gif) #FFF2E2; color: #FF8500; }
 .successbox { border: 1px solid #90CE42; background: url(../images/bg_body.gif) #F5FFE5; color: #439900; }
 
-/* å¼¹å‡ºçª— popwin*/
+/* µ¯³ö´° popwin*/
 .shadow { display: none; position: absolute; top: 0; right: 0; left: 0; z-index: 99; background-color: #000; /* other browsers */ opacity: 0.4; /* this works in IE6, IE7, and IE8 */ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=40)"; }
 .popwin { display: none; position: fixed!important;/*FF IE7*/ width:800px; margin-left:-400px; position: absolute;/*IE6*/ top:10%;/*FF IE7*/ left: 40%;/*FF IE7*/ background:#28211b;z-index: 9999999; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); border:1px solid #554433;}
 
@@ -135,10 +138,10 @@ input[type=button]{ cursor:pointer}
 
 /*
 <dl>
-	<dt>â‰¡ èœå•</dt>
-	<dd><a href="#">è¯¾ç¨‹ä¿¡æ¯</a></dd>
-	<dd><a href="#">ç« èŠ‚ç®¡ç†</a></dd>
-	<dd><a href="#" class="now">ä¹ é¢˜åº“</a></dd>
+	<dt>¡Ô ²Ëµ¥</dt>
+	<dd><a href="#">¿Î³ÌĞÅÏ¢</a></dd>
+	<dd><a href="#">ÕÂ½Ú¹ÜÀí</a></dd>
+	<dd><a href="#" class="now">Ï°Ìâ¿â</a></dd>
 </ul>
 
 .nav dl { background:url(../images/bg_body.png) #3c4d69; padding:10px 0 10px}

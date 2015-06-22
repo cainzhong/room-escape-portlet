@@ -1,5 +1,8 @@
 package com.room.escape.portlet.service;
 
+import java.util.List;
+
+import com.room.escape.portlet.domain.Ticket;
 import com.room.escape.portlet.domain.User;
 import com.room.escape.portlet.domain.type.Sex;
 
@@ -7,7 +10,7 @@ public interface PortletService {
 
 	/**
 	 * Create a user in database.
-	 * 
+	 *
 	 * @param username
 	 * @param realName
 	 * @param password
@@ -19,7 +22,7 @@ public interface PortletService {
 
 	/**
 	 * Update a user
-	 * 
+	 *
 	 * @param username
 	 * @param realName
 	 * @param password
@@ -32,10 +35,18 @@ public interface PortletService {
 
 	/**
 	 * Find a user info through user name.
-	 * 
+	 *
 	 * @param username
 	 * @return
 	 */
 	User findUserByUserName(String username);
+
+	/**
+	 * Find a list of tickets by date.
+	 *
+	 * @param date
+	 * @return
+	 */
+	List<Ticket> findTickets(String date);
 
 }

@@ -7,9 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -18,26 +21,23 @@ import lombok.ToString;
 
 import com.room.escape.portlet.domain.type.Sex;
 
-
 /**
  * @author Cain
- *
+ * 
  */
 @Entity
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 @Table(name = "USER")
-public class User implements Serializable{
-
-	private static final long serialVersionUID = 4691898959114643113L;
+public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "ID",nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
 	private int id;
 
-	@Column(name = "USERNAME",unique=true,nullable=false)
+	@Column(name = "USERNAME", unique = true, nullable = false)
 	private String username;
 
 	@Column(name = "REAL_NAME")
@@ -52,16 +52,16 @@ public class User implements Serializable{
 
 	@Column(name = "ID_NUMBER")
 	private String idNumber;
-	
-	@Column(name="PORTRAIT")
-	private byte[] portrait;
 
-	@Column(name="CREATE_TIME")
+	@Column(name = "PORTRAIT")
+	private byte[] portrait;
+	
+	@Column(name = "CREATE_TIME")
 	private Timestamp createTime;
 
-	@Column(name="UPDATE_TIME")
+	@Column(name = "UPDATE_TIME")
 	private Timestamp updateTime;
-	
+
 	public int getId() {
 		return id;
 	}

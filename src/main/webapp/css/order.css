@@ -1,0 +1,511 @@
+@charset "UTF-8";
+
+body {
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+#roomCore {
+	margin: 30px 0 0 290px;
+	position: relative;
+	width: 487px;
+}
+
+#roomTitle {
+	background: rgba(0, 0, 0, 0) url("../images/order/top.png") no-repeat
+		scroll 0 0;
+	font-size: 36px;
+	font-weight: bold;
+	height: 93px;
+	padding: 25px 116px;
+	text-shadow: 0 0 3px #000;
+	width: 100%;
+}
+
+#roomIcon {
+	height: 85px;
+	left: 19px;
+	position: absolute;
+	top: 2px;
+	width: 85px;
+}
+
+#roomTag {
+	background: rgba(0, 0, 0, 0) url("../images/order/tag.png") no-repeat
+		scroll 0 0;
+	color: #000;
+	font-size: 15px;
+	height: 88px;
+	line-height: 20px;
+	padding-top: 4px;
+	position: absolute;
+	right: -8px;
+	text-align: center;
+	text-shadow: 0 1px 1px #fff;
+	top: 2px;
+	width: 164px;
+}
+
+#roomTag img {
+	margin: 3px 0 2px 8px;
+	width: 22px;
+}
+
+#roomCalList {
+	background: rgba(0, 0, 0, 0) url("../images/order/calBg.png") repeat-x
+		scroll 0 0;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	cursor: url("../images/handCursor.cur"), pointer;
+	height: 61px;
+	margin-bottom: 8px;
+}
+
+#roomCalList b {
+	display: inline-block;
+	height: 27px;
+	padding: 17px 8px;
+	vertical-align: middle;
+	width: 16px;
+}
+
+#roomCalList hi {
+	display: none;
+}
+
+#roomCalList i {
+	background: rgba(0, 0, 0, 0) url("../images/order/calArrow.png")
+		no-repeat scroll 0 0;
+	display: block;
+	height: 22px;
+	width: 15px;
+}
+
+#roomCalList i.right {
+	background-position: -15px 0;
+}
+
+#roomCalList span {
+	border-radius: 3px;
+	color: #aaa;
+	display: inline-block;
+	font-size: 13px;
+	height: 41px;
+	padding: 10px 8px;
+	text-align: center;
+	text-shadow: 0 -1px 2px #000;
+	vertical-align: top;
+	width: 42px;
+}
+
+#roomCalList span:hover,#roomCalList b:hover {
+	background: #000 none repeat scroll 0 0;
+	opacity: 0.9;
+}
+
+#roomCalList span.sel {
+	background: rgba(0, 0, 0, 0) url("../images/order/calSel.png") no-repeat
+		scroll 0 0;
+	color: #fff;
+	font-weight: bold;
+	transform: translate(0px, -4px);
+	transition: all 0.4s ease 0s;
+}
+
+#roomTab {
+	background: rgba(0, 0, 0, 0) url("../images/order/tab.png") repeat
+		scroll 0 0;
+	height: 45px;
+	left: 16px;
+	position: absolute;
+	top: 98px;
+	width: 324px;
+}
+
+#roomTab.sel2 {
+	background-position: 0 -45px;
+}
+
+#roomTab div {
+	color: #999;
+	cursor: url("../images/handCursor.cur"), pointer;
+	font-size: 22px;
+	height: 45px;
+	left: 3px;
+	line-height: 50px;
+	position: absolute;
+	text-align: center;
+	top: -3px;
+	width: 150px;
+}
+
+#roomTab div.sel {
+	color: #fbac00;
+	font-weight: bold;
+	line-height: 30px;
+	top: 3px;
+}
+
+#roomTab #tab2 {
+	left: 170px;
+}
+
+#roomCore #tc1,#roomCore #tc2,#roomCore #tc3,#bookTable {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: rgba(0, 0, 0, 0) url("../images/order/bg.png") repeat scroll
+		0 0;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-color: -moz-use-text-color #111 #111;
+	border-image: none;
+	border-style: none solid solid;
+	border-width: medium 1px 1px;
+	padding: 10px 7px;
+	position: relative;
+}
+
+#roomCore #tc2,#roomCore #tc3 {
+	display: none;
+}
+
+.roomContentLine {
+	background: #505050 none repeat scroll 0 0;
+	bottom: 1px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 1px;
+}
+
+#bgStory {
+	font-size: 13px;
+	height: 280px;
+	margin: 10px 0;
+	overflow: hidden;
+	padding: 6px 4px 6px 20px;
+}
+
+#roomMoreBox {
+	margin: 6px auto 20px;
+	min-height: 300px;
+	width: 460px;
+}
+
+#roomMoreBox .header {
+	margin: -3px 0 6px;
+	text-align: center;
+}
+
+#roomMoreBox .header b {
+	background: #888 none repeat scroll 0 0;
+	border-radius: 10px;
+	cursor: pointer;
+	height: 7px;
+	margin: 0 4px;
+	width: 7px;
+}
+
+#roomMoreBox .header b:hover {
+	background-color: #eee;
+}
+
+#roomMoreBox .header b.sel {
+	background: #fbac00 none repeat scroll 0 0;
+}
+
+#roomMoreBox .core {
+	display: none;
+	position: relative;
+}
+
+#bookTable div hi {
+	display: none;
+}
+
+#bookTable {
+	position: relative;
+}
+
+#bookTable .selTip {
+	color: #bbb;
+	font-size: 22px;
+	margin: 66px 0;
+	text-align: center;
+	text-shadow: 1px 2px 2px #000;
+}
+
+#bookTable .day,#bookTable .night {
+	background: rgba(0, 0, 0, 0) url("../images/order/daynight.png") repeat
+		scroll 0 0;
+	height: 35px;
+	left: -24px;
+	position: absolute;
+	top: 0;
+	width: 35px;
+	z-index: 32;
+}
+
+#bookTable .night {
+	background-position: 0 -35px;
+}
+
+#bookTimetable {
+	border-left: 1px solid #222;
+	border-top: 1px solid #444;
+	margin-left: -1px;
+	position: relative;
+}
+
+#bookTable .time {
+	background: #000 url("../images/order/timeButton.png") repeat scroll 0 0;
+	border-bottom: 1px solid #222;
+	border-right: 1px solid #222;
+	color: #777;
+	font-size: 14px;
+	height: 53px;
+	line-height: 1.5;
+	padding: 4px 9px;
+	position: relative;
+	text-shadow: 0 -1px 0 #000;
+	vertical-align: top;
+	width: 138px;
+}
+
+#bookTable .time span.nonclick {
+	color: #888;
+	display: block;
+	font-size: 14px;
+	line-height: 27px;
+	margin-top: 11px;
+}
+
+#bookTable .time p {
+	font-size: 12px;
+	line-height: 16px;
+}
+
+#bookTable .time p.time12 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 2px;
+}
+
+#bookTable .time b {
+	color: #5caa29;
+	font-size: 14px;
+	margin: 0 3px;
+}
+
+#bookTable .time i {
+	font-style: normal;
+	text-decoration: line-through;
+}
+
+#bookTable .time strong {
+	bottom: 6px;
+	color: #fbac00;
+	font-size: 15px;
+	position: absolute;
+	right: 29px;
+}
+
+#bookTable .time.clickable {
+	color: #eee;
+	cursor: url("../images/handCursor.cur"), pointer;
+}
+
+#bookTable .time.clickable:hover {
+	background-position: 0 -122px;
+	color: #fff;
+}
+
+#bookTable .time.sel {
+	background-position: 0 -61px !important;
+	color: #fff !important;
+}
+
+#bookTable .time.mousedown {
+	background: #000 none repeat scroll 0 0 !important;
+}
+
+#bookTable .time.sel strong {
+	color: #fe0;
+}
+
+#ticketTypeBox {
+	margin: 18px auto;
+}
+
+#ticketTypeBox div {
+	background: #222 none repeat scroll 0 0;
+	border-right: 1px solid #333;
+	color: #fff;
+	font-size: 22px;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	text-shadow: 0 -1px 1px #222;
+	width: 156px;
+}
+
+#ticketTypeBox div:last-child {
+	border: medium none;
+}
+
+#ticketTypeBox div:hover {
+	background: #2c2c2d none repeat scroll 0 0;
+	cursor: url("../images/handCursor.cur"), pointer;
+}
+
+#ticketTypeBox div.sel {
+	background: #ff9a02 none repeat scroll 0 0;
+	border: medium none;
+	box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.4) inset;
+	transform: scale(1.1);
+}
+
+#seatList {
+	color: #888;
+	font-size: 14px;
+	height: 50px;
+	margin: 10px 0;
+	position: relative;
+}
+
+#seatList span {
+	background: rgba(0, 0, 0, 0) url("../images/order/minusTicket.png")
+		repeat scroll 0 0;
+	cursor: url("../images/handCursor.cur"), pointer;
+	display: inline-block;
+	height: 27px;
+	vertical-align: middle;
+	width: 24px;
+}
+
+#seatList span.forAdd {
+	background: rgba(0, 0, 0, 0) url("../images/order/addTicket.png") repeat
+		scroll 0 0;
+	color: #f90;
+	margin-right: 8px;
+	width: 28px;
+}
+
+#currentPurchaseCount {
+	background: rgba(0, 0, 0, 0) url("../images/order/ticketCount.png")
+		repeat scroll 0 0;
+	display: inline-block;
+	font-size: 17px;
+	height: 27px;
+	line-height: 27px;
+	text-align: center;
+	vertical-align: middle;
+	width: 32px;
+}
+
+#orgPrice {
+	text-decoration: line-through;
+}
+
+#realPrice {
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 9px;
+}
+
+#seatList strong {
+	color: #5caa29;
+	margin: 0 2px;
+}
+
+#seatList .button {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#seatPriceLabel,#seatPrice2Label {
+	color: #39e;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 9px;
+}
+
+#remainIndicator {
+	left: 98px;
+	position: absolute;
+	top: 38px;
+}
+
+#btnMin {
+	cursor: pointer;
+}
+
+#btnPlus {
+	cursor: pointer;
+}
+
+.btn_min {
+	background: rgba(0, 0, 0, 0) url("../images/lower.png") no-repeat scroll
+		center center;
+	border: medium none;
+	cursor: pointer;
+	height: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 20px;
+}
+
+.btn_plus {
+	background: rgba(0, 0, 0, 0) url("../images/plus.png") no-repeat scroll
+		center center;
+	border: medium none;
+	cursor: pointer;
+	height: 20px;
+	margin-left: 10px;
+	width: 20px;
+}
+
+#divMissionName {
+	background: rgba(0, 0, 0, 0) url("../images/bg_title.png") repeat scroll
+		0 0;
+	color: #fff;
+	font-size: 50px;
+	height: 107px;
+	margin: 10px 20px 0;
+	padding-top: 10px;
+	text-align: center;
+	text-shadow: 0 1px 1px #000;
+	width: 247px;
+}
+
+#divDates {
+	width: 500px;
+}
+
+#amount {
+	color: #f90;
+}
+
+.arrow-left {
+	padding-top: 20px !important;
+	width: 15px !important;
+}
+
+.arrow-right {
+	padding-top: 20px !important;
+	width: 15px !important;
+}
+
+.hide {
+	display: none !important;
+}

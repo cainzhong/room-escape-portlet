@@ -2,9 +2,9 @@ package com.room.escape.portlet.repository;
 
 import java.util.List;
 
+import com.room.escape.portlet.domain.Ticket;
 import com.room.escape.portlet.domain.User;
 import com.room.escape.portlet.domain.UserRole;
-
 
 /**
  * @author Cain
@@ -28,7 +28,6 @@ public interface PortletRepository {
 	 */
 	boolean updateUser(User user);
 
-
 	/**
 	 * Find a user info through user name.
 	 *
@@ -44,5 +43,14 @@ public interface PortletRepository {
 	 * @return
 	 */
 	List<UserRole> getUserRolesByUser(User user);
+
+	/**
+	 * Find a list of tickets by time.
+	 *
+	 * @param year
+	 * @param day
+	 * @return
+	 */
+	List<Ticket> getTickets(String year, String day);
 
 }

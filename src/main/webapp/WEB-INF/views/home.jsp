@@ -6,29 +6,7 @@
 <head>
 <title>密讯馆 -- 密室逃脱</title>
 
-<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
-
-<script type="text/javascript" src="js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-
-<script type="text/javascript" src="js/lib/jquery-ui.js"></script>
-
-<script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
-
-<script type="text/javascript" src="js/icheck/jquery.icheck.min.js"></script>
-
-<script type="text/javascript" src="js/mCustomScrollbar/jquery.mCustomScrollbar.min.js"></script>
-
-<script type="text/javascript" src="js/fancybox/jquery.fancybox.js"></script>
-
-<script type="text/javascript" src="js/script.js"></script>
-
-<link rel="stylesheet" type="text/css" href="css/core.css">
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/ui.css">
-<link rel="stylesheet" type="text/css" href="js/icheck/skins/flat/blue.css">
-<link rel="stylesheet" type="text/css" href="js/mCustomScrollbar/jquery.mCustomScrollbar.css">
-<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<jsp:include page="js_css.jsp"></jsp:include>
 
 <script type="text/javascript">
 	//		$(function(){
@@ -45,6 +23,8 @@
 </script>
 
 </head>
+<c:url var="order" value="/order" />
+
 <body style="background: url(http://www.mixunguan.com/images/index_bg.jpg);">
 	<form name="aspnetForm" method="post" action="index.aspx" id="aspnetForm">
 		<div>
@@ -182,11 +162,11 @@
 			<!-- InstanceEndEditable -->
 			<div class="shadow"></div>
 			<div onclick="window.location = 'index.aspx'">
-				<a href="/" style="cursor: url('../images/handCursor.cur'), pointer;"> <img src="/images/logo.jpg"></a>
+				<a href="/" style="cursor: url('../images/handCursor.cur'), pointer;"> <img src="${pageContext.request.contextPath}/images/logo.jpg"></a>
 			</div>
 			<div id="leftNav">
 				<div id="choose" class="">
-					<i id="left1Icon"></i><span>预约购票</span>
+					<i id="left1Icon"></i><span><a href="${order}">预约购票</a></span>
 				</div>
 				<div onclick="window.location = 'story.aspx'">
 					<i id="left2Icon"></i><span>背景故事</span>
