@@ -40,182 +40,17 @@
 								<div class="ilb time">
 									<p class="time12"><c:out value="${ticket.time}" /></p>
 									<c:if test="${ticket.status.identify eq 2}">
-									<span class="nonclick">已售完</span>
+									<span class="nonclick"><spring:message code="T_OUT_OF_STOCK" /></span>
 									</c:if>
 									<c:if test="${ticket.status.identify eq 1}">
-										<span class="nonclick">已过期</span>
+										<span class="nonclick"><spring:message code="T_OUT_OF_DATE" /></span>
 									</c:if>
 									<c:if test="${ticket.status.identify eq 0}">
-										<p style="margin-top: 4px">余票：<b><c:out value="${ticket.quantity}" /></b>张</p>
-										<p>现价：<i>58</i><strong>￥58</strong>	</p>
+										<p style="margin-top: 4px"><spring:message code="T_REMAINING_TICKETS" /><b><c:out value="${ticket.quantity}" /></b><spring:message code="T_ZHANG" /></p>
+										<p><spring:message code="T_CURRENT_PRICE" /><i><c:out value="${ticket.price}" /></i><strong><c:out value="${ticket.price}" /></strong>	</p>
 									</c:if>
 								</div>
 							</c:forEach>
-							<div class="ilb time">
-								<hi>2</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">1:45</p>
-								<span class="nonclick">已过期</span>
-							</div>
-							<div class="ilb time">
-								<hi>3</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">3:00</p>
-								<span class="nonclick">已过期</span>
-							</div>
-							<div class="ilb time">
-								<hi>8</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">10:00</p>
-								<span class="nonclick">已过期</span>
-							</div>
-							<div class="ilb time">
-								<hi>9</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">11:00</p>
-								<span class="nonclick">已过期</span>
-							</div>
-							<div class="ilb time">
-								<hi>10</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">12:00</p>
-								<span class="nonclick">已过期</span>
-							</div>
-							<div class="ilb time">
-								<hi>11</hi>
-								<hi>0</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>6</hi>
-								<p class="time12">13:15</p>
-								<span class="nonclick">已售完</span>
-							</div>
-							<div class="ilb time clickable sel">
-								<hi>12</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">14:30</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>13</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">15:45</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>14</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">17:00</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>15</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">18:15</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>16</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">19:30</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>17</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">20:45</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>18</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">22:00</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
-							</div>
-							<div class="ilb time clickable">
-								<hi>19</hi>
-								<hi>8</hi>
-								<hi>6</hi>
-								<hi>4</hi>
-								<hi>0</hi>
-								<p class="time12">23:15</p>
-								<p style="margin-top: 4px">
-									余票：<b>8</b>张
-								</p>
-								<p>
-									现价：<i>58</i><strong>￥58</strong>
-								</p>
 							</div>
 						</div>
 						<div id="ticketTypeBox">
@@ -237,6 +72,28 @@
 	</div>
 </body>
 <script type="text/javascript">
+	// select current day for the time bar.
+	var current_date = getCurrentDate();
+	$("#"+current_date).addClass("sel");
+	
+	// add css class 'clickable' for the tickets which can be sold.
+	$("#bookTimetable .ilb.time").each(function(){
+		var span_css = $(this).children("span").attr('class');
+		if(span_css != "nonclick"){
+			$(this).addClass("clickable");
+		}
+	});
+	
+	// add css class 'sel' for the first session which can be sold.
+	$("#bookTimetable .ilb.time").each(function(){
+		var span_css = $(this).children("span").attr('class');
+		if(span_css != "nonclick"){
+			$(this).addClass("sel");
+			// break the each loop.
+			return false;
+		}
+	});
+	
 	function getCurrentDate() {
 		var date = new Date();
 		var year = date.getFullYear();
@@ -248,8 +105,6 @@
 		
 		return year + '-' + month + '-' + day;
 	}
-	
-	var current_date = getCurrentDate();
-	$("#"+current_date).addClass("sel");
+
 </script>
 </html>

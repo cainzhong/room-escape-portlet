@@ -34,6 +34,9 @@ public class Ticket {
 	@Column(name = "NAME", unique = true, nullable = false)
 	private String name;
 
+	@Column(name = "PRICE")
+	private String price;
+
 	@Column(name = "QUANTITY")
 	private String quantity;
 
@@ -70,6 +73,15 @@ public class Ticket {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public String getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 
 	public String getQuantity() {
 		return this.quantity;

@@ -78,8 +78,25 @@ public class PortletRepositoryImpl implements PortletRepository, Serializable {
 	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<Ticket> getTickets(String year, String day) {
+	public List<Ticket> getTicketsByTime(String year, String day) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from Ticket as t where t.year = :year and t.day = :day");
+		query.setParameter("year", year);
+		query.setParameter("day", day);
+		List<Ticket> tickets = query.list();
+		return tickets;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.room.escape.portlet.repository.PortletRepository#
+	 * getTicketsByTimeAndTicketName(java.lang.String, java.lang.String,
+	 * java.lang.String)
+	 */
+	@Override
+	public List<Ticket> getTicketsByTimeAndTicketName(String ticketName, String year, String day) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Ticket as t where t.name = :name and t.year = :year and t.day = :day");
+		query.setParameter("name", ticketName);
 		query.setParameter("year", year);
 		query.setParameter("day", day);
 		List<Ticket> tickets = query.list();

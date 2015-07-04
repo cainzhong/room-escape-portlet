@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.room.escape.portlet.domain.Ticket;
 import com.room.escape.portlet.service.PortletService;
@@ -35,9 +36,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/order")
-	public String renderToOrderPage(Model model) {
+	public String renderToOrderPage(@RequestParam String ticketName, Model model) {
 		Date today = new Date();
-		List<Ticket> tickets = this.portletService.findTickets(this.formatDate(today));
+		List<Ticket> tickets = this.portletService.findTicketsByTimeAndTicketName(ticketName, this.formatDate(today));
 
 		model.addAttribute("tickets", tickets);
 		model.addAttribute("dayWeekMap", this.getDateBar());
@@ -49,7 +50,7 @@ public class HomeController {
 	 *
 	 * @return
 	 */
-	private Map<String, String> getDateBar(){
+	private Map<String, String> getDateBar() {
 		Date today = new Date();
 		String weekDay = this.getWeekOfDate(today);
 		/*

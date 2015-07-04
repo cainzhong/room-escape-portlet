@@ -306,7 +306,7 @@
 			<table width="100%" border="0" class="tb_cont">
 				<tbody>
 					<tr>
-						<td><a href="order.aspx?id=1"> <img src="images/bg_01.png" width="310" height="205"></a></td>
+						<td><a href="order.aspx?ticketName=T_CEMETERY_FOR_PERSONS_ALIVE"> <img src="images/bg_01.png" width="310" height="205"></a></td>
 						<td align="right"><a href="order.aspx?id=1"> <img src="images/bg_01_1.png" width="310" height="150"></a></td>
 					</tr>
 					<tr>

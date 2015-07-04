@@ -44,9 +44,18 @@ public interface PortletService {
 	/**
 	 * Find a list of tickets by date.
 	 *
-	 * @param date
+	 * @param date pattern "yyyy-MM-dd". eg. 2015-06-22
 	 * @return
 	 */
-	List<Ticket> findTickets(String date);
+	List<Ticket> findTicketsByTime(String date);
+
+	/**
+	 * Find a list of tickets by time and ticket name.
+	 *
+	 * @param ticketName
+	 * @param date pattern "yyyy-MM-dd". eg. 2015-06-22
+	 * @return
+	 */
+	List<Ticket> findTicketsByTimeAndTicketName(String ticketName, String date);
 
 }

@@ -51,6 +51,16 @@ public interface PortletRepository {
 	 * @param day
 	 * @return
 	 */
-	List<Ticket> getTickets(String year, String day);
+	List<Ticket> getTicketsByTime(String year, String day);
+
+	/**
+	 * Find a list of tickets by time and ticket name.
+	 *
+	 * @param year
+	 * @param day
+	 * @param ticketName
+	 * @return
+	 */
+	List<Ticket> getTicketsByTimeAndTicketName(String ticketName, String year, String day);
 
 }

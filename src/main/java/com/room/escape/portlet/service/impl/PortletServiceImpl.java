@@ -30,12 +30,6 @@ public class PortletServiceImpl implements PortletService, UserDetailsService {
 	@Autowired
 	private PortletRepository portletRepository;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.springframework.security.core.userdetails.UserDetailsService#
-	 * loadUserByUsername(java.lang.String)
-	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
 		User user = this.portletRepository.getUserByUserName(username);
@@ -73,13 +67,17 @@ public class PortletServiceImpl implements PortletService, UserDetailsService {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.room.escape.portlet.service.PortletService#findTickets(java.lang.String)
-	 */
 	@Override
-	public List<Ticket> findTickets(String date) {
+	public List<Ticket> findTicketsByTime(String date) {
 		String dateArray[] = date.split("-");
-		List<Ticket> tickets = this.portletRepository.getTickets(dateArray[0],dateArray[1]+dateArray[2]);
+		List<Ticket> tickets = this.portletRepository.getTicketsByTime(dateArray[0], dateArray[1] + dateArray[2]);
+		return tickets;
+	}
+
+	@Override
+	public List<Ticket> findTicketsByTimeAndTicketName(String ticketName, String date) {
+		String dateArray[] = date.split("-");
+		List<Ticket> tickets = this.portletRepository.getTicketsByTime(dateArray[0], dateArray[1] + dateArray[2]);
 		return tickets;
 	}
 
