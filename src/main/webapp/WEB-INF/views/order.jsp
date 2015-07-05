@@ -54,16 +54,15 @@
 							</div>
 						</div>
 						<div id="ticketTypeBox">
-							<div class="ilb sel" relid="1">普通票</div>
-							<div class="ilb" relid="2">包场票</div>
+							<div class="ilb" id="ticketType1">普通票</div>
+							<div class="ilb" id="ticketType2">包场票</div>
 						</div>
-						<div ordered="0" mingroupcnt="4" maxgroupcnt="6" maxcount="8" id="seatList">
-							&nbsp; 购票数量：<span></span><b id="currentPurchaseCount">1</b><span class="forAdd"></span>总价：<b id="orgPrice">58</b><b id="realPrice">￥58</b>
-							<div id="remainIndicator">
-								（余<strong>8</strong>张）
-							</div>
-							<div class="button" id="buyButton">预约</div>
-						</div>
+						<div id="seatList">
+                            &nbsp; 购票数量：<span></span><b id="currentPurchaseCount">1</b>
+                            <span class="forAdd"></span>总价：<b id="orgPrice">58</b><b id="realPrice">￥58</b><div id="remainIndicator">
+                                  	  （余<strong>8</strong>张）</div>
+                            <div id="buyButton" class="button">预约</div>
+                        </div>
 					</div>
 				</div>
 				<div id="ui-tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-3" role="tabpanel" style="display: none;" aria-expanded="false" aria-hidden="true"></div>
@@ -84,14 +83,72 @@
 		}
 	});
 	
+	var current_selected_ticket = "";
+	
 	// add css class 'sel' for the first session which can be sold.
 	$("#bookTimetable .ilb.time").each(function(){
 		var span_css = $(this).children("span").attr('class');
 		if(span_css != "nonclick"){
+			current_selected_ticket = $(this);
 			$(this).addClass("sel");
 			// break the each loop.
 			return false;
 		}
+	});
+	
+	
+	// add css class 'sel' when a ticket is selected.
+	$("#bookTimetable .ilb.time").each(function(){
+		$(this).click(function(){
+			current_selected_ticket.removeClass("sel");
+			$(this).addClass("sel");
+			current_selected_ticket = $(this);
+		});
+	});
+	
+	//TODO
+	// select other day on date bar.
+	$("#roomCalList span").each(function(){
+		$(this).click(function(){
+			var obj = $(this);
+			$.ajax({
+				type : 'POST',
+				url : '/ajaxOrder',
+				dataType : "text",
+				data : {
+					"ticketName" : 'T_CEMETERY_FOR_PERSONS_ALIVE',
+					"date" : obj.attr('id')
+				},
+				success : function(data) {
+					alert(success);
+				},
+				error : function(data) {
+					alert(error);
+				}
+			});
+		});
+	});
+	
+	// default selected ticket type.
+	$("#ticketType1").addClass("sel");
+	
+	$("#ticketType1").click(function(){
+		$("#ticketType2").removeClass("sel");
+		$("#ticketType1").addClass("sel");
+		var price = current_selected_ticket.find("p i").text();
+		$("#orgPrice").text(price);
+		$("#realPrice").text(price);
+		
+	});
+	
+	$("#ticketType2").click(function(){
+		$("#ticketType1").removeClass("sel");
+		$("#ticketType2").addClass("sel");
+		var num_tickets = current_selected_ticket.find("p b").text();
+		var price = current_selected_ticket.find("p i").text();
+		var total = num_tickets * price;
+		$("#orgPrice").text(total);
+		$("#realPrice").text(total);
 	});
 	
 	function getCurrentDate() {

@@ -9,11 +9,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.room.escape.portlet.domain.Ticket;
 import com.room.escape.portlet.service.PortletService;
@@ -42,6 +45,21 @@ public class HomeController {
 
 		model.addAttribute("tickets", tickets);
 		model.addAttribute("dayWeekMap", this.getDateBar());
+		return "order";
+	}
+
+	@RequestMapping(value = "/ajaxOrder", method = RequestMethod.POST)
+	public @ResponseBody
+	String renderToOrderPage(@RequestParam(value = "ticketName", required = false) String ticketName, @RequestParam(value = "date", required = false) String date) {
+		List<Ticket> tickets = null;
+
+		if (StringUtils.isEmpty(date)) {
+			Date today = new Date();
+			tickets = this.portletService.findTicketsByTimeAndTicketName(ticketName, this.formatDate(today));
+		} else {
+			tickets = this.portletService.findTicketsByTimeAndTicketName(ticketName, date);
+		}
+
 		return "order";
 	}
 
