@@ -132,19 +132,23 @@
 	// default selected ticket type.
 	$("#ticketType1").addClass("sel");
 	
+	// standard ticket
 	$("#ticketType1").click(function(){
 		$("#ticketType2").removeClass("sel");
 		$("#ticketType1").addClass("sel");
+		$("#currentPurchaseCount").text(1);
 		var price = current_selected_ticket.find("p i").text();
 		$("#orgPrice").text(price);
 		$("#realPrice").text(price);
 		
 	});
 	
+	// book all the tickets
 	$("#ticketType2").click(function(){
 		$("#ticketType1").removeClass("sel");
 		$("#ticketType2").addClass("sel");
 		var num_tickets = current_selected_ticket.find("p b").text();
+		$("#currentPurchaseCount").text(num_tickets);
 		var price = current_selected_ticket.find("p i").text();
 		var total = num_tickets * price;
 		$("#orgPrice").text(total);
@@ -162,6 +166,55 @@
 		
 		return year + '-' + month + '-' + day;
 	}
+	
+	bindPlusMinClick();
+    function bindPlusMinClick() {
+        var $items = $('#seatList>span');
 
+        $items.click(function() {
+           doPlusMin(this);
+        });
+        
+        $("#btnMin").click(function() {
+           doPlusMin(this);
+        });
+        $("#btnPlus").click(function() {
+           doPlusMin(this);
+        });
+    }
+	
+    function doPlusMin(obj)
+    {
+      //  if(v_m_relid=="2")return false;
+        var max = current_selected_ticket.find("p b").html();
+        var cur = parseInt($("#currentPurchaseCount").html());
+        if ($(obj).hasClass("forAdd")) {
+            if ((cur + 1) <= max) {
+                calcRealPrice(cur+1);
+                $("#currentPurchaseCount").html("" + (cur + 1));
+                $("#usercount").html("" + (cur + 1));
+            }
+        } else {
+            if ((cur - 1) >= 1) {
+                calcRealPrice(cur-1);
+                $("#currentPurchaseCount").html("" + (cur - 1));
+                $("#usercount").html("" + (cur - 1));
+            }
+        }
+    }
+    function calcRealPrice(newc)
+    {
+      //数量
+      var c = $("#currentPurchaseCount").html();
+     
+      //现价
+      var nowPrice = $("#realPrice").html().substr(1);
+        
+        var u = parseInt(nowPrice)/parseInt(c);
+        
+         $("#realPrice").html("￥"+(u*newc));
+         $("#amount").html((u*newc));
+        
+    }
 </script>
 </html>
